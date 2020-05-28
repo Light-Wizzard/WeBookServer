@@ -1,0 +1,11 @@
+[Unit]
+Description=WeBookServer Service Socket
+Documentation=https://github.com/Light-Wizzard/WeBookServer
+After=network.target
+PartOf=WeBookServer.service
+
+[Socket]
+ListenStream=6633
+
+[Install]
+WantedBy=sockets.target

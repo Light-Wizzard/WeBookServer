@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Echo Reloaded Server</Name>
+    <Version>0.1.0</Version>
+    <Title>Echo Reloaded Server</Title>
+    <Publisher>QtService</Publisher>
+    <!-- Directory name is used in component.xml -->
+    <StartMenuDir>QtService</StartMenuDir>
+    <TargetDir>@HomeDir@/QtService</TargetDir>
+</Installer>

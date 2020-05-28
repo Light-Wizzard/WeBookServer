@@ -1,0 +1,21 @@
+[Unit]
+Description=WeBookServer Service
+Documentation=https://github.com/Light-Wizzard/WeBookServer
+After=network-online.target WeBookServer.socket
+
+[Service]
+Type=notify
+NotifyAccess=exec
+ExecStart=$${target.path}/$$TARGET --backend systemd
+ExecReload=$${target.path}/$$TARGET --backend systemd reload
+ExecStop=$${target.path}/$$TARGET --backend systemd stop
+#ExecEnable=$${target.path}/$$TARGET --backend systemd enable
+#ExecDisable=$${target.path}/$$TARGET --backend systemd disable
+
+WatchdogSec=10
+Restart=on-abnormal
+RuntimeDirectory=$$TARGET
+
+[Install]
+#WantedBy=multi-user.target
+WantedBy=default.target
