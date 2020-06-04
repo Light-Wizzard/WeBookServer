@@ -221,7 +221,7 @@ export UPDATE_INFORMATION="gh-releases-zsync|${GITHUB_USERNAME}|${GITHUB_PROJECT
 #
 declare -i LINUX_DEPLOY_USING;
 # Set to 1 to enable LinuxDeploy
-LINUX_DEPLOY_USING=0;
+LINUX_DEPLOY_USING=1;
 #
 if [ "${LINUX_DEPLOY_USING}" -eq 1 ]; then
     echo "FINDME Running linuxdeploy";
