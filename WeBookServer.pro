@@ -102,6 +102,7 @@ win32:SOURCES   += src/QtService/qtservice_win.cpp
 unix:HEADERS    += src/QtService/qtunixsocket.h src/QtService/qtunixserversocket.h
 unix:SOURCES    += src/QtService/qtservice_unix.cpp src/QtService/qtunixsocket.cpp src/QtService/qtunixserversocket.cpp
 unix:DISTFILES  += tools/haproxy.cfg tools/monit.conf tools/webookserver.ini tools/webookserver.sh tools/webooksetup.sh
+DISTFILES       += README.md
 TRANSLATIONS    += src/WeBookServer_en_US.ts
 
 win32:VERSION = 0.1.0.0 # major.minor.patch.build
@@ -200,7 +201,3 @@ unix {
     }
 }
 ################################ End of File ##################################
-
-
-
-

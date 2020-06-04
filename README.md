@@ -2,9 +2,10 @@
 
 This project is written in Qt C++, 
 it has a Client called WeBookClient,
-the WeBook Project itself is an example of how to use the two together.
+that is also written in Qt C++,
+the WeBook Project itself is an example of how to use the two projects together.
 
-This project is current in Alpha, 
+This project is currently in Alpha,
 the reason I have posted it, is to test the installation script, 
 and it will check GitHub for updates before continuing,
 so I needed to post even a skeleton of the code in order to even develop it.
@@ -25,6 +26,12 @@ https://github.com/qt-labs/qthttpserver
 QtService:
 https://github.com/qtproject/qt-solutions/tree/master/qtservice
 
+I decided to compile it, rather then joining it as a subdir project for one reason,
+they are in development, and can break my code any day,
+so I must first test all there updates before pushing them in my project,
+and I will keep it this way, all code is compiled in.
+The main reason for this is simple, this app is small,
+so no real need for a Library.
 
 I wrote the program to take switches, 
 and to make up defaults if those switches are blank,
