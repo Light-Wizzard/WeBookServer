@@ -166,7 +166,13 @@ install:
         export ARTIFACT_ZSYNC_LDQT="${BIN_PRO_RES_NAME}-travis-x86_64.AppImage.zsync"; 
         export ARTIFACT_QIF="${BIN_PRO_RES_NAME}-Installer";
         export ARTIFACT_ZIP="${BIN_PRO_RES_NAME}-Linux-Installer.zip";
-        sudo rsync -arv "${TRAVIS_BUILD_DIR}/include" "${QT_INSTALL_LIBS}/qt";         
+        sudo rsync -arv "${TRAVIS_BUILD_DIR}/include/" "${QT_INSTALL_LIBS}/qt"; 
+        if [ -f "${QT_INSTALL_LIBS}/qt/QtHttpServer/QHttpServer" ]; then
+            echo "FINDME Found QtHttpServer/QHttpServer";
+        else
+            echo "FINDME Error did not Find QtHttpServer/QHttpServer";
+            ls "${QT_INSTALL_LIBS}/qt";
+        fi        
       fi
       
 script:
