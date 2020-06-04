@@ -237,7 +237,8 @@ if [ "${LINUX_DEPLOY_USING}" -eq 1 ]; then
     # 
     # QtQuickApp does support "make install", but we don't use it because we want to show the manual packaging approach in this example
     # initialize AppDir, bundle shared libraries, add desktop file and icon, use Qt plugin to bundle additional resources, and build AppImage, all in one command
-    ./linuxdeploy-x86_64.AppImage --appdir "${PWD}/AppDir${MY_TARGET_PATH}" -e "${BIN_PRO_RES_NAME}" -i "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.png" -d "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.desktop" --plugin qt --output appimage;
+    # "${PWD}/AppDir${MY_TARGET_PATH}"
+    ./linuxdeploy-x86_64.AppImage --appdir "AppDir" -e "${BIN_PRO_RES_NAME}" -i "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.png" -d "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.desktop" --plugin qt --output appimage;
     # 
     chmod +x "${BIN_PRO_RES_NAME}"*.AppImage*;
     mv "${BIN_PRO_RES_NAME}"*.AppImage* "$OLD_CWD";
