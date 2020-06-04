@@ -166,6 +166,7 @@ install:
         export ARTIFACT_ZSYNC_LDQT="${BIN_PRO_RES_NAME}-travis-x86_64.AppImage.zsync"; 
         export ARTIFACT_QIF="${BIN_PRO_RES_NAME}-Installer";
         export ARTIFACT_ZIP="${BIN_PRO_RES_NAME}-Linux-Installer.zip";
+        rsync -arv "${TRAVIS_BUILD_DIR}/include" "${QT_INSTALL_LIBS}/qt";         
       fi
       
 script:
