@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=WeBookServer
+GenericName=WeBookServer
+Comment=WeBookServer by the Light Wizzard
+Icon=WeBookServer
+Exec=usr/bin/WeBookServer
+Terminal=false
+Categories=Office;
+Keywords=office;
+Name[en_US]=WeBookServer.desktop
