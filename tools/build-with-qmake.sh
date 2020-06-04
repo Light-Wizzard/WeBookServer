@@ -135,57 +135,36 @@ ls; # ls = 3rdparty AppDir Makefile
 echo "FINDME end make install";
 # AppDir/usr/share/applications AppDir/usr/share/pixmaps
 
-echo "FINDME DISTDIR=$DISTDIR";
-
-if [ -d "${DISTDIR}" ]; then
-    echo "FINDME DISTDIR home";
-    ls "${DISTDIR}";
-fi
 if [ -d "${PWD}/AppDir" ]; then
-    echo "FINDME ${PWD}/AppDir";
+    echo "FINDME ./AppDir";
     ls "${PWD}/AppDir"; # usr share pixmaps
 fi
-
 if [ -d "${PWD}/AppDir/home" ]; then
-    echo "FINDME ${PWD}/AppDir/home";
+    echo "FINDME ./AppDir/home";
     ls "${PWD}/AppDir/home"; # 
 fi
 if [ -d "${PWD}/AppDir/home/travis" ]; then
-    echo "FINDME ${PWD}/AppDir/home/travis";
+    echo "FINDME ./AppDir/home/travis";
     ls "${PWD}/AppDir/home/travis"; # 
 fi
 if [ -d "${PWD}/AppDir/home/travis/build" ]; then
-    echo "FINDME ${PWD}/AppDir/home/travis/build";
+    echo "FINDME ./AppDir/home/travis/build";
     ls "${PWD}/AppDir/home/travis/build"; # 
 fi
-
-
-
+#
 if [ -d "${PWD}/AppDir/usr" ]; then
-    echo "FINDME ${PWD}/AppDir/usr";
+    echo "FINDME ./AppDir/usr";
     ls "${PWD}/AppDir/usr"; # AppDir/usr
 fi
 if [ -d "${PWD}/AppDir/usr/share" ]; then
-    echo "FINDME ${PWD}/AppDir/usr/share";
+    echo "FINDME ./AppDir/usr/share";
     ls "${PWD}/AppDir/usr/share"; # AppDir/usr/share
 fi
 if [ -d "${PWD}/AppDir/usr/share/applications" ]; then
-    echo "FINDME ${PWD}/AppDir/usr/share/applications";
+    echo "FINDME ./AppDir/usr/share/applications";
     ls "${PWD}/AppDir/usr/share/applications"; # AppDir/usr/share/applications
 fi
 
-if [ -d "3rdparty" ]; then
-    echo "FINDME 3rdparty qthttpserver";
-    ls "3rdparty"; # 
-fi
-if [ -d "3rdparty/qthttpserver" ]; then
-    echo "FINDME 3rdparty/qthttpserver";
-    ls "3rdparty/qthttpserver"; # bin examples include lib Makefile mkspecs src
-fi
-if [ -d "3rdparty/qthttpserver/bin" ]; then
-    echo "FINDME 3rdparty/qthttpserver/bin";
-    ls "3rdparty/qthttpserver/bin"; # 
-fi
 
 echo "FINDME find exe start";
 
@@ -258,7 +237,7 @@ if [ "${LINUX_DEPLOY_USING}" -eq 1 ]; then
     # 
     # QtQuickApp does support "make install", but we don't use it because we want to show the manual packaging approach in this example
     # initialize AppDir, bundle shared libraries, add desktop file and icon, use Qt plugin to bundle additional resources, and build AppImage, all in one command
-    ./linuxdeploy-x86_64.AppImage --appdir "${PWD}/AppDir" -e "${BIN_PRO_RES_NAME}" -i "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.png" -d "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.desktop" --plugin qt --output appimage;
+    ./linuxdeploy-x86_64.AppImage --appdir "${PWD}/AppDir${MY_TARGET_PATH}" -e "${BIN_PRO_RES_NAME}" -i "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.png" -d "${REPO_ROOT}/resources/${BIN_PRO_RES_NAME}.desktop" --plugin qt --output appimage;
     # 
     chmod +x "${BIN_PRO_RES_NAME}"*.AppImage*;
     mv "${BIN_PRO_RES_NAME}"*.AppImage* "$OLD_CWD";
@@ -276,12 +255,12 @@ if [ "${LINUX_DEPLOY_USING}" -eq 1 ]; then
     unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH;
     export VERSION="travis";
     # Move our executable into the bin folder
-    if [ -f "${PWD}/AppDir/${BIN_PRO_RES_NAME}" ]; then
-        cp -pv "${PWD}/AppDir/${BIN_PRO_RES_NAME}" "${TRAVIS_BUILD_DIR}${MY_TARGET_PATH}";
+    if [ -f "${PWD}/AppDir${MY_TARGET_PATH}/${BIN_PRO_RES_NAME}" ]; then
+        cp -pv "${PWD}/AppDir${MY_TARGET_PATH}/${BIN_PRO_RES_NAME}" "${TRAVIS_BUILD_DIR}${MY_TARGET_PATH}";
         if [ -f "${TRAVIS_BUILD_DIR}${MY_TARGET_PATH}" ]; then
             echo "FINDME Exe found";
         else
-            echo "FINDME Error Exe not found";
+            echo "FINDME Error Exe not found AppDir${MY_TARGET_PATH}/";
             find "${REPO_ROOT}" -type f -executable;
             echo "FINDME end find 1";
             MY_OK=1;            
