@@ -37,6 +37,11 @@ INCLUDEPATH     += src/QtService
 #INCLUDEPATH     += include/QtSslServer
 INCLUDEPATH     += include/QtHttpServer/5.12.0/QtHttpServer
 INCLUDEPATH     += include/QtSslServer/5.12.0/QtSslServer
+
+INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt"
+INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtHttpServer"
+INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtSslServer"
+
 #
 DEPENDPATH      += src/
 DEPENDPATH      += src/QtService
