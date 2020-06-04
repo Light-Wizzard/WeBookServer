@@ -16,7 +16,7 @@ where it will load and display its content.
 
 ## Work Flow
 
-Currently I am using GitHub projects to do the heavey work like Web Server,
+Currently I am using GitHub projects to do the heavy work like Web Server,
 and to make it run as a Daemon in Unix and a Windows Service in Windows,
 I am using QtHttpServer, and QtService by QtLabs for those jobs.
 
@@ -36,7 +36,7 @@ so no real need for a Library.
 I wrote the program to take switches, 
 and to make up defaults if those switches are blank,
 so it has a way of reading in configuration files,
-but with so many OSs to deal with,
+but with so many Operating Systems to deal with,
 I decided a Database was out, 
 too many to have to deal with,
 and why add that complexity to a much simpler problem,
@@ -79,7 +79,7 @@ WeBookServer should run on a Windows Server, but not sure about setting it up as
 but eventually I will work on that, and get it to work, 
 not sure QtHttpServer supports IIS, so this may not be a Windows thing,
 but I do try to support as many distribution of Unix, so to name a few,
-Linux, Arch Linux & Manjaro, FreeBSD, MAC, Sun JDS, Solaris/Sparc, Sunbsd, HP-UX, IRIX, OSF1, ULTRIX, AIX,
+Linux, Arch Linux or Manjaro, FreeBSD, MAC, Sun JDS, Solaris/Sparc, Sunbsd, HP-UX, IRIX, OSF1, ULTRIX, AIX,
 CentOS, Debian, Redhat, Slackware, Suse, Unitedlinux, Mandrake, Yellow Dog, Gentoo,
 and actually this list is just stuff I know it works on, this is Qt and C++,
 so it should run on anything, making this list meaningless,
@@ -87,7 +87,7 @@ other than to make you understand what I have to deal with.
 
 I was going to write this as a bash script, but decided not to for many reasons,
 in fact, I decided to write it as a Service, and that takes a bit more work,
-and I also want it to work with HaProxy and Monit,
+and I also want it to work with Description [HAProxy](https://github.com/haproxy/haproxy) and [Monit](https://github.com/arnaudsj/monit),
 more on that later,
 but I realized that the bash scripts were limiting me to the above,
 and not Qt, so why do that to myself or others.
@@ -317,7 +317,9 @@ now NGINX is easy to deal with,
 but it still uses up a lot of threads, just like the others,
 and IIS, do not make me explain this issue to you,
 I will be like the General on South-Park,
-[Get Bill Gates in here...](https://youtu.be/EPfsr8BBdA8)
+[Get Bill Gates in here...](https://youtu.be/EPfsr8BBdA8).
+
+Why run two Web Servers is a question you must ask yourself.
 
 The Concept of WeBookServer by default is to uninstall Apache, NGINX, or IIS,
 because of one reason only,
@@ -332,17 +334,23 @@ but they all pose a Security risk to the way WeBookServer works,
 more on that later.
 
 ## Install
+
 Install will run the installer commands, and it can detect the OS it is running on,
 and it is all done in Qt in C++, this has switches to control its behaviour.
 This will install software on the server, and Update will update it,
-it will download both WeBookServer and QtHttpServer from GitHub,
-and keep them up to date,
+it will download WeBookServer from GitHub,
+and keep it up to date,
 so you download the Installer from WeBook,
 or any Fork,
 and it uses that account to authenticate from,
-so you cannot run a Client from one Fork on a Server from another,
-they will not communicate by design.
-
+so you cannot run a Client from one Fork on a Server from another project,
+nor another build from this project, or any fork,
+its designed to not run from any executable but the one complied from Travis or AppVeyor,
+so they will not communicate by design,
+this is to prevent hacking, malware, or viruses,
+but beware, a Fork can put code into it that is not in this project,
+so do not file issues with Forks here,
+you have to trust the Fork.
 
 ## Update
 
@@ -372,6 +380,25 @@ or anyone wanting to use the App to hack into a WeBook site.
 
 ## The Security System
 
+The Project uses other GitHub Projects,
+all list here, and I have to trust their code,
+and QtLabs is trustworthy in my own opinion,
+I use their code, so I have trust it,
+and its easy to say I should read all the code,
+but its in development and changes all the time,
+as is Qt itself,
+so I can only speak about my Code,
+and I do not have any hidden code or back-doors,
+malware, viruses, or any type of code other than just the code it needs to do its job,
+so I will over comment the code,
+so you know what all the code does by reading the comments.
+
+I will have Tracking Capabilities built into this code,
+but its job is to track where the code was compiled,
+and is Fork Friendly,
+you Fork it, it now uses your credentials,
+your Travis and AppVeyor accounts.
+
 The Security System has nothing to do with the Code,
 the reason is simple, if the Code was in charge of Security,
 someone could Hack it to break the Security,
@@ -393,6 +420,21 @@ this helps prevent a DoS attack,
 so by using external apps, 
 and monitoring them, I can ensure security,
 and I use Monit, to ensure all these apps are always running on the server.
+
+I use [maldet](https://github.com/waja/maldetect) and [clamav](https://github.com/Cisco-Talos/clamav-devel) for scanning all incoming files.
+
+I can use HaProxy to Authenticate all Clients,
+and even filter by specific IP addresses.
+
+By Removing the Security from this App,
+it prevents it from being used to hack sites with,
+even with the code, the rules it uses even when Forked,
+as long as they do not change the code,
+and GitHub makes it easy to find out what they changed,
+but even if they wrote their own client server,
+that was designed only to hack,
+all they could hack is their own accounts,
+since a legitimate site, would have better security.
 
 I use a 3 Key System, the Admin of the VPS,
 will download and install WeBookClient,
@@ -641,7 +683,7 @@ so I can do opt-in issue tracking for Forks.
 
 ## Notes
 
-This is on Arch Linux Manajaro
+This is on Arch Linux or Manjaro
 
 
 ```
