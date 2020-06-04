@@ -65,6 +65,46 @@ CONFIG          *= "c++11"
 #CONFIG         *= "c++latest"
 # Headers
 HEADERS         += src/webookserver.h   src/QtService/qtservice.h   src/QtService/qtservice_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qabstracthttpserver_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserver_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverliterals_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverrequest_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverresponder_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverresponse_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverrouter_p.h
+HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverrouterrule_p.h
+HEADERS         += include/QtHttpServer/QAbstractHttpServer
+HEADERS         += include/QtHttpServer/QHttpServer
+HEADERS         += include/QtHttpServer/QHttpServerAfterRequestViewTraits
+HEADERS         += include/QtHttpServer/QHttpServerRequest
+HEADERS         += include/QtHttpServer/QHttpServerResponder
+HEADERS         += include/QtHttpServer/QHttpServerResponse
+HEADERS         += include/QtHttpServer/QHttpServerRouter
+HEADERS         += include/QtHttpServer/QHttpServerRouterRule
+HEADERS         += include/QtHttpServer/QHttpServerRouterViewTraits
+HEADERS         += include/QtHttpServer/QtHttpServer
+HEADERS         += include/QtHttpServer/QtHttpServerDepends
+HEADERS         += include/QtHttpServer/QtHttpServerVersion
+HEADERS         += include/QtHttpServer/qabstracthttpserver.h
+HEADERS         += include/QtHttpServer/qhttpserver.h
+HEADERS         += include/QtHttpServer/qhttpserverrequest.h
+HEADERS         += include/QtHttpServer/qhttpserverresponder.h
+HEADERS         += include/QtHttpServer/qhttpserverresponse.h
+HEADERS         += include/QtHttpServer/qhttpserverrouter.h
+HEADERS         += include/QtHttpServer/qhttpserverrouterrule.h
+HEADERS         += include/QtHttpServer/qhttpserverrouterviewtraits.h
+HEADERS         += include/QtHttpServer/qhttpserverviewtraits.h
+HEADERS         += include/QtHttpServer/qhttpserverviewtraits_impl.h
+HEADERS         += include/QtHttpServer/qthttpserverglobal.h
+HEADERS         += include/QtHttpServer/qthttpserverversion.h
+HEADERS         += include/QtSslServer/5.12.0/QtSslServer/private/qsslserver_p.h
+HEADERS         += include/QtSslServer/QSslServer
+HEADERS         += include/QtSslServer/QtSslServer
+HEADERS         += include/QtSslServer/QtSslServerDepends
+HEADERS         += include/QtSslServer/QtSslServerVersion
+HEADERS         += include/QtSslServer/qsslserver.h
+HEADERS         += include/QtSslServer/qtsslserverglobal.h
+HEADERS         += include/QtSslServer/qtsslserverversion.h
 HEADERS         += src/httpserver/qabstracthttpserver.h
 HEADERS         += src/httpserver/qabstracthttpserver_p.h
 HEADERS         += src/httpserver/qhttpserver.h
@@ -86,7 +126,7 @@ HEADERS         += src/httpserver/qhttpserverviewtraits_impl.h
 HEADERS         += src/httpserver/qthttpserverglobal.h
 HEADERS         += src/sslserver/qsslserver.h
 HEADERS         += src/sslserver/qsslserver_p.h
-HEADERS         += src/sslserver/qtsslserverglobal.h
+#HEADERS         += src/sslserver/qtsslserverglobal.h
 # Source Code
 SOURCES         += src/webookserver.cpp src/QtService/qtservice.cpp src/main.cpp
 SOURCES         += src/httpserver/qabstracthttpserver.cpp
@@ -118,6 +158,8 @@ else:VERSION  = 0.1.0   # major.minor.patch
 #include(3rdparty/qthttpserver/qthttpserver.pro)
 include(src/3rdparty/http-parser.pri)
 
+include(include/QtHttpServer/headers.pri)
+include(include/QtSslServer/headers.pri)
 
 #include(3rdparty/qthttpserver/src/3rdparty/http-parser.pri)
 #SUBDIRS += 3rdparty/qthttpserver/tests/auto/auto.pro
