@@ -2,9 +2,9 @@
 Type=Application
 Name=WeBookServer
 GenericName=WeBookServer
-Comment=WeBook is Pronounced Web Book and its by the Light Wizzard in the Flesh
+Comment=WeBook is Pronounced Web Book, this is its Server and its by the Light Wizzard in the Flesh
 Icon=WeBookServer
-Exec=WeBookServer
+Exec=usr/bin/WeBookServer
 Terminal=false
 Categories=Office;
 Keywords=office;
