@@ -16,12 +16,38 @@ where it will load and display its content.
 
 
 ## Status
+
 Unix: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
 
+I am working on Mac and Windows.
+
 ## :package: **Downloads:**
+
  - :penguin: [Linux](https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage)
  - :penguin: :inbox_tray: [Linux ZSync](https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage.zsync)
+ 
+ 
+Just because it compiles, and runs, does not mean it does anything,
+and without the Client, there is not much it can do, but wait for one.
 
+Note: Port is hard coded to 9696, it has a configuration ini file,
+and you can pass in arguments from the command line.
+
+I will make a tutorial for this, once its working, right now its just in development.
+
+These AppImages will run on most Linux Versions, you can compile it on any Linux Distribution that it does not run on, 
+and you will have to compile it for any OS I do not have a way to make a version for,
+so as time goes on, I will try to add more support.
+
+The concept is that you setup HAProxy to send all port 80 and 443 to the port you specify,
+there are many reasons not to handle the calls by WeBookServer directly,
+and you can access the port from a Web Browser,
+this port should be set for Authentication, so only Authenticated Clients can open this port directly.
+
+I only deal with Authentication in a very specific way,
+the easiest way is to use HAPRroxy and manage the Configuration File to manage users.
+
+See Security section below
 
 ## Work Flow
 
