@@ -833,7 +833,9 @@ This is a Work in Progress...
 ## Ending Remarks
 
 
-Thanks, Medically Retired U.S. Air Force (E)F-111, MH-60, MH-53 Crew Chief [Jeffrey Scott Flesher](https://LightWizzard.com/books/trinary.universe/references.html#reference_jeffrey_scott_flesher), PhD, AKA [The Light Wizzard in the Flesh](https://LightWizzard.com)
+Thanks, Medically Retired U.S. Air Force (E)F-111, MH-60, MH-53 Crew Chief 
+
+[Jeffrey Scott Flesher](https://LightWizzard.com/books/trinary.universe/references.html#reference_jeffrey_scott_flesher), PhD, AKA [The Light Wizzard in the Flesh](https://LightWizzard.com)
 
 
 ## End of File, you can stop reading now, seriously, stop, over and out...
