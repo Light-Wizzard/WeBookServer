@@ -15,13 +15,38 @@ and looks for the WeBookClient Data Folders,
 where it will load and display its content.
 
 
+## Table of contents
+
+
+* [Table of contents](#table-of-contents)
+* [Status](#Status)
+* [Downloads](#Downloads)
+* [Work Flow](#Work-Flow)
+* [Installer](#Installer)
+* [Version](#Version)
+* [Server Installed](#Server-Installed)
+* [WeBookServer Configuration](#WeBookServer-Configuration)
+* [WeBookServer](#WeBookServer)
+* [Install](#Install)
+* [Update](#Update)
+* [Build](#Build)
+* [Security System](#Security-System)
+* [Fork It](#Fork-It)
+* [3rd Party Apps](#3rd-Party-Apps)
+* [Notes](#Notes)
+* [List of 3rd Party Projects](#List-of-3rd-Party-Projects)
+* [Progress](#Progress)
+* [Remarks](#Remarks)
+    * [End of File](#End-of-File)
+
+
 ## Status
 
 Linux: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
 
 I am working on Mac and Windows.
 
-## :package: **Downloads:**
+## Downloads
 
  - :penguin: [Linux](https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage)
  - :penguin: :inbox_tray: [Linux ZSync](https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage.zsync)
@@ -214,7 +239,9 @@ but keep in mind, on Windows,
 this will only run under Description [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7) with Unix for Windows installed,
 and [Cygwin](https://www.cygwin.com/), more on this later,
 
-## Version Control and Alphabet Soup Decoded
+## Version 
+
+Version Control and Alphabet Soup Decoded
 
 The Thing about Alpha is this, what the software does now is called a Starting point, 
 and what it will do when finished is called beyond Able, Affirmative, Afirm, Alfa, just to get to Alpha, 
@@ -332,7 +359,9 @@ and why it uninstalls other Servers by default,
 I will explain how to migrate, but there is no plans for any migration scripts,
 and once you understand why, you will say to yourself, I do not need them.
 
-## WeBookServer is a Server
+## WeBookServer
+
+WeBookServer is a Server
 
 WeBookServer is the Server, and has nothing to do with Apache, NGINX, or IIS, 
 nor does it want any interaction with them,
@@ -413,7 +442,7 @@ so neither can be overwritten by a virus,
 or anyone wanting to use the App to hack into a WeBook site.
 
 
-## The Security System
+## Security System
 
 The Project uses other GitHub Projects,
 all list here, and I have to trust their code,
@@ -669,7 +698,7 @@ if none, then you are safe, the Domain Controllers Admin controls permissions,
 and can revoke keys, and backups can restore data that they may have corrupted,
 but a diff can tell them what they did change in real-time. 
 
-## Fork it
+## Fork It
 
 Why Fork it is a question that is easy to answer,
 if I am an individual, I want the maximum security I can get, 
@@ -798,7 +827,7 @@ qDebug() << Q_FUNC_INFO;
 
 ```
 
-## List of 3rd Party Projects used
+## List of 3rd Party Projects
 
 Internal:
 
@@ -830,12 +859,14 @@ WeBookServer: Linux: [![Travis Build Status](https://travis-ci.org/Light-Wizzard
 
 This is a Work in Progress...
 
-## Ending Remarks
+## Remarks
 
 
-Thanks, Medically Retired U.S. Air Force (E)F-111, MH-60, MH-53 Crew Chief 
+Thanks, Medically Retired U.S. Air Force [(E)F-111](https://LightWizzard.com/books/trinary.universe/references.html#jeffrey_scott_flesher_ms_medal_1), [MH-60](https://LightWizzard.com/books/trinary.universe/references.html#jeffrey_scott_flesher_usaf_mh60), [MH-53](https://LightWizzard.com/books/trinary.universe/references.html#jeffrey_scott_flesher_ms_medal_2) Crew Chief 
 
-[Jeffrey Scott Flesher](https://LightWizzard.com/books/trinary.universe/references.html#reference_jeffrey_scott_flesher), PhD, AKA [The Light Wizzard in the Flesh](https://LightWizzard.com)
+[Jeffrey Scott Flesher](https://LightWizzard.com/books/trinary.universe/references.html#reference_jeffrey_scott_flesher), [PhD](https://lightwizzard.com/books/trinary.universe/the.principles.of.the.trinary.universe.htm), AKA [The Light Wizzard in the Flesh](https://LightWizzard.com)
 
 
-## End of File, you can stop reading now, seriously, stop, over and out...
+### End of File
+
+You can stop reading now, seriously, stop, over and out...
