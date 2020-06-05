@@ -7,7 +7,7 @@ the WeBook Project itself is an example of how to use the two projects together.
 
 This project is currently in Alpha,
 the reason I have posted it, is to test the installation script, 
-and it will check GitHub for updates before continuing,
+its job  is to check GitHub for updates before continuing,
 so I needed to post even a skeleton of the code in order to even develop it.
 
 Currently there is not much to look at, it creates an HTTP Server using QHttpServer,
@@ -17,7 +17,7 @@ where it will load and display its content.
 
 ## Status
 
-Unix: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
+Linux: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
 
 I am working on Mac and Windows.
 
@@ -55,10 +55,10 @@ Currently I am using GitHub projects to do the heavy work like Web Server,
 and to make it run as a Daemon in Unix and a Windows Service in Windows,
 I am using QtHttpServer, and QtService by QtLabs for those jobs.
 
-QtHttpServer:
+* QtHttpServer:
 https://github.com/qt-labs/qthttpserver
 
-QtService:
+* QtService:
 https://github.com/qtproject/qt-solutions/tree/master/qtservice
 
 I decided to compile it, rather then joining it as a subdir project for one reason,
@@ -753,7 +753,7 @@ QMAKE_VERSION:3.1
 QT_VERSION:5.14.2
 ```
 
-This is on Travis
+This is on Travis Ubuntu LTS Xenial 16.04.6 using ppa:beineri/opt-qt-5.14.1-xenial
 
 ```
 QT_SYSROOT:
@@ -783,23 +783,16 @@ QMAKE_VERSION:3.1
 QT_VERSION:5.14.1
 ```
 
+In work notes:
 
 ```
 git clone --recursive --recurse-submodules https://github.com/qt-labs/qthttpserver.git
 
 git submodule add https://github.com/qt-labs/qthttpserver.git 3rdparty/qhttpserver
 
-sudo systemctl start 
-/path/to/service --backend standard
+sudo systemctl start WeBookServer
 
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend standard
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd reload
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd stop
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd start
- 
- port 6627
-
+port 9696
 
 qDebug() << Q_FUNC_INFO;
 
@@ -833,10 +826,16 @@ Windows:
 
 ## Progress
 
+WeBookServer: Linux: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
+
 This is a Work in Progress...
 
 ## Ending Remarks
 
-Thanks, Jeffrey Scott Flesher, AKA the Light Wizzard in the Flesh
+```
+Thanks
+Medically Retired U.S. Air Force (E)F-111, MH-60, MH-53 Crew Chief
+[Jeffrey Scott Flesher](https://LightWizzard.com/books/trinary.universe/references.html#reference_jeffrey_scott_flesher), PhD, AKA [The Light Wizzard in the Flesh](https://LightWizzard.com)
+```
 
-## End of File, you can stop reading now...
+## End of File, you can stop reading now, seriously, stop, over and out...

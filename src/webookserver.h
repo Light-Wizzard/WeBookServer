@@ -21,6 +21,7 @@
 
 #include "QtService/QtService"
 #include "QtHttpServer/QHttpServer"
+#include "src/CuteLogger/ConsoleAppender.h"
 
 /******************************************************************************
 ** class WeBookServer : public QtService<QCoreApplication>                    *
