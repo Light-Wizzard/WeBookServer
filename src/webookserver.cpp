@@ -5,7 +5,6 @@
 *******************************************************************************/
 WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(argc, argv, "WeBookServer"), myApp(nullptr)
 {
-
     QString applicationName;
     // From *.pro file TARGET   = WeBook, maybe getTarget?
     QCommandLineParser parser;
@@ -120,6 +119,7 @@ WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(
         }
     }
 
+
     try
     {
         setServiceDescription("WeBookServer");
@@ -154,6 +154,10 @@ void WeBookServer::start()
     try
     {
         myApp = application();
+        if (!httpServer->listen(QHostAddress::Any, myPort))
+        {
+            qDebug() << QCoreApplication::translate("QHttpServerExample", QString("Server failed to listen on port %1").arg(myPort).toLocal8Bit());
+        }
         qDebug() << "WeBookServer start";
     }
     catch (...)
@@ -168,6 +172,7 @@ void WeBookServer::stop()
 {
     try
     {
+
         qDebug() << "WeBookServer stop";
     }
     catch (...)
@@ -211,11 +216,6 @@ void WeBookServer::resume()
 *******************************************************************************/
 void WeBookServer::startHttpServer()
 {
-    const auto port = httpServer->listen(QHostAddress::Any, 9696);
-    if (!port)
-    {
-        qDebug() << QCoreApplication::translate("QHttpServerExample", "Server failed to listen on a port.");
-    }
 } // end startHttpServer
 /******************************************************************************
 ** getCharAppName                                                             *
@@ -362,6 +362,29 @@ void WeBookServer::setCryptoIvVector(const QString &myValue)
         myCryptoIvVector = myValue;
     }
 } // end setCryptoIvVector
+/******************************************************************************
+** getPort                                                                    *
+*******************************************************************************/
+quint16 WeBookServer::getPort()
+{
+    return myPort;
+} // end getPort
+/******************************************************************************
+** setPort(int thisPort)                                                      *
+*******************************************************************************/
+void WeBookServer::setPort(quint16 thisPort)
+{
+    if (myPort != 0 && myPort != thisPort)
+    {
+        // Update
+        myPort = thisPort;
+    }
+    else
+    {
+        // Set first time
+        myPort = thisPort;
+    }
+} // end setPort
 /******************************************************************************
 ** findFilePath(String thisFileName, QString thisDataFolderName)              *
 ** All files must be in folder constAppFolder                                 *

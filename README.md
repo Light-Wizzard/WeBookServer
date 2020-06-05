@@ -406,7 +406,7 @@ so instead, I have my own Home Grown Security System,
 I call WeBookSecurity.
 
 WeBookSecurity is a System,
-it starts by installed fail2ban on the server,
+it starts by installed [fail2ban](https://github.com/fail2ban/fail2ban) on the server,
 and monitoring it, tweaking it,
 and HaProxy, so it serves as the Man In The Middle,
 and helps prevent others from trying,
@@ -661,13 +661,16 @@ You can use the WeBook Version, and it will just work.
 
 ## 3rd Party Apps
 
-I will try to keep third party apps to a minium, Qt is a given, and QtLabs projects that could become Qt are a given,
-one that I am going to use is called QtService, it will give me the ability to write WeBookServer as a Daemon,
-meaning you can control it with service calls to start, stop, enable, disable, status, and more.
+I compile these in, instead of using them as a Library, to make the app more compact.
 
-1. QtHttpServer: https://github.com/qt-labs/qthttpserver
-2. QtService:    https://github.com/qtproject/qt-solutions/tree/master/qtservice
-3. Qt-AES:       https://github.com/bricke/Qt-AES
+I will try to keep third party apps to a minium, Qt is a given, and QtLabs projects that could become Qt are a given,
+one that I am going to use is called QtService, it will give me the ability to write WeBookServer as a Daemon in Unix,
+and as a Windows Service in Windows,
+which allow you to control it with service calls to start, stop, enable, disable, status, and more.
+
+* QtHttpServer: https://github.com/qt-labs/qthttpserver
+* QtService:    https://github.com/qtproject/qt-solutions/tree/master/qtservice
+* Qt-AES:       https://github.com/bricke/Qt-AES
 
 The App will use git to sync these apps with WeBook at build time,
 so all the apps should be up to date at build time, I do a pull for each repository,
@@ -754,11 +757,11 @@ git submodule add https://github.com/qt-labs/qthttpserver.git 3rdparty/qhttpserv
 sudo systemctl start 
 /path/to/service --backend standard
 
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/EchoServer/debug/echoservice --backend standard
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/EchoServer/debug/echoservice --backend systemd
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/EchoServer/debug/echoservice --backend systemd reload
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/EchoServer/debug/echoservice --backend systemd stop
-sudo /mnt/qnap-light-wizzard/workspace/build/QtService/EchoServer/debug/echoservice --backend systemd start
+sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend standard
+sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd
+sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd reload
+sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd stop
+sudo /mnt/qnap-light-wizzard/workspace/build/QtService/WeBookServer/debug/WeBookServer --backend systemd start
  
  port 6627
 
@@ -766,6 +769,32 @@ sudo /mnt/qnap-light-wizzard/workspace/build/QtService/EchoServer/debug/echoserv
 qDebug() << Q_FUNC_INFO;
 
 ```
+
+## List of 3rd Party Projects used
+
+Internal:
+
+* [QtLabs QtHttpServer](https://github.com/qt-labs/qthttpserver)
+* [QtLabs QtService](https://github.com/qtproject/qt-solutions/tree/master/qtservice)
+* [Qt-AES](https://github.com/bricke/Qt-AES)
+
+External:
+
+* [fail2ban](https://github.com/fail2ban/fail2ban)
+* [HAProxy](https://github.com/haproxy/haproxy)
+* [Monit](https://github.com/arnaudsj/monit)
+* [maldet](https://github.com/waja/maldetect)
+* [clamav](https://github.com/Cisco-Talos/clamav-devel)
+
+Services:
+
+* [Travis](https://travis-ci.org/)
+* [AppVeyor](https://www.AppVeyor.com/)
+
+Windows:
+
+[PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7)
+[Cygwin](https://www.cygwin.com/)
 
 ## Progress
 
@@ -775,4 +804,4 @@ This is a Work in Progress...
 
 Thanks, Jeffrey Scott Flesher, AKA the Light Wizzard in the Flesh
 
-## End of File, stop reading...
+## End of File, you can stop reading now...

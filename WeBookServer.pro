@@ -25,6 +25,7 @@ TARGET       = "WeBookServer"
 INCLUDEPATH     += .
 INCLUDEPATH     += src/
 INCLUDEPATH     += src/QtService
+INCLUDEPATH     += src/CuteLogger
 #INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty
 #INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty/http-parser
 #INCLUDEPATH     += 3rdparty/qthttpserver/src/httpserver
@@ -143,6 +144,16 @@ SOURCES         += src/httpserver/qhttpserverresponse.cpp
 SOURCES         += src/httpserver/qhttpserverrouter.cpp
 SOURCES         += src/httpserver/qhttpserverrouterrule.cpp
 SOURCES         += src/sslserver/qsslserver.cpp
+
+SOURCES         += src/QtAES/qaesencryption.cpp
+HEADERS         += src/QtAES/qaesencryption.h
+#SOURCES         += src/QtAES/unit_test/aestest.cpp
+#SOURCES        *= src/QtAES/maintest.cpp
+#HEADERS        *= src/QtAES/unit_test/aestest.h
+#DISTFILES      *= src/QtAES/unit_test/longText.txt
+#RESOURCES      *= src/QtAES/res.qrc
+
+
 win32:SOURCES   += src/QtService/qtservice_win.cpp
 unix:HEADERS    += src/QtService/qtunixsocket.h src/QtService/qtunixserversocket.h
 unix:SOURCES    += src/QtService/qtservice_unix.cpp src/QtService/qtunixsocket.cpp src/QtService/qtunixserversocket.cpp
@@ -165,7 +176,6 @@ include(src/3rdparty/http-parser.pri)
 
 include(include/QtHttpServer/headers.pri)
 include(include/QtSslServer/headers.pri)
-
 #include(3rdparty/qthttpserver/src/3rdparty/http-parser.pri)
 #SUBDIRS += 3rdparty/qthttpserver/tests/auto/auto.pro
 #SUBDIRS += 3rdparty/qthttpserver/tests/auto/cmake/cmake.pro
@@ -187,7 +197,31 @@ win32 {
     qtservice-buildlib:shared:DEFINES += QT_QTSERVICE_EXPORT
     else:qtservice-uselib:DEFINES     += QT_QTSERVICE_IMPORT
 }
+# Cute Logger
+SOURCES += src/CuteLogger/Logger.cpp
+SOURCES += src/CuteLogger/AbstractAppender.cpp
+SOURCES += src/CuteLogger/AbstractStringAppender.cpp
+SOURCES += src/CuteLogger/ConsoleAppender.cpp
+SOURCES += src/CuteLogger/FileAppender.cpp
+SOURCES += src/CuteLogger/RollingFileAppender.cpp
+#
+HEADERS += src/CuteLogger/Logger.h
+HEADERS += src/CuteLogger/CuteLogger_global.h
+HEADERS += src/CuteLogger/AbstractAppender.h
+HEADERS += src/CuteLogger/AbstractStringAppender.h
+HEADERS += src/CuteLogger/ConsoleAppender.h
+HEADERS += src/CuteLogger/FileAppender.h
+HEADERS += src/CuteLogger/RollingFileAppender.h
 
+win32 {
+    SOURCES += src/CuteLogger/OutputDebugAppender.cpp
+    HEADERS += src/CuteLogger/OutputDebugAppender.h
+}
+
+android {
+    SOURCES += src/CuteLogger/AndroidAppender.cpp
+    HEADERS += src/CuteLogger/AndroidAppender.h
+}
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the

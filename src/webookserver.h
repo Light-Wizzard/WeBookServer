@@ -5,6 +5,7 @@
 #include <QCoreApplication>
 #include <QObject>
 #include <QDebug>
+#include <QtGlobal>
 
 #include <QTextStream>
 #include <QDateTime>
@@ -14,6 +15,9 @@
 #include <iostream>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "QtService/QtService"
 #include "QtHttpServer/QHttpServer"
@@ -65,6 +69,9 @@ class WeBookServer : public QtService<QCoreApplication>
         //
         const char *getCharAppName();
         QString findFilePath(QString thisFileName, QString thisDataFolderName);
+        //
+        quint16 getPort();
+        void setPort(quint16 thisPort);
 
     protected:
         void start() override;
@@ -85,6 +92,7 @@ class WeBookServer : public QtService<QCoreApplication>
         QString             myCryptoIvVector;                                                  // Argument to Constructor from main.cpp
         bool                isDebugMessage      = true;                                      // Set to true to show debug messages
         bool                isDebugAllMessages  = true;                                      // Set to true to show debug messages
+        quint16             myPort              = 9696;
 
 }; // end class WeBookServer
 #endif // WEBOOKSERVER_H
