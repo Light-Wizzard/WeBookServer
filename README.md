@@ -14,6 +14,15 @@ Currently there is not much to look at, it creates an HTTP Server using QHttpSer
 and looks for the WeBookClient Data Folders,
 where it will load and display its content.
 
+
+## Status
+Unix: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
+
+## :package: **Downloads:**
+ - :penguin: [Linux](https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage)
+ - :penguin: :inbox_tray: [Linux ZSync](https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage.zsync)
+
+
 ## Work Flow
 
 Currently I am using GitHub projects to do the heavy work like Web Server,
