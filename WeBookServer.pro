@@ -245,26 +245,6 @@ MOC_DIR     = "$${DESTDIR}/moc"
 RCC_DIR     = "$${DESTDIR}/qrc"
 UI_DIR      = "$${DESTDIR}/ui"
 
-
-#unix {
-#    isEmpty(PREFIX) {
-#        PREFIX = /usr
-#    }
-#    message("PREFIX=$${PREFIX}")
-#    target.path = $${PREFIX}/bin
-#    DISTDIR    += $$clean_path($$absolute_path("$${PREFIX}/bin"))
-#    message("DISTDIR=$$DISTDIR")
-#    shortcutfiles.files = $$clean_path($$absolute_path("usr/share/applications/$${TARGET}.desktop"))
-#    shortcutfiles.path  = $$clean_path($$absolute_path("usr/share/applications/"))
-#    data.files += $$clean_path($$absolute_path("resources/$${TARGET}.png"))
-#    data.path   = $$clean_path($$absolute_path("usr/share/pixmaps/"))
-#    INSTALLS   += shortcutfiles
-#    INSTALLS   += data
-#    INSTALLS   += target
-#    macx {
-#        RC_FILE = macos/Icon.icns
-#    }
-#}
 unix {
     isEmpty(PREFIX) {
         PREFIX = /usr

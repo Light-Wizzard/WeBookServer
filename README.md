@@ -1,4 +1,4 @@
-# WeBookServer is Pronounced Web Book Server
+# WeBookServer is Pronounced Web-Book Server
 
 This project is written in Qt C++, 
 it has a Client called WeBookClient,

@@ -138,6 +138,13 @@ jobs:
         - APPIMAGE="true"
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - QTV="qt514"
+    - os: osx
+      osx_image: xcode11.0
+      compiler: clang
+      env:
+        - DMG="true"
+        - MATRIX_EVAL="COMPILER=clang++"
+
 deploy:
   provider: releases
   api_key: "${GITHUB_TOKEN}"
@@ -174,13 +181,34 @@ install:
             ls "${QT_INSTALL_LIBS}/qt";
         fi        
       fi
-      
+    - if [ -n "${DMG}" ]; then 
+        echo "Download last version of Qt with brew for Mac";
+        brew update > /dev/null; 
+        brew install qt5 p7zip; 
+        chmod -R 755 /usr/local/opt/qt5/*; 
+        export QTDIR="/usr/local/opt/qt5"; 
+        export PATH="${QTDIR}/bin:$PATH"; 
+      fi
+            
 script:
     - eval "${MATRIX_EVAL}"
     - if [ -n "${APPIMAGE}" ]; then 
         bash tools/build-with-qmake.sh; 
       fi
-
+    - if [ -n "${DMG}" ]; then
+        echo "Build project for Mac in /home/travis/build/[secure]/${BIN_PRO_RES_NAME}";
+        mkdir build && cd build;
+        qmake ..;
+        make;
+        echo "Run macdeployqt";
+        macdeployqt "${BIN_PRO_RES_NAME}.app/" -dmg;
+        find . | grep dmg;
+        export ARTIFACT_MAC="${BIN_PRO_RES_NAME}.dmg"; 
+        export ARTIFACT_MAC_QIF="${BIN_PRO_RES_NAME}-Mac-Installer";
+        export QTIFWVER="3.2.2";
+        export QTIFW_MAC="QtInstallerFramework-mac-x64.dmg";
+      fi
+      
 after_success:
     - if [ "${TRAVIS_PULL_REQUEST}" != false ] || [ "${TRAVIS_BRANCH}" != "master" ]; then
         echo "This is not the master branch, no deploy will be done"; travis_terminate 0;
@@ -192,5 +220,7 @@ after_success:
     - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_ZSYNC_LDQT}" ];    then bash ./upload.sh "${ARTIFACT_ZSYNC_LDQT}"; fi
     - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_QIF}" ];           then bash ./upload.sh "${ARTIFACT_QIF}"; fi
     - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_ZIP}" ];           then bash ./upload.sh "${ARTIFACT_ZIP}"; fi
+    - if [ -n "${DMG}" ]      && [ -f "${ARTIFACT_MAC_QIF}" ];       then bash ./upload.sh "${ARTIFACT_MAC_QIF}"; fi
+    - if [ -n "${DMG}" ]      && [ -f "${ARTIFACT_MAC}" ];           then bash ./upload.sh "${ARTIFACT_MAC}"; fi
 
     
