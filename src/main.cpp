@@ -2,8 +2,10 @@
 ** WeBookServer                                                               *
 ** WeBook is Pronounced Web-Book, it is a Web-Book Content Management System  *
 *******************************************************************************/
-#include "webookserver.h"
+#include "WeBookServer.h"
 static bool isLogToFile = false;
+static QString myAppName = "WeBookServer";
+static QString myLogPathFileName = "WeBookServer.log";
 /******************************************************************************
 ** WeBookMessenger                                                            *
 ** This uses Qt qInstallMessageHandler(WeBookMessenger);                      *
@@ -18,14 +20,12 @@ void WeBookMessenger(QtMsgType type, const QMessageLogContext &context, const QS
     if (isLogToFile)
     {
 
-        RollingFileAppender *rollfile = new RollingFileAppender(QString("%1.log").arg(myLogPathFileName));
-        //roll every minute
-        rollfile->setDatePattern(RollingFileAppender::MonthlyRollover);
-        // logfile been retained
-        rollfile->setLogFilesLimit(0); // I think 0 or 1 will not delete logs
-        cuteLogger->registerCategoryAppender("WeBookServerID", rollfile);
-        // LOG_CERROR("WeBookServerID") << "roll every month and retain all files";
-        LOG_INFO() << txt;
+        QLogger::myLogFile = QString("%1%2%3.log").arg(myLogPathFileName).arg(QDir::separator()).arg(myAppName).arg(QDateTime::currentDateTime().toString("-Log.yyyy-MM"));
+        QLogger::myModule = "WeBookServer";
+
+        QLogger::QLoggerManager *manager = QLogger::QLoggerManager::getInstance();
+        manager->addDestination(QLogger::myLogFile, QLogger::myModule, QLogger::LogLevel::Debug);
+
 //        if (!myLogFileHandle.isOpen())
 //        {
 //            myLogFileHandle.setFileName(myLogPathFileName);
@@ -68,9 +68,9 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOption({{"a", "appname"},     "Application Name if you want it different then executable name.", "appname"});
-    parser.addOption({{"i", "ini"},         "The Ini File Name: settings.ini", "inifile"});
-    parser.addOption({{"n", "name"},        "The Organization Name going to be the Window Title", "orgname"});
-    parser.addOption({{"d", "domain"},      "The Organization Domain URL: https://github.com/USERNAME/PROJECT", "orgdomain"});
+    parser.addOption({{"i", "inifile"},     "The Ini File Name: settings.ini", "inifile"});
+    parser.addOption({{"n", "orgname"},     "The Organization Name going to be the Window Title", "orgname"});
+    parser.addOption({{"d", "orgdomain"},   "The Organization Domain URL: https://github.com/USERNAME/PROJECT", "orgdomain"});
     parser.addOption({{"k", "key"},         "The Crypto Key String", "key"});
     parser.addOption({{"c", "cryptoiv"},    "The Crypto IV Vector String", "cryptoiv"});
     parser.addOption({{"w", "webook"},      "The WeBook.cat file name and full path: /path/WeBooks.cat", "webook"});

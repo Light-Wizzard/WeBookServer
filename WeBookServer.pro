@@ -7,25 +7,37 @@ TEMPLATE     = "app"
 # This pro(ject) file is based on a pattern
 TARGET       = "WeBookServer"
 #
-#INCLUDEPATH     += $$clean_path($$absolute_path("src/"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("src/QtService"))
-
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty/http-parser"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/httpserver"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/sslserver"))
-
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty"))
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty/http-parser"))
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/httpserver"))
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/sslserver"))
-
-#DEPENDPATH      += $$clean_path($$absolute_path("src/"))
-#DEPENDPATH      += $$clean_path($$absolute_path("src/QtService"))
 INCLUDEPATH     += .
 INCLUDEPATH     += src/
+INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt"
+#
+DEPENDPATH      += src/
+
+#
+QT              -= gui
+QT              *= core
+QT              *= core-private
+!win32:QT       *= network
+
+CONFIG          *= qt
+CONFIG          *= console
+CONFIG          *= cmdline
+CONFIG          -= app_bundle
+#CONFIG          *= "c++11"
+CONFIG          *= "c++14"
+#CONFIG         *= "c++1z"
+#CONFIG         *= "c++17"
+#CONFIG         *= "c++2a"
+#CONFIG         *= "c++latest"
+#
+HEADERS         += src/WeBookServer.h
+SOURCES         += src/WeBookServer.cpp src/main.cpp
+###############################################################################
+# https://github.com/qt-labs/qthttpserver
+###############################################################################
+INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtHttpServer"
+INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtSslServer"
 INCLUDEPATH     += src/QtService
-INCLUDEPATH     += src/CuteLogger
 #INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty
 #INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty/http-parser
 #INCLUDEPATH     += 3rdparty/qthttpserver/src/httpserver
@@ -38,13 +50,6 @@ INCLUDEPATH     += src/CuteLogger
 #INCLUDEPATH     += include/QtSslServer
 INCLUDEPATH     += include/QtHttpServer/5.12.0/QtHttpServer
 INCLUDEPATH     += include/QtSslServer/5.12.0/QtSslServer
-
-INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt"
-INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtHttpServer"
-INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtSslServer"
-
-#
-DEPENDPATH      += src/
 DEPENDPATH      += src/QtService
 #DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty
 #DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty/http-parser
@@ -53,24 +58,7 @@ DEPENDPATH      += src/QtService
 #DEPENDPATH      += 3rdparty/qthttpserver/include
 #DEPENDPATH      += 3rdparty/qthttpserver/include/QtHttpServer
 #DEPENDPATH      += 3rdparty/qthttpserver/include/QtSslServer
-#
-QT              -= gui
-QT              *= core
-QT              *= core-private
-!win32:QT       *= network
-
-CONFIG          *= qt
-CONFIG          *= console
-CONFIG          *= cmdline
-CONFIG          -= app_bundle
-CONFIG          *= "c++11"
-#CONFIG          *= "c++14"
-#CONFIG         *= "c++1z"
-#CONFIG         *= "c++17"
-#CONFIG         *= "c++2a"
-#CONFIG         *= "c++latest"
-# Headers
-HEADERS         += src/webookserver.h   src/QtService/qtservice.h   src/QtService/qtservice_p.h
+HEADERS         +=  src/QtService/qtservice.h   src/QtService/qtservice_p.h
 #HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qabstracthttpserver_p.h
 #HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserver_p.h
 #HEADERS         += include/QtHttpServer/5.12.0/QtHttpServer/private/qhttpserverliterals_p.h
@@ -134,7 +122,7 @@ HEADERS         += src/sslserver/qsslserver.h
 HEADERS         += src/sslserver/qsslserver_p.h
 #HEADERS         += src/sslserver/qtsslserverglobal.h
 # Source Code
-SOURCES         += src/webookserver.cpp src/QtService/qtservice.cpp src/main.cpp
+SOURCES         += src/QtService/qtservice.cpp
 SOURCES         += src/httpserver/qabstracthttpserver.cpp
 SOURCES         += src/httpserver/qhttpserver.cpp
 SOURCES         += src/httpserver/qhttpserverliterals.cpp
@@ -144,14 +132,29 @@ SOURCES         += src/httpserver/qhttpserverresponse.cpp
 SOURCES         += src/httpserver/qhttpserverrouter.cpp
 SOURCES         += src/httpserver/qhttpserverrouterrule.cpp
 SOURCES         += src/sslserver/qsslserver.cpp
-
-SOURCES         += src/QtAES/qaesencryption.cpp
-HEADERS         += src/QtAES/qaesencryption.h
-#SOURCES         += src/QtAES/unit_test/aestest.cpp
-#SOURCES        *= src/QtAES/maintest.cpp
-#HEADERS        *= src/QtAES/unit_test/aestest.h
-#DISTFILES      *= src/QtAES/unit_test/longText.txt
-#RESOURCES      *= src/QtAES/res.qrc
+###############################################################################
+# https://github.com/Light-Wizzard/QLogger                                    #
+# Fork: https://github.com/francescmm/QLogger                                 #
+###############################################################################
+HEADERS     *= src/QLogger.h
+SOURCES     *= src/QLogger.cpp
+###############################################################################
+# https://github.com/bricke/Qt-AES                                            #
+###############################################################################
+INCLUDEPATH *= src/QtAES
+DEPENDSPATH *= src/QtAES
+#
+SOURCES     *= src/QtAES/QAESEncryption.cpp
+HEADERS     *= src/QtAES/QAESEncryption.h
+# Test
+#QT          += testlib
+#HEADERS     *= src/QtAES/unit_test/aestest.h
+#SOURCES     *= src/QtAES/maintest.cpp
+#SOURCES     *= src/QtAES/unit_test/aestest.cpp
+##
+#DISTFILES   *= src/QtAES/unit_test/longText.txt
+#RESOURCES   *= src/QtAES/res.qrc
+###############################################################################
 
 
 win32:SOURCES   += src/QtService/qtservice_win.cpp
@@ -163,6 +166,7 @@ TRANSLATIONS    += src/WeBookServer_en_US.ts
 
 win32:VERSION = 0.1.0.0 # major.minor.patch.build
 else:VERSION  = 0.1.0   # major.minor.patch
+###############################################################################
 
 
 #SUBDIRS         += 3rdparty/qthttpserver/qthttpserver.pro
@@ -196,31 +200,6 @@ win32:LIBS      += -luser32
 win32 {
     qtservice-buildlib:shared:DEFINES += QT_QTSERVICE_EXPORT
     else:qtservice-uselib:DEFINES     += QT_QTSERVICE_IMPORT
-}
-# Cute Logger
-SOURCES += src/CuteLogger/Logger.cpp
-SOURCES += src/CuteLogger/AbstractAppender.cpp
-SOURCES += src/CuteLogger/AbstractStringAppender.cpp
-SOURCES += src/CuteLogger/ConsoleAppender.cpp
-SOURCES += src/CuteLogger/FileAppender.cpp
-SOURCES += src/CuteLogger/RollingFileAppender.cpp
-#
-HEADERS += src/CuteLogger/Logger.h
-HEADERS += src/CuteLogger/CuteLogger_global.h
-HEADERS += src/CuteLogger/AbstractAppender.h
-HEADERS += src/CuteLogger/AbstractStringAppender.h
-HEADERS += src/CuteLogger/ConsoleAppender.h
-HEADERS += src/CuteLogger/FileAppender.h
-HEADERS += src/CuteLogger/RollingFileAppender.h
-
-win32 {
-    SOURCES += src/CuteLogger/OutputDebugAppender.cpp
-    HEADERS += src/CuteLogger/OutputDebugAppender.h
-}
-
-android {
-    SOURCES += src/CuteLogger/AndroidAppender.cpp
-    HEADERS += src/CuteLogger/AndroidAppender.h
 }
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

@@ -8,6 +8,9 @@
 #include <QByteArray>
 #include <QTest>
 
+/******************************************************************************
+** class AesTest                                                              *
+*******************************************************************************/
 class AesTest : public QObject
 {
         Q_OBJECT
@@ -52,7 +55,7 @@ class AesTest : public QObject
         QByteArray inCBC128;
         QByteArray outCBC128;
         QByteArray outOFB128;
-};
 
+}; // end class AesTest
 #endif // AESTEST_H
 /* ***************************** End of File ******************************* */

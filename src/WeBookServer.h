@@ -22,13 +22,11 @@
 // Qt Service
 #include "QtService/QtService"
 #include "QtHttpServer/QHttpServer"
-
-// Cute Logger
-#include "src/CuteLogger/Logger.h"
-#include "src/CuteLogger/RollingFileAppender.h"
+// QLogger
+#include "QLogger.h"
 
 //static QFile myLogFileHandle;
-static QString myLogPathFileName = "WeBookClient.log";
+//static QString myLogPathFileName = "WeBookClient.log";
 /******************************************************************************
 ** class WeBookServer : public QtService<QCoreApplication>                    *
 *******************************************************************************/
