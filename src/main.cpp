@@ -6,6 +6,7 @@
 static bool isLogToFile = false;
 static QString myAppName = "WeBookServer";
 static QString myLogPathFileName = "WeBookServer.log";
+static bool isRunOnce = false;
 /******************************************************************************
 ** WeBookMessenger                                                            *
 ** This uses Qt qInstallMessageHandler(WeBookMessenger);                      *
@@ -20,11 +21,15 @@ void WeBookMessenger(QtMsgType type, const QMessageLogContext &context, const QS
     if (isLogToFile)
     {
 
-        QLogger::myLogFile = QString("%1%2%3.log").arg(myLogPathFileName).arg(QDir::separator()).arg(myAppName).arg(QDateTime::currentDateTime().toString("-Log.yyyy-MM"));
-        QLogger::myModule = "WeBookServer";
-
-        QLogger::QLoggerManager *manager = QLogger::QLoggerManager::getInstance();
-        manager->addDestination(QLogger::myLogFile, QLogger::myModule, QLogger::LogLevel::Debug);
+        if (!isRunOnce)
+        {
+            isRunOnce = true;
+            QLogger::myLogFile = QString("%1%2%3.log").arg(myLogPathFileName).arg(QDir::separator()).arg(myAppName).arg(QDateTime::currentDateTime().toString("-Log.yyyy-MM"));
+            QLogger::myModule = "WeBookClient";
+            QLogger::QLoggerManager *manager = QLogger::QLoggerManager::getInstance();
+            manager->addDestination(QLogger::myLogFile, QLogger::myModule, QLogger::LogLevel::Debug);
+        }
+        QLOG_DEBUG() << txt;
 
 //        if (!myLogFileHandle.isOpen())
 //        {
