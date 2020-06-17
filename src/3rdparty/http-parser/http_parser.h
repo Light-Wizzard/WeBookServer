@@ -291,7 +291,7 @@ enum http_errno {
 
 
 struct http_parser {
-  /** PRIVATE **/
+  /*  PRIVATE **/
   unsigned int type : 2;         /* enum http_parser_type */
   unsigned int flags : 8;        /* F_* values from 'flags' enum; semi-public */
   unsigned int state : 7;        /* enum state from http_parser.c */
@@ -302,7 +302,7 @@ struct http_parser {
   uint32_t nread;          /* # bytes read in various scenarios */
   uint64_t content_length; /* # bytes in body (0 if no Content-Length header) */
 
-  /** READ-ONLY **/
+  /*  READ-ONLY **/
   unsigned short http_major;
   unsigned short http_minor;
   unsigned int status_code : 16; /* responses only */
@@ -316,7 +316,7 @@ struct http_parser {
    */
   unsigned int upgrade : 1;
 
-  /** PUBLIC **/
+  /*  PUBLIC **/
   void *data; /* A pointer to get hook to the "connection" or "socket" object */
 };
 

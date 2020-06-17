@@ -1,40 +1,40 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
-** Contact: http://www.qt-project.org/legal
+*  Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+*  Contact: http://www.qt-project.org/legal
 **
-** This file is part of the Qt Solutions component.
+*  This file is part of the Qt Solutions component.
 **
-** $QT_BEGIN_LICENSE:BSD$
-** You may use this file under the terms of the BSD license as follows:
+*  $QT_BEGIN_LICENSE:BSD$
+*  You may use this file under the terms of the BSD license as follows:
 **
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
-**     of its contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
+*  "Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions are
+*  met:
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*    * Redistributions in binary form must reproduce the above copyright
+*      notice, this list of conditions and the following disclaimer in
+*      the documentation and/or other materials provided with the
+*      distribution.
+*    * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
+*      of its contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
 **
 **
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
-** $QT_END_LICENSE$
+*  $QT_END_LICENSE$
 **
 ****************************************************************************/
 
@@ -59,7 +59,7 @@
 #include <QSettings>
 #include <QProcess>
 /******************************************************************************
-** encodeName(const QString &name, bool allowUpper = false)                   *
+*  encodeName(const QString &name, bool allowUpper = false)                   *
 *******************************************************************************/
 static QString encodeName(const QString &name, bool allowUpper = false)
 {
@@ -75,7 +75,7 @@ static QString encodeName(const QString &name, bool allowUpper = false)
     return n;
 } // end encodeName
 /******************************************************************************
-** login                                                                      *
+*  login                                                                      *
 *******************************************************************************/
 static QString login()
 {
@@ -87,7 +87,7 @@ static QString login()
     return l;
 } // end login
 /******************************************************************************
-** socketPath(const QString &serviceName)                                     *
+*  socketPath(const QString &serviceName)                                     *
 *******************************************************************************/
 static QString socketPath(const QString &serviceName)
 {
@@ -95,7 +95,7 @@ static QString socketPath(const QString &serviceName)
     return QString(QLatin1String("/var/tmp/") + sn + QLatin1String(".") + login());
 } // end socketPath
 /******************************************************************************
-** sendCmd(const QString &serviceName, const QString &cmd)                    *
+*  sendCmd(const QString &serviceName, const QString &cmd)                    *
 *******************************************************************************/
 static bool sendCmd(const QString &serviceName, const QString &cmd)
 {
@@ -114,7 +114,7 @@ static bool sendCmd(const QString &serviceName, const QString &cmd)
     return retValue;
 } // end sendCmd
 /******************************************************************************
-** absPath(const QString &path)                                               *
+*  absPath(const QString &path)                                               *
 *******************************************************************************/
 static QString absPath(const QString &path)
 {
@@ -154,7 +154,7 @@ static QString absPath(const QString &path)
     return ret;
 } // end absPath
 /******************************************************************************
-** filePath                                                                   *
+*  filePath                                                                   *
 *******************************************************************************/
 QString QtServiceBasePrivate::filePath() const
 {
@@ -166,7 +166,7 @@ QString QtServiceBasePrivate::filePath() const
     return dir.absoluteFilePath(fi.fileName());
 } // end filePath
 /******************************************************************************
-** serviceDescription                                                         *
+*  serviceDescription                                                         *
 *******************************************************************************/
 QString QtServiceController::serviceDescription() const
 {
@@ -182,7 +182,7 @@ QString QtServiceController::serviceDescription() const
     return desc;
 } // end serviceDescription
 /******************************************************************************
-** startupType                                                                *
+*  startupType                                                                *
 *******************************************************************************/
 QtServiceController::StartupType QtServiceController::startupType() const
 {
@@ -198,7 +198,7 @@ QtServiceController::StartupType QtServiceController::startupType() const
     return startupType;
 } // end startupType
 /******************************************************************************
-** serviceFilePath                                                            *
+*  serviceFilePath                                                            *
 *******************************************************************************/
 QString QtServiceController::serviceFilePath() const
 {
@@ -214,7 +214,7 @@ QString QtServiceController::serviceFilePath() const
     return path;
 } // end serviceFilePath
 /******************************************************************************
-** uninstall                                                                  *
+*  uninstall                                                                  *
 *******************************************************************************/
 bool QtServiceController::uninstall()
 {
@@ -234,7 +234,7 @@ bool QtServiceController::uninstall()
     return (ret == QSettings::NoError);
 } // end uninstall
 /******************************************************************************
-** start(const QStringList &arguments)                                        *
+*  start(const QStringList &arguments)                                        *
 *******************************************************************************/
 bool QtServiceController::start(const QStringList &arguments)
 {
@@ -245,35 +245,35 @@ bool QtServiceController::start(const QStringList &arguments)
     return QProcess::startDetached(serviceFilePath(), arguments);
 } // end start
 /******************************************************************************
-** stop                                                                       *
+*  stop                                                                       *
 *******************************************************************************/
 bool QtServiceController::stop()
 {
     return sendCmd(serviceName(), QLatin1String("terminate"));
 } // end stop
 /******************************************************************************
-** pause                                                                      *
+*  pause                                                                      *
 *******************************************************************************/
 bool QtServiceController::pause()
 {
     return sendCmd(serviceName(), QLatin1String("pause"));
 } // end pause
 /******************************************************************************
-** resume                                                                     *
+*  resume                                                                     *
 *******************************************************************************/
 bool QtServiceController::resume()
 {
     return sendCmd(serviceName(), QLatin1String("resume"));
 } // end resume
 /******************************************************************************
-** sendCommand(int code)                                                      *
+*  sendCommand(int code)                                                      *
 *******************************************************************************/
 bool QtServiceController::sendCommand(int code)
 {
     return sendCmd(serviceName(), QString(QLatin1String("num:") + QString::number(code)));
 } // end sendCommand
 /******************************************************************************
-** isInstalled                                                                *
+*  isInstalled                                                                *
 *******************************************************************************/
 bool QtServiceController::isInstalled() const
 {
@@ -293,7 +293,7 @@ bool QtServiceController::isInstalled() const
     return false;
 } // end isInstalled
 /******************************************************************************
-** isRunning                                                                  *
+*  isRunning                                                                  *
 *******************************************************************************/
 bool QtServiceController::isRunning() const
 {
@@ -302,7 +302,7 @@ bool QtServiceController::isRunning() const
     return false;
 } // end isRunning
 /******************************************************************************
-** class QtServiceSysPrivate : public QtUnixServerSocket                      *
+*  class QtServiceSysPrivate : public QtUnixServerSocket                      *
 *******************************************************************************/
 class QtServiceSysPrivate : public QtUnixServerSocket
 {
@@ -327,13 +327,13 @@ class QtServiceSysPrivate : public QtUnixServerSocket
         QMap<const QTcpSocket *, QString> cache;
 }; // end class QtServiceSysPrivate
 /******************************************************************************
-** QtServiceSysPrivate Constructor                                            *
+*  QtServiceSysPrivate Constructor                                            *
 *******************************************************************************/
 QtServiceSysPrivate::QtServiceSysPrivate() : QtUnixServerSocket(), ident(0), serviceFlags(0)
 {
 } // end QtServiceSysPrivate
 /******************************************************************************
-** QtServiceSysPrivate Deconstructor                                          *
+*  QtServiceSysPrivate Deconstructor                                          *
 *******************************************************************************/
 QtServiceSysPrivate::~QtServiceSysPrivate()
 {
@@ -341,7 +341,7 @@ QtServiceSysPrivate::~QtServiceSysPrivate()
         delete[] ident;
 } // end ~QtServiceSysPrivate
 /******************************************************************************
-** incomingConnection                                                         *
+*  incomingConnection                                                         *
 *******************************************************************************/
 void QtServiceSysPrivate::incomingConnection(qintptr socketDescriptor)
 {
@@ -351,7 +351,7 @@ void QtServiceSysPrivate::incomingConnection(qintptr socketDescriptor)
     connect(s, SIGNAL(disconnected()), this, SLOT(slotClosed()));
 } // end incomingConnection
 /******************************************************************************
-** slotReady                                                                  *
+*  slotReady                                                                  *
 *******************************************************************************/
 void QtServiceSysPrivate::slotReady()
 {
@@ -407,7 +407,7 @@ void QtServiceSysPrivate::slotReady()
     }
 } // end slotReady
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceSysPrivate::slotClosed()
 {
@@ -415,7 +415,7 @@ void QtServiceSysPrivate::slotClosed()
     s->deleteLater();
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QString QtServiceSysPrivate::getCommand(const QTcpSocket *socket)
 {
@@ -429,11 +429,11 @@ QString QtServiceSysPrivate::getCommand(const QTcpSocket *socket)
     return "";
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 #include "qtservice_unix.moc"
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceBasePrivate::sysInit()
 {
@@ -445,7 +445,7 @@ bool QtServiceBasePrivate::sysInit()
     return true;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBasePrivate::sysSetPath()
 {
@@ -453,7 +453,7 @@ void QtServiceBasePrivate::sysSetPath()
         sysd->setPath(socketPath(controller.serviceName()));
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBasePrivate::sysCleanup()
 {
@@ -465,7 +465,7 @@ void QtServiceBasePrivate::sysCleanup()
     }
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceBasePrivate::start()
 {
@@ -480,7 +480,7 @@ bool QtServiceBasePrivate::start()
     return QProcess::startDetached(filePath(), args.mid(1), "/");
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceBasePrivate::install(const QString &account, const QString &password)
 {
@@ -507,7 +507,7 @@ bool QtServiceBasePrivate::install(const QString &account, const QString &passwo
     return (ret == QSettings::NoError);
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBase::logMessage(const QString &message, QtServiceBase::MessageType type, int, uint, const QByteArray &)
 {
@@ -539,7 +539,7 @@ void QtServiceBase::logMessage(const QString &message, QtServiceBase::MessageTyp
     closelog();
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBase::setServiceFlags(QtServiceBase::ServiceFlags flags)
 {
@@ -549,4 +549,4 @@ void QtServiceBase::setServiceFlags(QtServiceBase::ServiceFlags flags)
     if (d_ptr->sysd)
         d_ptr->sysd->serviceFlags = flags;
 } // end
-/******************************* End of File *********************************/
+/******************************  End of File *********************************/

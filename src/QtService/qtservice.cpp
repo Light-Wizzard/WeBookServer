@@ -1,40 +1,40 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
-** Contact: http://www.qt-project.org/legal
+*  Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+*  Contact: http://www.qt-project.org/legal
 **
-** This file is part of the Qt Solutions component.
+*  This file is part of the Qt Solutions component.
 **
-** $QT_BEGIN_LICENSE:BSD$
-** You may use this file under the terms of the BSD license as follows:
+*  $QT_BEGIN_LICENSE:BSD$
+*  You may use this file under the terms of the BSD license as follows:
 **
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
-**     of its contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
+*  "Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions are
+*  met:
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*    * Redistributions in binary form must reproduce the above copyright
+*      notice, this list of conditions and the following disclaimer in
+*      the documentation and/or other materials provided with the
+*      distribution.
+*    * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
+*      of its contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
 **
 **
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
-** $QT_END_LICENSE$
+*  $QT_END_LICENSE$
 **
 ****************************************************************************/
 
@@ -63,7 +63,7 @@
 
 static QFile* f = 0;
 /******************************************************************************
-** qtServiceCloseDebugLog                                                     *
+*  qtServiceCloseDebugLog                                                     *
 *******************************************************************************/
 static void qtServiceCloseDebugLog()
 {
@@ -77,7 +77,7 @@ static void qtServiceCloseDebugLog()
     f = 0;
 } // end qtServiceCloseDebugLog
 /******************************************************************************
-** qtServiceLogDebug                                                          *
+*  qtServiceLogDebug                                                          *
 *******************************************************************************/
 void qtServiceLogDebug(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -144,7 +144,7 @@ void qtServiceLogDebug(QtMsgType type, const QMessageLogContext &context, const 
 } // end qtServiceLogDebug
 #endif // end QTSERVICE_DEBUG
 /******************************************************************************
-** QtServiceController Constructor                                            *
+*  QtServiceController Constructor                                            *
 *******************************************************************************/
 /*!
     \class QtServiceController
@@ -228,7 +228,7 @@ QtServiceController::QtServiceController(const QString &name) : d_ptr(new QtServ
     d->serviceName = name;
 } // end QtServiceController
 /******************************************************************************
-** QtServiceController Deconstructor                                          *
+*  QtServiceController Deconstructor                                          *
 *******************************************************************************/
 /*!
     Destroys the service controller. This neither stops nor uninstalls
@@ -245,7 +245,7 @@ QtServiceController::~QtServiceController()
     delete d_ptr;
 } // end ~QtServiceController
 /******************************************************************************
-** serviceName                                                                *
+*  serviceName                                                                *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::isInstalled() const
@@ -280,7 +280,7 @@ QString QtServiceController::serviceName() const
     return d->serviceName;
 } // end serviceName
 /******************************************************************************
-** install                                                                    *
+*  install                                                                    *
 *******************************************************************************/
 /*!
     \fn QString QtServiceController::serviceDescription() const
@@ -333,7 +333,7 @@ bool QtServiceController::install(const QString &serviceFilePath, const QString 
     return (QProcess::execute(serviceFilePath, arguments) == 0);
 } // end install
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::uninstall()
@@ -349,7 +349,7 @@ bool QtServiceController::install(const QString &serviceFilePath, const QString 
     \sa install()
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::start(const QStringList &arguments)
@@ -373,7 +373,7 @@ bool QtServiceController::start()
     return start(QStringList());
 } // end start
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::stop()
@@ -389,7 +389,7 @@ bool QtServiceController::start()
     \sa start(), QtServiceBase::stop(), QtServiceBase::ServiceFlags
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::pause()
@@ -405,7 +405,7 @@ bool QtServiceController::start()
     \sa resume(), QtServiceBase::pause(), QtServiceBase::ServiceFlags
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::resume()
@@ -421,7 +421,7 @@ bool QtServiceController::start()
     \sa pause(), QtServiceBase::resume(), QtServiceBase::ServiceFlags
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn bool QtServiceController::sendCommand(int code)
@@ -436,7 +436,7 @@ bool QtServiceController::start()
     \sa QtServiceBase::processCommand()
 */
 /******************************************************************************
-** class QtServiceStarter : public QObject                                    *
+*  class QtServiceStarter : public QObject                                    *
 *******************************************************************************/
 class QtServiceStarter : public QObject
 {
@@ -457,28 +457,28 @@ class QtServiceStarter : public QObject
 
 QtServiceBase *QtServiceBasePrivate::instance = 0;
 /******************************************************************************
-** QtServiceBasePrivate Constructor                                           *
+*  QtServiceBasePrivate Constructor                                           *
 *******************************************************************************/
 QtServiceBasePrivate::QtServiceBasePrivate(const QString &name) : startupType(QtServiceController::ManualStartup), serviceFlags(0), controller(name)
 {
 
 } // end QtServiceBasePrivate
 /******************************************************************************
-** QtServiceBasePrivate Deconstructor                                         *
+*  QtServiceBasePrivate Deconstructor                                         *
 *******************************************************************************/
 QtServiceBasePrivate::~QtServiceBasePrivate()
 {
 
 } // end ~QtServiceBasePrivate
 /******************************************************************************
-** startService                                                               *
+*  startService                                                               *
 *******************************************************************************/
 void QtServiceBasePrivate::startService()
 {
     q_ptr->start();
 } // end startService
 /******************************************************************************
-** run                                                                        *
+*  run                                                                        *
 *******************************************************************************/
 int QtServiceBasePrivate::run(bool asService, const QStringList &argList)
 {
@@ -511,7 +511,7 @@ int QtServiceBasePrivate::run(bool asService, const QStringList &argList)
     return res;
 } // end run
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \class QtServiceBase
@@ -642,7 +642,7 @@ int QtServiceBasePrivate::run(bool asService, const QStringList &argList)
     \value Information Any type of usually non-critical information.
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \enum QtServiceBase::ServiceFlag
@@ -655,7 +655,7 @@ int QtServiceBasePrivate::run(bool asService, const QStringList &argList)
     \value NeedsStopOnShutdown (Windows only) The service will be stopped before the system shuts down. Note that Microsoft recommends this only for services that must absolutely clean up during shutdown, because there is a limited time available for shutdown of services.
 */
 /******************************************************************************
-** QtServiceBase Constructor                                                  *
+*  QtServiceBase Constructor                                                  *
 *******************************************************************************/
 /*!
     Creates a service instance called \a name. The \a argc and \a argv
@@ -701,7 +701,7 @@ QtServiceBase::QtServiceBase(int argc, char **argv, const QString &name)
         d_ptr->args.append(QString::fromLocal8Bit(argv[i]));
 } // end QtServiceBase
 /******************************************************************************
-** QtServiceBase Deconstructor                                                *
+*  QtServiceBase Deconstructor                                                *
 *******************************************************************************/
 /*!
     Destroys the service object. This neither stops nor uninstalls the
@@ -719,7 +719,7 @@ QtServiceBase::~QtServiceBase()
     QtServiceBasePrivate::instance = 0;
 } // end ~QtServiceBase
 /******************************************************************************
-** serviceName                                                                *
+*  serviceName                                                                *
 *******************************************************************************/
 /*!
     Returns the name of the service.
@@ -731,7 +731,7 @@ QString QtServiceBase::serviceName() const
     return d_ptr->controller.serviceName();
 } // end serviceName
 /******************************************************************************
-** serviceDescription                                                         *
+*  serviceDescription                                                         *
 *******************************************************************************/
 /*!
     Returns the description of the service.
@@ -743,7 +743,7 @@ QString QtServiceBase::serviceDescription() const
     return d_ptr->serviceDescription;
 } // end serviceDescription
 /******************************************************************************
-** setServiceDescription                                                      *
+*  setServiceDescription                                                      *
 *******************************************************************************/
 /*!
     Sets the description of the service to the given \a description.
@@ -755,7 +755,7 @@ void QtServiceBase::setServiceDescription(const QString &description)
     d_ptr->serviceDescription = description;
 } // end setServiceDescription
 /******************************************************************************
-** startupType                                                                *
+*  startupType                                                                *
 *******************************************************************************/
 /*!
     Returns the service's startup type.
@@ -767,7 +767,7 @@ QtServiceController::StartupType QtServiceBase::startupType() const
     return d_ptr->startupType;
 } // end startupType
 /******************************************************************************
-** setStartupType                                                             *
+*  setStartupType                                                             *
 *******************************************************************************/
 /*!
     Sets the service's startup type to the given \a type.
@@ -779,7 +779,7 @@ void QtServiceBase::setStartupType(QtServiceController::StartupType type)
     d_ptr->startupType = type;
 } // end setStartupType
 /******************************************************************************
-** serviceFlags                                                               *
+*  serviceFlags                                                               *
 *******************************************************************************/
 /*!
     Returns the service's state which is decribed using the
@@ -792,7 +792,7 @@ QtServiceBase::ServiceFlags QtServiceBase::serviceFlags() const
     return d_ptr->serviceFlags;
 } // end serviceFlags
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn void QtServiceBase::setServiceFlags(ServiceFlags flags)
@@ -803,7 +803,7 @@ QtServiceBase::ServiceFlags QtServiceBase::serviceFlags() const
     \sa ServiceFlags, serviceFlags()
 */
 /******************************************************************************
-** exec                                                                       *
+*  exec                                                                       *
 *******************************************************************************/
 /*!
     Executes the service.
@@ -946,7 +946,7 @@ int QtServiceBase::exec()
     return 0;
 } // end exec
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn void QtServiceBase::logMessage(const QString &message, MessageType type,
@@ -965,7 +965,7 @@ int QtServiceBase::exec()
     \sa MessageType
 */
 /******************************************************************************
-** instance                                                                   *
+*  instance                                                                   *
 *******************************************************************************/
 /*!
     Returns a pointer to the current application's QtServiceBase
@@ -976,7 +976,7 @@ QtServiceBase *QtServiceBase::instance()
     return QtServiceBasePrivate::instance;
 } // end instance
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn void QtServiceBase::start()
@@ -995,7 +995,7 @@ QtServiceBase *QtServiceBase::instance()
     \sa exec(), stop(), QtServiceController::start()
 */
 /******************************************************************************
-** stop                                                                       *
+*  stop                                                                       *
 *******************************************************************************/
 /*!
     Reimplement this function to perform additional cleanups before
@@ -1011,7 +1011,7 @@ void QtServiceBase::stop()
 {
 } // end stop
 /******************************************************************************
-** pause                                                                      *
+*  pause                                                                      *
 *******************************************************************************/
 /*!
     Reimplement this function to pause the service's execution (for
@@ -1026,7 +1026,7 @@ void QtServiceBase::pause()
 {
 } // end pause
 /******************************************************************************
-** resume                                                                     *
+*  resume                                                                     *
 *******************************************************************************/
 /*!
     Reimplement this function to continue the service after a call to
@@ -1041,7 +1041,7 @@ void QtServiceBase::resume()
 {
 } // end resume
 /******************************************************************************
-** processCommand                                                             *
+*  processCommand                                                             *
 *******************************************************************************/
 /*!
     Reimplement this function to process the user command \a code.
@@ -1056,7 +1056,7 @@ void QtServiceBase::processCommand(int /*code*/)
 {
 } // end processCommand
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn void QtServiceBase::createApplication(int &argc, char **argv)
@@ -1076,7 +1076,7 @@ void QtServiceBase::processCommand(int /*code*/)
     \sa exec(), QtService
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn int QtServiceBase::executeApplication()
@@ -1094,7 +1094,7 @@ void QtServiceBase::processCommand(int /*code*/)
     \sa exec(), createApplication()
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \class QtService
@@ -1188,7 +1188,7 @@ void QtServiceBase::processCommand(int /*code*/)
     \sa QtServiceBase, QtServiceController
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn QtService::QtService(int argc, char **argv, const QString &name)
@@ -1202,7 +1202,7 @@ void QtServiceBase::processCommand(int /*code*/)
     \sa QtServiceBase()
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn QtService::~QtService()
@@ -1210,7 +1210,7 @@ void QtServiceBase::processCommand(int /*code*/)
     Destroys the service object.
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn Application *QtService::application() const
@@ -1218,7 +1218,7 @@ void QtServiceBase::processCommand(int /*code*/)
     Returns a pointer to the application object.
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn void QtService::createApplication(int &argc, char **argv)
@@ -1230,11 +1230,11 @@ void QtServiceBase::processCommand(int /*code*/)
 
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 /*!
     \fn int QtService::executeApplication()
 
     \reimp
 */
-/******************************* End of File *********************************/
+/******************************  End of File *********************************/

@@ -1,8 +1,12 @@
 #include "WeBookServer.h"
 
 /******************************************************************************
-** WeBookServer Constructor                                                   *
+*  WeBookServer Constructor                                                   *
 *******************************************************************************/
+/*!
+   \class WeBookServer
+   \brief Daemon/Service HTTP Server.
+ */
 WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(argc, argv, "WeBookServer"), myApp(nullptr)
 {
     qLoggerCommon = new QLogger::QLoggerCommon(true);
@@ -42,21 +46,21 @@ WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(
 
 } // end WeBookServer
 /******************************************************************************
-** WeBookServer Deconstructor                                                 *
+*  WeBookServer Deconstructor                                                 *
 *******************************************************************************/
 WeBookServer::~WeBookServer()
 {
 
 } // end ~WeBookServer
 /******************************************************************************
-** getApp                                                                     *
+*  getApp                                                                     *
 *******************************************************************************/
 QCoreApplication *WeBookServer::getApp()
 {
     return myApp;
 } // end getApp
 /******************************************************************************
-** start                                                                      *
+*  start                                                                      *
 *******************************************************************************/
 void WeBookServer::start()
 {
@@ -75,7 +79,7 @@ void WeBookServer::start()
     }
 } // end start
 /******************************************************************************
-** stop                                                                       *
+*  stop                                                                       *
 *******************************************************************************/
 void WeBookServer::stop()
 {
@@ -89,7 +93,7 @@ void WeBookServer::stop()
     }
 } // end stop
 /******************************************************************************
-** pause                                                                      *
+*  pause                                                                      *
 *******************************************************************************/
 void WeBookServer::pause()
 {
@@ -103,7 +107,7 @@ void WeBookServer::pause()
     }
 } // end pause
 /******************************************************************************
-** resume                                                                     *
+*  resume                                                                     *
 *******************************************************************************/
 void WeBookServer::resume()
 {
@@ -117,13 +121,13 @@ void WeBookServer::resume()
     }
 } // end resume
 /******************************************************************************
-** startHttpServer                                                            *
+*  startHttpServer                                                            *
 *******************************************************************************/
 void WeBookServer::startHttpServer()
 {
 } // end startHttpServer
 /******************************************************************************
-** getCatFileName                                                             *
+*  getCatFileName                                                             *
 *******************************************************************************/
 QString WeBookServer::getCatFileName()
 {
@@ -131,7 +135,7 @@ QString WeBookServer::getCatFileName()
     return myCatFileName;
 } // end getCatFileName
 /******************************************************************************
-** setIniFileName                                                             *
+*  setIniFileName                                                             *
 *******************************************************************************/
 void WeBookServer::setCatFileName(const QString &thisCatFileName)
 {
@@ -146,9 +150,9 @@ void WeBookServer::setCatFileName(const QString &thisCatFileName)
     }
 } // end setCatFileName
 /******************************************************************************
-** findFilePath(String thisFileName, QString thisDataFolderName)              *
-** All files must be in folder myAppFolderName                                 *
-** This folder is different for debug vs release as well as deployed          *
+*  findFilePath(String thisFileName, QString thisDataFolderName)              *
+*  All files must be in folder myAppFolderName                                 *
+*  This folder is different for debug vs release as well as deployed          *
 *******************************************************************************/
 QString WeBookServer::findFilePath(QString thisFileName, QString thisDataFolderName)
 {
@@ -228,4 +232,4 @@ QString WeBookServer::findFilePath(QString thisFileName, QString thisDataFolderN
     }
     return dataFullPath;
 } // end findFilePath
-/******************************* End of File *********************************/
+/******************************  End of File *********************************/

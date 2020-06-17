@@ -1,40 +1,40 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
-** Contact: http://www.qt-project.org/legal
+*  Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+*  Contact: http://www.qt-project.org/legal
 **
-** This file is part of the Qt Solutions component.
+*  This file is part of the Qt Solutions component.
 **
-** $QT_BEGIN_LICENSE:BSD$
-** You may use this file under the terms of the BSD license as follows:
+*  $QT_BEGIN_LICENSE:BSD$
+*  You may use this file under the terms of the BSD license as follows:
 **
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
-**     of its contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
+*  "Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions are
+*  met:
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*    * Redistributions in binary form must reproduce the above copyright
+*      notice, this list of conditions and the following disclaimer in
+*      the documentation and/or other materials provided with the
+*      distribution.
+*    * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
+*      of its contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
 **
 **
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
-** $QT_END_LICENSE$
+*  $QT_END_LICENSE$
 **
 ****************************************************************************/
 
@@ -102,7 +102,7 @@ static PQueryServiceConfig2 pQueryServiceConfig2 = 0;
 #define RESOLVEA(name) p##name = (P##name)lib.resolve(#name"A");
 #define RESOLVEW(name) p##name = (P##name)lib.resolve(#name"W");
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 static bool winServiceInit()
 {
@@ -132,7 +132,7 @@ static bool winServiceInit()
     return pOpenSCManager != 0;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::isInstalled() const
 {
@@ -158,7 +158,7 @@ bool QtServiceController::isInstalled() const
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::isRunning() const
 {
@@ -186,7 +186,7 @@ bool QtServiceController::isRunning() const
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QString QtServiceController::serviceFilePath() const
 {
@@ -217,7 +217,7 @@ QString QtServiceController::serviceFilePath() const
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QString QtServiceController::serviceDescription() const
 {
@@ -248,7 +248,7 @@ QString QtServiceController::serviceDescription() const
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QtServiceController::StartupType QtServiceController::startupType() const
 {
@@ -279,7 +279,7 @@ QtServiceController::StartupType QtServiceController::startupType() const
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::uninstall()
 {
@@ -305,7 +305,7 @@ bool QtServiceController::uninstall()
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::start(const QStringList &args)
 {
@@ -335,7 +335,7 @@ bool QtServiceController::start(const QStringList &args)
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::stop()
 {
@@ -376,7 +376,7 @@ bool QtServiceController::stop()
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::pause()
 {
@@ -401,7 +401,7 @@ bool QtServiceController::pause()
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::resume()
 {
@@ -426,7 +426,7 @@ bool QtServiceController::resume()
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceController::sendCommand(int code)
 {
@@ -454,7 +454,7 @@ bool QtServiceController::sendCommand(int code)
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 #if defined(QTSERVICE_DEBUG)
 #  if QT_VERSION >= 0x050000
@@ -503,7 +503,7 @@ void QtServiceBase::logMessage(const QString &message, MessageType type, int id,
     }
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 class QtServiceControllerHandler : public QObject
 {
@@ -518,7 +518,7 @@ class QtServiceControllerHandler : public QObject
         QtServiceSysPrivate *d_sys;
 }; // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 class QtServiceSysPrivate
 {
@@ -532,7 +532,7 @@ class QtServiceSysPrivate
         void setServiceFlags(QtServiceBase::ServiceFlags flags);
         DWORD serviceFlags(QtServiceBase::ServiceFlags flags) const;
         inline bool available() const;
-        static void WINAPI serviceMain( DWORD dwArgc, wchar_t** lpszArgv );
+        static void WINAPI serviceMain( DWORD dwArgc, wchar_t*  lpszArgv );
         static void WINAPI handler( DWORD dwOpcode );
 
         SERVICE_STATUS status;
@@ -554,44 +554,44 @@ class QtServiceSysPrivate
         void handleCustomEvent(QEvent *e);
 }; // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QtServiceControllerHandler::QtServiceControllerHandler(QtServiceSysPrivate *sys) : QObject(), d_sys(sys)
 {
 
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceControllerHandler::customEvent(QEvent *e)
 {
     d_sys->handleCustomEvent(e);
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QtServiceSysPrivate *QtServiceSysPrivate::instance = 0;
 #if QT_VERSION < 0x050000
 QCoreApplication::EventFilter QtServiceSysPrivate::nextFilter = 0;
 #endif
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QtServiceSysPrivate::QtServiceSysPrivate()
 {
     instance = this;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 inline bool QtServiceSysPrivate::available() const
 {
     return 0 != pOpenSCManager;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
-void WINAPI QtServiceSysPrivate::serviceMain(DWORD dwArgc, wchar_t** lpszArgv)
+void WINAPI QtServiceSysPrivate::serviceMain(DWORD dwArgc, wchar_t*  lpszArgv)
 {
     if (!instance || !QtServiceBase::instance())
         return;
@@ -618,7 +618,7 @@ void WINAPI QtServiceSysPrivate::serviceMain(DWORD dwArgc, wchar_t** lpszArgv)
     // running in the main thread (here, via callbacks in the handler thread).
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 // The handler() is called from the thread that called
 // StartServiceCtrlDispatcher, i.e. our HandlerThread, and
@@ -655,7 +655,7 @@ void QtServiceSysPrivate::handleCustomEvent(QEvent *e)
     mutex.unlock();
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void WINAPI QtServiceSysPrivate::handler( DWORD code )
 {
@@ -718,7 +718,7 @@ void WINAPI QtServiceSysPrivate::handler( DWORD code )
         pSetServiceStatus(instance->serviceStatus, &instance->status);
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceSysPrivate::setStatus(DWORD state)
 {
@@ -728,7 +728,7 @@ void QtServiceSysPrivate::setStatus(DWORD state)
     pSetServiceStatus(serviceStatus, &status);
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceSysPrivate::setServiceFlags(QtServiceBase::ServiceFlags flags)
 {
@@ -738,7 +738,7 @@ void QtServiceSysPrivate::setServiceFlags(QtServiceBase::ServiceFlags flags)
     pSetServiceStatus(serviceStatus, &status);
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 DWORD QtServiceSysPrivate::serviceFlags(QtServiceBase::ServiceFlags flags) const
 {
@@ -753,7 +753,7 @@ DWORD QtServiceSysPrivate::serviceFlags(QtServiceBase::ServiceFlags flags) const
     return control;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 #include "qtservice_win.moc"
 
@@ -802,7 +802,7 @@ class HandlerThread : public QThread
   Ignore WM_ENDSESSION system events, since they make the Qt kernel quit
 */
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 class QtServiceAppEventFilter : public QAbstractNativeEventFilter
 {
@@ -811,7 +811,7 @@ class QtServiceAppEventFilter : public QAbstractNativeEventFilter
         bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
 }; // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceAppEventFilter::nativeEventFilter(const QByteArray &, void *message, long *result)
 {
@@ -905,7 +905,7 @@ bool QtServiceBasePrivate::start()
     return true;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceBasePrivate::install(const QString &account, const QString &password)
 {
@@ -965,7 +965,7 @@ bool QtServiceBasePrivate::install(const QString &account, const QString &passwo
     return result;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 QString QtServiceBasePrivate::filePath() const
 {
@@ -974,7 +974,7 @@ QString QtServiceBasePrivate::filePath() const
     return QString::fromUtf16((unsigned short*)path);
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 bool QtServiceBasePrivate::sysInit()
 {
@@ -992,14 +992,14 @@ bool QtServiceBasePrivate::sysInit()
     return true;
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBasePrivate::sysSetPath()
 {
 
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBasePrivate::sysCleanup()
 {
@@ -1010,7 +1010,7 @@ void QtServiceBasePrivate::sysCleanup()
     }
 } // end
 /******************************************************************************
-**                                                                 *
+*                                                                  *
 *******************************************************************************/
 void QtServiceBase::setServiceFlags(QtServiceBase::ServiceFlags flags)
 {
@@ -1020,5 +1020,5 @@ void QtServiceBase::setServiceFlags(QtServiceBase::ServiceFlags flags)
     if (d_ptr->sysd)
         d_ptr->sysd->setServiceFlags(flags);
 } // end
-/******************************* End of File *********************************/
+/******************************  End of File *********************************/
 

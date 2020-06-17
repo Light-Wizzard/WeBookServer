@@ -1,10 +1,10 @@
 /******************************************************************************
-** WeBookServer                                                               *
-** WeBook is Pronounced Web-Book, it is a Web-Book Content Management System  *
+*  WeBookServer                                                               *
+*  WeBook is Pronounced Web-Book, it is a Web-Book Content Management System  *
 *******************************************************************************/
 #include "WeBookServer.h"
 /******************************************************************************
-** main                                                                       *
+*  main                                                                       *
 *******************************************************************************/
 int main(int argc, char *argv[])
 {
@@ -126,4 +126,4 @@ int main(int argc, char *argv[])
 
 
 } // end main
-/******************************* End of File *********************************/
+/******************************  End of File *********************************/

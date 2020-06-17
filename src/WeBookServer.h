@@ -28,7 +28,7 @@
 #include "QLogger/QLoggerConstants.h"
 
 /******************************************************************************
-** class WeBookServer : public QtService<QCoreApplication>                    *
+*  class WeBookServer : public QtService<QCoreApplication>                    *
 *******************************************************************************/
 class WeBookServer : public QtService<QCoreApplication>
 {
@@ -60,4 +60,4 @@ class WeBookServer : public QtService<QCoreApplication>
         QLogger::QLoggerCrypto *qLoggerCrypto   = nullptr;  //
 }; // end class WeBookServer
 #endif // WEBOOKSERVER_H
-/******************************* End of File *********************************/
+/******************************  End of File *********************************/
