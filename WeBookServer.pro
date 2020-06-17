@@ -23,15 +23,28 @@ CONFIG          *= qt
 CONFIG          *= console
 CONFIG          *= cmdline
 CONFIG          -= app_bundle
-#CONFIG          *= "c++11"
-CONFIG          *= "c++14"
+CONFIG          *= "c++11"
+#CONFIG          *= "c++14"
 #CONFIG         *= "c++1z"
-#CONFIG         *= "c++17"
+#CONFIG          *= "c++17"
 #CONFIG         *= "c++2a"
 #CONFIG         *= "c++latest"
 #
 HEADERS         += src/WeBookServer.h
 SOURCES         += src/WeBookServer.cpp src/main.cpp
+
+unix:DISTFILES  += tools/haproxy.cfg tools/monit.conf tools/webookserver.ini tools/webookserver.sh tools/webooksetup.sh
+DISTFILES       += README.md
+DISTFILES       += data/WeBook.toc
+DISTFILES       += data/WeBook/ItemId1.1.html
+DISTFILES       += data/WeBook/TitlePageID.html
+DISTFILES       += data/WeBookClient.ini
+DISTFILES       += data/WeBooks.cat
+TRANSLATIONS    += src/WeBookServer_en_US.ts
+
+win32:VERSION    = 0.1.0.0 # major.minor.patch.build
+else:VERSION     = 0.1.0   # major.minor.patch
+DEFINES          = APP_VERSION=\\\"$${VERSION}\\\"
 ###############################################################################
 # https://github.com/qt-labs/qthttpserver
 ###############################################################################
@@ -132,43 +145,9 @@ SOURCES         += src/httpserver/qhttpserverresponse.cpp
 SOURCES         += src/httpserver/qhttpserverrouter.cpp
 SOURCES         += src/httpserver/qhttpserverrouterrule.cpp
 SOURCES         += src/sslserver/qsslserver.cpp
-###############################################################################
-# https://github.com/Light-Wizzard/QLogger                                    #
-# Fork: https://github.com/francescmm/QLogger                                 #
-###############################################################################
-HEADERS     *= src/QLogger.h
-SOURCES     *= src/QLogger.cpp
-###############################################################################
-# https://github.com/bricke/Qt-AES                                            #
-###############################################################################
-INCLUDEPATH *= src/QtAES
-DEPENDSPATH *= src/QtAES
-#
-SOURCES     *= src/QtAES/QAESEncryption.cpp
-HEADERS     *= src/QtAES/QAESEncryption.h
-# Test
-#QT          += testlib
-#HEADERS     *= src/QtAES/unit_test/aestest.h
-#SOURCES     *= src/QtAES/maintest.cpp
-#SOURCES     *= src/QtAES/unit_test/aestest.cpp
-##
-#DISTFILES   *= src/QtAES/unit_test/longText.txt
-#RESOURCES   *= src/QtAES/res.qrc
-###############################################################################
-
-
 win32:SOURCES   += src/QtService/qtservice_win.cpp
 unix:HEADERS    += src/QtService/qtunixsocket.h src/QtService/qtunixserversocket.h
 unix:SOURCES    += src/QtService/qtservice_unix.cpp src/QtService/qtunixsocket.cpp src/QtService/qtunixserversocket.cpp
-unix:DISTFILES  += tools/haproxy.cfg tools/monit.conf tools/webookserver.ini tools/webookserver.sh tools/webooksetup.sh
-DISTFILES       += README.md
-TRANSLATIONS    += src/WeBookServer_en_US.ts
-
-win32:VERSION = 0.1.0.0 # major.minor.patch.build
-else:VERSION  = 0.1.0   # major.minor.patch
-###############################################################################
-
-
 #SUBDIRS         += 3rdparty/qthttpserver/qthttpserver.pro
 
 #SUBDIRS         += 3rdparty/qthttpserver/src/httpserver/httpserver.pro
@@ -201,11 +180,47 @@ win32 {
     qtservice-buildlib:shared:DEFINES += QT_QTSERVICE_EXPORT
     else:qtservice-uselib:DEFINES     += QT_QTSERVICE_IMPORT
 }
+###############################################################################
+# https://github.com/Light-Wizzard/QLogger                                    #
+# Fork: https://github.com/francescmm/QLogger                                 #
+###############################################################################
+HEADERS     *= src/QLogger/QLoggerLevel.h
+HEADERS     *= src/QLogger/QLoggerConstants.h
+# QLoggerManager
+HEADERS     *= src/QLogger/QLoggerManager.h
+SOURCES     *= src/QLogger/QLoggerManager.cpp
+# QLoggerWriter
+HEADERS     *= src/QLogger/QLoggerWriter.h
+SOURCES     *= src/QLogger/QLoggerWriter.cpp
+# QLoggerCommon
+HEADERS     *= src/QLogger/QLoggerCommon.h
+SOURCES     *= src/QLogger/QLoggerCommon.cpp
+# QLoggerCrypto
+HEADERS     *= src/QLogger/QLoggerCrypto.h
+SOURCES     *= src/QLogger/QLoggerCrypto.cpp
+###############################################################################
+# https://github.com/bricke/Qt-AES                                            #
+###############################################################################
+INCLUDEPATH *= src/QtAES
+DEPENDSPATH *= src/QtAES
+#
+SOURCES     *= src/QtAES/QAESEncryption.cpp
+HEADERS     *= src/QtAES/QAESEncryption.h
+# Test
+#QT          += testlib
+#HEADERS     *= src/QtAES/unit_test/aestest.h
+#SOURCES     *= src/QtAES/maintest.cpp
+#SOURCES     *= src/QtAES/unit_test/aestest.cpp
+##
+#DISTFILES   *= src/QtAES/unit_test/longText.txt
+#RESOURCES   *= src/QtAES/res.qrc
+###############################################################################
+
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
+#DEFINES += QT_DEPRECATED_WARNINGS
 #
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

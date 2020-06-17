@@ -7,41 +7,9 @@ TEMPLATE     = "app"
 # This pro(ject) file is based on a pattern
 TARGET       = "WeBookServer"
 #
-#INCLUDEPATH     += $$clean_path($$absolute_path("src/"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("src/QtService"))
-
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty/http-parser"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/httpserver"))
-#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/sslserver"))
-
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty"))
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty/http-parser"))
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/httpserver"))
-#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/sslserver"))
-
-#DEPENDPATH      += $$clean_path($$absolute_path("src/"))
-#DEPENDPATH      += $$clean_path($$absolute_path("src/QtService"))
 INCLUDEPATH     += .
 INCLUDEPATH     += src/
-INCLUDEPATH     += src/QtService
-#INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty
-#INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty/http-parser
-#INCLUDEPATH     += 3rdparty/qthttpserver/src/httpserver
-#INCLUDEPATH     += 3rdparty/qthttpserver/src/sslserver
-INCLUDEPATH     += 3rdparty/qthttpserver/include
-INCLUDEPATH     += 3rdparty/qthttpserver/include/QtHttpServer
-INCLUDEPATH     += 3rdparty/qthttpserver/include/QtSslServer
-#
 DEPENDPATH      += src/
-DEPENDPATH      += src/QtService
-#DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty
-#DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty/http-parser
-#DEPENDPATH      += 3rdparty/qthttpserver/src/httpserver
-#DEPENDPATH      += 3rdparty/qthttpserver/src/sslserver
-DEPENDPATH      += 3rdparty/qthttpserver/include
-DEPENDPATH      += 3rdparty/qthttpserver/include/QtHttpServer
-DEPENDPATH      += 3rdparty/qthttpserver/include/QtSslServer
 #
 QT              -= gui
 QT              *= core
@@ -52,19 +20,16 @@ CONFIG          *= qt
 CONFIG          *= console
 CONFIG          *= cmdline
 CONFIG          -= app_bundle
-CONFIG          *= "c++11"
-#CONFIG          *= "c++14"
+#CONFIG         *= "c++11"
+#CONFIG         *= "c++14"
 #CONFIG         *= "c++1z"
-#CONFIG         *= "c++17"
+CONFIG          *= "c++17"
 #CONFIG         *= "c++2a"
 #CONFIG         *= "c++latest"
 # Headers
-HEADERS         += src/webookserver.h   src/QtService/qtservice.h   src/QtService/qtservice_p.h
+HEADERS         += src/webookserver.h   
 # Source Code
-SOURCES         += src/webookserver.cpp src/QtService/qtservice.cpp src/main.cpp
-win32:SOURCES   += src/QtService/qtservice_win.cpp
-unix:HEADERS    += src/QtService/qtunixsocket.h src/QtService/qtunixserversocket.h
-unix:SOURCES    += src/QtService/qtservice_unix.cpp src/QtService/qtunixsocket.cpp src/QtService/qtunixserversocket.cpp
+SOURCES         += src/webookserver.cpp 
 unix:DISTFILES  += tools/haproxy.cfg tools/monit.conf tools/webookserver.ini tools/webookserver.sh tools/webooksetup.sh
 DISTFILES       += README.md usr/bin/README.md usr/share/applications/$${TARGET}.desktop
 TRANSLATIONS    += src/WeBookServer_en_US.ts
@@ -72,15 +37,86 @@ TRANSLATIONS    += src/WeBookServer_en_US.ts
 win32:VERSION = 0.1.0.0 # major.minor.patch.build
 else:VERSION  = 0.1.0   # major.minor.patch
 
-
+###############################################################################
+# https://github.com/Light-Wizzard/QLogger                                    #
+# Fork: https://github.com/francescmm/QLogger                                 #
+###############################################################################
+HEADERS     *= src/QLogger/QLoggerLevel.h
+HEADERS     *= src/QLogger/QLoggerConstants.h
+# QLoggerManager
+HEADERS     *= src/QLogger/QLoggerManager.h
+SOURCES     *= src/QLogger/QLoggerManager.cpp
+# QLoggerWriter
+HEADERS     *= src/QLogger/QLoggerWriter.h
+SOURCES     *= src/QLogger/QLoggerWriter.cpp
+# QLoggerCommon
+HEADERS     *= src/QLogger/QLoggerCommon.h
+SOURCES     *= src/QLogger/QLoggerCommon.cpp
+# QLoggerCrypto
+HEADERS     *= src/QLogger/QLoggerCrypto.h
+SOURCES     *= src/QLogger/QLoggerCrypto.cpp
+###############################################################################
+# https://github.com/bricke/Qt-AES                                            #
+###############################################################################
+INCLUDEPATH *= src/QtAES
+DEPENDSPATH *= src/QtAES
+#
+SOURCES     *= src/QtAES/QAESEncryption.cpp
+HEADERS     *= src/QtAES/QAESEncryption.h
+# Test
+#QT          += testlib
+#HEADERS     *= src/QtAES/unit_test/aestest.h
+#SOURCES     *= src/QtAES/maintest.cpp
+#SOURCES     *= src/QtAES/unit_test/aestest.cpp
+##
+#DISTFILES   *= src/QtAES/unit_test/longText.txt
+#RESOURCES   *= src/QtAES/res.qrc
+###############################################################################
+# https://github.com/Light-Wizzard/qthttpserver                               #
+###############################################################################
+HEADERS         += src/QtService/qtservice.h   src/QtService/qtservice_p.h
+SOURCES         += src/QtService/qtservice.cpp src/main.cpp
+win32:SOURCES   += src/QtService/qtservice_win.cpp
+unix:HEADERS    += src/QtService/qtunixsocket.h src/QtService/qtunixserversocket.h
+unix:SOURCES    += src/QtService/qtservice_unix.cpp src/QtService/qtunixsocket.cpp src/QtService/qtunixserversocket.cpp
+#
+INCLUDEPATH     += src/QtService
+#
+INCLUDEPATH     += 3rdparty/qthttpserver/include
+INCLUDEPATH     += 3rdparty/qthttpserver/include/QtHttpServer
+INCLUDEPATH     += 3rdparty/qthttpserver/include/QtSslServer
+#
+DEPENDPATH      += src/QtService
+DEPENDPATH      += 3rdparty/qthttpserver/include
+DEPENDPATH      += 3rdparty/qthttpserver/include/QtHttpServer
+DEPENDPATH      += 3rdparty/qthttpserver/include/QtSslServer
+#
 SUBDIRS         += 3rdparty/qthttpserver/qthttpserver.pro
-
+#
+#INCLUDEPATH     += $$clean_path($$absolute_path("src/"))
+#INCLUDEPATH     += $$clean_path($$absolute_path("src/QtService"))
+#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty"))
+#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty/http-parser"))
+#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/httpserver"))
+#INCLUDEPATH     += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/sslserver"))
+#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty"))
+#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/3rdparty/http-parser"))
+#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/httpserver"))
+#DEPENDPATH      += $$clean_path($$absolute_path("3rdparty/qthttpserver/src/sslserver"))
+#DEPENDPATH      += $$clean_path($$absolute_path("src/"))
+#DEPENDPATH      += $$clean_path($$absolute_path("src/QtService"))
+#INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty
+#INCLUDEPATH     += 3rdparty/qthttpserver/src/3rdparty/http-parser
+#INCLUDEPATH     += 3rdparty/qthttpserver/src/httpserver
+#INCLUDEPATH     += 3rdparty/qthttpserver/src/sslserver
+#DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty
+#DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty/http-parser
+#DEPENDPATH      += 3rdparty/qthttpserver/src/httpserver
+#DEPENDPATH      += 3rdparty/qthttpserver/src/sslserver
 #SUBDIRS         += 3rdparty/qthttpserver/src/httpserver/httpserver.pro
 #SUBDIRS         += 3rdparty/qthttpserver/src/src.pro
 #SUBDIRS         += 3rdparty/qthttpserver/src/sslserver/sslserver.pro
-
 #include(3rdparty/qthttpserver/qthttpserver.pro)
-
 #include(3rdparty/qthttpserver/src/3rdparty/http-parser.pri)
 #SUBDIRS += 3rdparty/qthttpserver/tests/auto/auto.pro
 #SUBDIRS += 3rdparty/qthttpserver/tests/auto/cmake/cmake.pro
@@ -102,7 +138,7 @@ win32 {
     qtservice-buildlib:shared:DEFINES += QT_QTSERVICE_EXPORT
     else:qtservice-uselib:DEFINES     += QT_QTSERVICE_IMPORT
 }
-
+###############################################################################
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -117,35 +153,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 macos:QMAKE_INFO_PLIST = macos/Info.plist
 ios:QMAKE_INFO_PLIST = ios/Info.plist
 #
-
 release: DESTDIR = "$${OUT_PWD}/build/release"
 debug:   DESTDIR = "$${OUT_PWD}/build/debug"
-
+#
 OBJECTS_DIR = "$${DESTDIR}/obj"
 MOC_DIR     = "$${DESTDIR}/moc"
 RCC_DIR     = "$${DESTDIR}/qrc"
 UI_DIR      = "$${DESTDIR}/ui"
-
-
-#unix {
-#    isEmpty(PREFIX) {
-#        PREFIX = /usr
-#    }
-#    message("PREFIX=$${PREFIX}")
-#    target.path = $${PREFIX}/bin
-#    DISTDIR    += $$clean_path($$absolute_path("$${PREFIX}/bin"))
-#    message("DISTDIR=$$DISTDIR")
-#    shortcutfiles.files = $$clean_path($$absolute_path("usr/share/applications/$${TARGET}.desktop"))
-#    shortcutfiles.path  = $$clean_path($$absolute_path("usr/share/applications/"))
-#    data.files += $$clean_path($$absolute_path("resources/$${TARGET}.png"))
-#    data.path   = $$clean_path($$absolute_path("usr/share/pixmaps/"))
-#    INSTALLS   += shortcutfiles
-#    INSTALLS   += data
-#    INSTALLS   += target
-#    macx {
-#        RC_FILE = macos/Icon.icns
-#    }
-#}
+#
 unix {
     isEmpty(PREFIX) {
         PREFIX = /usr

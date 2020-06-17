@@ -3,69 +3,57 @@
 ** WeBook is Pronounced Web-Book, it is a Web-Book Content Management System  *
 *******************************************************************************/
 #include "WeBookServer.h"
-static bool isLogToFile = false;
-static QString myAppName = "WeBookServer";
-static QString myLogPathFileName = "WeBookServer.log";
-static bool isRunOnce = false;
+static bool isLogToFile = true;
 /******************************************************************************
 ** WeBookMessenger                                                            *
 ** This uses Qt qInstallMessageHandler(WeBookMessenger);                      *
 ** I have no idea if this gets called in a Thread, but Qt should handle it,   *
 ** ensuring thread safe way to open and write to a log file.                  *
-** Note: I close the file in mainEventHandler.                                *
 *******************************************************************************/
 void WeBookMessenger(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-    QHash<QtMsgType, QString> msgLevelHash({{QtDebugMsg, "Debug"}, {QtInfoMsg, "Info"}, {QtWarningMsg, "Warning"}, {QtCriticalMsg, "Critical"}, {QtFatalMsg, "Fatal"}});
-    QString txt = QString("%1 %2: %3 (%4:%5, %6)").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(msgLevelHash[type]).arg(msg).arg(context.file).arg(context.line).arg(context.function);
     if (isLogToFile)
     {
-
-        if (!isRunOnce)
+        QLogger::QLoggerCommon *qLoggerCommon = new QLogger::QLoggerCommon(true);
+        switch (type)
         {
-            isRunOnce = true;
-            QLogger::myLogFile = QString("%1%2%3.log").arg(myLogPathFileName).arg(QDir::separator()).arg(myAppName).arg(QDateTime::currentDateTime().toString("-Log.yyyy-MM"));
-            QLogger::myModule = "WeBookClient";
-            QLogger::QLoggerManager *manager = QLogger::QLoggerManager::getInstance();
-            manager->addDestination(QLogger::myLogFile, QLogger::myModule, QLogger::LogLevel::Debug);
+            case QtDebugMsg:
+                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Debug,    qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
+                break;
+            case QtInfoMsg:
+                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Info,     qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
+                break;
+            case QtWarningMsg:
+                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Warning,  qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
+                break;
+            case QtCriticalMsg:
+                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Critical, qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
+                break;
+            case QtFatalMsg:
+                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Fatal,    qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
+                break;
         }
-        QLOG_DEBUG() << txt;
-
-//        if (!myLogFileHandle.isOpen())
-//        {
-//            myLogFileHandle.setFileName(myLogPathFileName);
-//            myLogFileHandle.open(QIODevice::WriteOnly | QIODevice::Append);
-//        }
-//        QTextStream ts(&myLogFileHandle);
-//        ts << txt << endl;
+        //qDebug() << txt;
     }
     else
     {
+        QHash<QtMsgType, QString> msgLevelHash({{QtDebugMsg, "Debug"}, {QtInfoMsg, "Info"}, {QtWarningMsg, "Warning"}, {QtCriticalMsg, "Critical"}, {QtFatalMsg, "Fatal"}});
+        QString txt = QString("%1 %2: %3 (%4:%5=>%6)").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(msgLevelHash[type]).arg(msg).arg(context.file).arg(context.line).arg(context.function);
         QByteArray formattedMessage = txt.toLocal8Bit();
         fprintf(stderr, "%s\n", formattedMessage.constData());
         fflush(stderr);
     }
     if (type == QtFatalMsg) abort();
-} // end WeBookMessenger
+} // end
 /******************************************************************************
 ** main                                                                       *
 *******************************************************************************/
 int main(int argc, char *argv[])
 {
-    const QString constAppFolder             = "WeBookServer";     // Name of Folder this Project is in
-    const QString constDataFolderName        = "data";             // Name of data Folder
-    const QString ConstAppName               = "WeBookServer";  // This is the Name of the GitHub Project, but does not have to be
-    // I do not like hard coding variables into Applications
-    // Const Ini File Name Full Path if want to change the Path to the ini or rename it, leaving it just the name, will look for it in the data folder
-    const QString ConstIniFileNameFullPath   = "WeBook.ini";                                // normally WeBook.ini, but I make it an option, see above comment
-    // These next 3 settings will set the Local Data Storage for this App to use, changing it after it has run, will create a new storage containtainer
-    const QString ConstOrganizationName      = "Light Wizzard";                             // This is the User Name for GitHub account, but does not have to be
-    const QString ConstOrganizationDomain    = "https://github.com/Light-Wizzard/WeBook";   // This is the User Name and Project or GitHub URL, but does not have to be
-    // I hard code these values here for a reason, not that I would use them, set the Link to include this data, pass in as Arguments
-    // These values are for testing only
-    const QString ConstDefaultCryptoKey      = "!1@2#3$4%5^6&7*8)9(0)NowPickRand";          // This is used as a Key for Password Encryption/Decryption
-    const QString ConstDefaultCryptoIvVector = "PutMoveVector1!2@3#4$NowPickRand";          // This is used as the IV Vector for Password Encryption/Decryption
-    const QString ConstDefaultPort           = "9696";             // Port Number of WeBookServer
+    // WeBook Common has QtSettings and Crypto Functions Common between Client/Server
+    QLogger::QLoggerCommon *qLoggerCommon = new QLogger::QLoggerCommon(false);
+    qLoggerCommon->setLogLevel(QLoggerLevel::LogLevel::Fatal);
+    QLogger::QLoggerCrypto *weBookCrypto = new QLogger::QLoggerCrypto();
 
     QString applicationName;
     // From *.pro file TARGET   = WeBook, maybe getTarget?
@@ -79,8 +67,11 @@ int main(int argc, char *argv[])
     parser.addOption({{"k", "key"},         "The Crypto Key String", "key"});
     parser.addOption({{"c", "cryptoiv"},    "The Crypto IV Vector String", "cryptoiv"});
     parser.addOption({{"w", "webook"},      "The WeBook.cat file name and full path: /path/WeBooks.cat", "webook"});
-    parser.addOption({{"f", "folderdata"},  "The Folder to the Data", "folderdata"});
+    parser.addOption({{"f", "filepath"},    "The Folder to the Data", "filepath"});
     parser.addOption({{"p", "port"},        "The Port Number of Server", "port"});
+    parser.addOption({{"l", "logpath"},     "The Full Path to Log Fils: /path", "logpath"});
+    parser.addOption({{"b", "blogfolder"},  "The Log Folder Name: logs", "blogfolder"});
+
 
     const QStringList positionalArguments = parser.positionalArguments();
     if (!positionalArguments.isEmpty())
@@ -88,9 +79,10 @@ int main(int argc, char *argv[])
         parser.process(positionalArguments);
     }
 
+
     // QStringList
     applicationName = argv[0];
-    if (applicationName.isEmpty()) applicationName    = ConstAppName;
+    if (applicationName.isEmpty()) applicationName    = qLoggerCommon->getAppName();
 
     QString thatAppName                 = parser.value("appname");
     QString thatInitFile                = parser.value("inifile");
@@ -98,38 +90,50 @@ int main(int argc, char *argv[])
     QString thatOrgDomain               = parser.value("orgdomain");
     QString thatCrypoKey                = parser.value("key");
     QString thatCryptoIv                = parser.value("cryptoiv");
-    QString thatFolderData              = parser.value("folderdata");
+    QString thatFolderData              = parser.value("filepath");
     QString thatWeBookCatFilePathName   = parser.value("webook");
     QString thatPort                    = parser.value("port");
+    QString thatLogPath                 = parser.value("logpath");
+    QString thatLogFolder               = parser.value("blogfolder");
     //
     bool isArgEmpty = false;
-    if (thatAppName.isEmpty())   thatAppName   = applicationName;
-    if (thatInitFile.isEmpty())  thatInitFile  = ConstIniFileNameFullPath;
-    if (thatOrgName.isEmpty())   thatOrgName   = ConstOrganizationName;
-    if (thatOrgDomain.isEmpty()) thatOrgDomain = ConstOrganizationDomain;
-    if (thatCrypoKey.isEmpty())  thatCrypoKey  = ConstDefaultCryptoKey;
-    if (thatCryptoIv.isEmpty())  thatCryptoIv  = ConstDefaultCryptoIvVector;
-    if (thatPort.isEmpty())      thatPort      = ConstDefaultPort;
     if (thatFolderData.isEmpty())                isArgEmpty = true;
     if (thatWeBookCatFilePathName.isEmpty())     isArgEmpty = true;
+
+    if (thatAppName.isEmpty())      thatAppName      = applicationName;
+    if (thatInitFile.isEmpty())     thatInitFile     = qLoggerCommon->getIniFileName();
+    if (thatOrgName.isEmpty())      thatOrgName      = qLoggerCommon->getOrgName();
+    if (thatOrgDomain.isEmpty())    thatOrgDomain    = qLoggerCommon->getOrgDomain();
+    if (thatPort.isEmpty())         thatPort         = qLoggerCommon->portToString();
+    if (thatLogPath.isEmpty())      thatLogPath      = qLoggerCommon->getLogPath();
+    if (thatFolderData.isEmpty())   thatFolderData   = qLoggerCommon->getFilelPath();
+    if (thatLogFolder.isEmpty())    thatLogFolder    = qLoggerCommon->getLogFolderName();
+    //
+    if (thatCrypoKey.isEmpty())     thatCrypoKey     = weBookCrypto->getCryptoKey();
+    if (thatCryptoIv.isEmpty())     thatCryptoIv     = weBookCrypto->getCryptoIvVector();
+
     // organizationName, organizationDomain, applicationName and applicationName
     // are set in main.cpp, and passed into Constuctor, so they are set
     QCoreApplication::setOrganizationName(thatOrgName);
     QCoreApplication::setOrganizationDomain(thatOrgDomain);
     QCoreApplication::setApplicationName(applicationName);
 
-    isLogToFile = true;
-    myLogPathFileName = QString("%1%2.log").arg(applicationName).arg(QDateTime::currentDateTime().toString("-Log-yyyy-MMMM-d-hh-mm-ss-zzz"));
+    qLoggerCommon->setAppName(thatAppName);
+    qLoggerCommon->setIniFileName(thatInitFile);
+    qLoggerCommon->setOrgName(thatOrgName);
+    qLoggerCommon->setOrgDomain(thatOrgDomain);
+    qLoggerCommon->setPort(thatPort.toInt());
+    qLoggerCommon->setLogPath(thatLogPath);
+    qLoggerCommon->setFilePath(thatFolderData);
+    qLoggerCommon->setLogFolderName(thatLogFolder);
+    qLoggerCommon->setLogger();
+    //
+    weBookCrypto->setCryptoKey(thatCrypoKey);
+    weBookCrypto->setCryptoIvVector(thatCryptoIv);
+
 
     WeBookServer service(argc, argv);
-    service.setAppName(thatAppName);
-    service.setIniFileName(thatInitFile);
-    service.setOrgName(thatOrgName);
-    service.setOrgDomain(thatOrgDomain);
-    service.setCryptoKey(thatCrypoKey);
-    service.setCryptoIvVector(thatCryptoIv);
-    service.setAppFolderName(constAppFolder);
-    service.setPort(thatPort.toInt());
+
     if (isArgEmpty)
     {
         QString myDataPath;
@@ -143,29 +147,26 @@ int main(int argc, char *argv[])
             if (thatDataPath.isNull() || thatDataPath.isEmpty())
             {
                 // constAppFolder constDataFolderName
-                thatDataPath = service.findFilePath("", constDataFolderName);
+                thatDataPath = service.findFilePath(QLogger::ConstDefaultWeBookCatName, QLogger::ConstDefaultFileFolderName);
             }
-            QString thatIniPath = service.findFilePath(ConstIniFileNameFullPath, thatDataPath);
-            if (!thatIniPath.isNull() && !thatIniPath.isEmpty())
+            QString thatCatPath = service.findFilePath(QLogger::ConstDefaultWeBookCatName, thatDataPath);
+            if (!thatCatPath.isNull() && !thatCatPath.isEmpty())
             {
-                thatWeBookCatFilePathName = thatIniPath;
+                thatWeBookCatFilePathName = thatCatPath;
             }
             else
             {
                 // error FIXME
-                thatWeBookCatFilePathName = ConstIniFileNameFullPath;
+                thatWeBookCatFilePathName = thatFolderData;
             }
         }
-        // see *.pro file where it is: DEFINE  S     *= APP_VERSION=$${VERSION}
-        // QCoreApplication::setApplicationVersion(QObject::tr(APP_VERSION));
-        // dataFullPath is set in setDataPathToIniFile() called in constructor
-        //QSettings *weBookSettings  = new QSettings(myDataPath, QSettings::IniFormat);
     }
     service.setCatFileName(thatWeBookCatFilePathName);
 
+    qInstallMessageHandler(WeBookMessenger); // Install the Message handler
+
     service.exec();
 
-    qInstallMessageHandler(WeBookMessenger); // Install the Message handler
 
 } // end main
 /******************************* End of File *********************************/

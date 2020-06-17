@@ -67,6 +67,7 @@ class QtServiceControllerPrivate;
 class QT_QTSERVICE_EXPORT QtServiceController
 {
         Q_DECLARE_PRIVATE(QtServiceController)
+
     public:
         enum StartupType
         {
@@ -181,14 +182,14 @@ class QtService : public QtServiceBase
             return app;
         }
 
-        virtual void createApplication(int &argc, char **argv)
+        virtual void createApplication(int &argc, char **argv) override
         {
             app = new Application(argc, argv);
             QCoreApplication *a = app;
             Q_UNUSED(a);
         }
 
-        virtual int executeApplication()
+        virtual int executeApplication() override
         {
             return Application::exec();
         }

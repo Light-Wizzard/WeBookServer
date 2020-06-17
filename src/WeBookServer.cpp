@@ -5,10 +5,13 @@
 *******************************************************************************/
 WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(argc, argv, "WeBookServer"), myApp(nullptr)
 {
+    qLoggerCommon = new QLogger::QLoggerCommon(true);
+
+    qDebug() << "WeBookServer Constructor";
 
     QString thatWeBookList;
 
-    if (QFile(myCatFileName).exists())
+    if (QFile(getCatFileName()).exists())
     {
         QFile inputFile(myCatFileName);
         if (inputFile.open(QIODevice::ReadOnly))
@@ -17,7 +20,7 @@ WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(
            while (!in.atEnd())
            {
               QString line = in.readLine();
-              if (!line.isNull() && !line.isEmpty()) // FIXME do I need to do both checks?
+              if (!line.isNull() && !line.isEmpty())
               {
                   thatWeBookList.append(line);
               }
@@ -62,9 +65,9 @@ void WeBookServer::start()
     try
     {
         myApp = application();
-        if (!httpServer->listen(QHostAddress::Any, myPort))
+        if (!httpServer->listen(QHostAddress::Any, qLoggerCommon->getPort()))
         {
-            qDebug() << QCoreApplication::translate("QHttpServerExample", QString("Server failed to listen on port %1").arg(myPort).toLocal8Bit());
+            qDebug() << QCoreApplication::translate("QHttpServerExample", QString("Server failed to listen on port %1").arg(qLoggerCommon->getPort()).toLocal8Bit());
         }
         qDebug() << "WeBookServer start";
     }
@@ -126,109 +129,11 @@ void WeBookServer::startHttpServer()
 {
 } // end startHttpServer
 /******************************************************************************
-** getCharAppName                                                             *
-*******************************************************************************/
-const char *WeBookServer::getCharAppName()
-{
-    return myAppName.toLocal8Bit();
-} // end getCharAppName
-/******************************************************************************
-** getAppName                                                                 *
-*******************************************************************************/
-QString WeBookServer::getAppName()
-{
-    return myAppName;
-} // end getAppName
-/******************************************************************************
-** setAppName                                                                 *
-*******************************************************************************/
-void WeBookServer::setAppName(const QString &thisAppName)
-{
-    if (!myAppName.isNull() && !myAppName.isEmpty() && myAppName != thisAppName)
-    {
-        // changing it
-        myAppName = thisAppName;
-    }
-    else
-    {
-        // Setting it for first time
-        myAppName = thisAppName;
-    }
-} // end setAppName
-/******************************************************************************
-** getOrgName                                                                 *
-*******************************************************************************/
-QString WeBookServer::getOrgName()
-{
-    return myOrganizationName;
-} // end getOrgName
-/******************************************************************************
-** setOrgName(myValue)                                                        *
-*******************************************************************************/
-void WeBookServer::setOrgName(const QString &thisOrgName)
-{
-    if (!myOrganizationName.isNull() && !myOrganizationName.isEmpty() && myOrganizationName != thisOrgName)
-    {
-        // changing it
-        myOrganizationName = thisOrgName;
-    }
-    else
-    {
-        // Setting it for first time
-        myOrganizationName = thisOrgName;
-    }
-} // end setOrgName
-/******************************************************************************
-** getOrgDomain                                                               *
-*******************************************************************************/
-QString WeBookServer::getOrgDomain()
-{
-    return myOrganizationDomain;
-} // end getOrgDomain
-/******************************************************************************
-** setOrgDomain(myValue)                                                      *
-*******************************************************************************/
-void WeBookServer::setOrgDomain(const QString &thisOrgDomain)
-{
-    if (!myOrganizationDomain.isNull() && !myOrganizationDomain.isEmpty() && myOrganizationDomain != thisOrgDomain)
-    {
-        // changing it
-        myOrganizationDomain = thisOrgDomain;
-    }
-    else
-    {
-        // Setting it for first time
-        myOrganizationDomain = thisOrgDomain;
-    }
-} // end setOrgDomain
-/******************************************************************************
-** getIniFileName                                                             *
-*******************************************************************************/
-QString WeBookServer::getIniFileName()
-{
-    return myIniFileName;
-} // end getIniFileName
-/******************************************************************************
-** setIniFileName                                                             *
-*******************************************************************************/
-void WeBookServer::setIniFileName(const QString &thisIniFileName)
-{
-    if (!myIniFileName.isNull() && !myIniFileName.isEmpty() && myIniFileName != thisIniFileName)
-    {
-        // changing it
-        myIniFileName = thisIniFileName;
-    }
-    else
-    {
-        // Setting it for first time
-        myIniFileName = thisIniFileName;
-    }
-} // end setIniFileName
-/******************************************************************************
 ** getCatFileName                                                             *
 *******************************************************************************/
 QString WeBookServer::getCatFileName()
 {
+    if (myCatFileName.isEmpty()) setCatFileName("");
     return myCatFileName;
 } // end getCatFileName
 /******************************************************************************
@@ -236,109 +141,16 @@ QString WeBookServer::getCatFileName()
 *******************************************************************************/
 void WeBookServer::setCatFileName(const QString &thisCatFileName)
 {
-    if (!myCatFileName.isNull() && !myCatFileName.isEmpty() && myCatFileName != thisCatFileName)
+    if (thisCatFileName.isEmpty())
+    {
+        myCatFileName = findFilePath(qLoggerCommon->getFilelPath(), QLogger::ConstDefaultWeBookCatName);
+    }
+    if (myCatFileName.isEmpty() || myCatFileName != thisCatFileName)
     {
         // changing it
-        myCatFileName = thisCatFileName;
-    }
-    else
-    {
-        // Setting it for first time
         myCatFileName = thisCatFileName;
     }
 } // end setCatFileName
-/******************************************************************************
-** getCryptoKey                                                               *
-*******************************************************************************/
-QString WeBookServer::getCryptoKey()
-{
-    return myCryptoKey;
-} // end getCryptoKey
-/******************************************************************************
-** setCryptoKey                                                               *
-*******************************************************************************/
-void WeBookServer::setCryptoKey(const QString &thisCryptoKey)
-{
-    if (!myCryptoKey.isNull() && !myCryptoKey.isEmpty() && myCryptoKey != thisCryptoKey)
-    {
-        // changing it
-        myCryptoKey = thisCryptoKey;
-    }
-    else
-    {
-        // Setting it for first time
-        myCryptoKey = thisCryptoKey;
-    }
-} // end setCryptoKey
-/******************************************************************************
-** getCryptoIvVector                                                          *
-*******************************************************************************/
-QString WeBookServer::getCryptoIvVector()
-{
-    return myCryptoIvVector;
-} // end getCryptoIvVector
-/******************************************************************************
-** setCryptoIvVector                                                          *
-*******************************************************************************/
-void WeBookServer::setCryptoIvVector(const QString &thisCryptoIvVector)
-{
-    if (!myCryptoIvVector.isNull() && !myCryptoIvVector.isEmpty() && myCryptoIvVector != thisCryptoIvVector)
-    {
-        // changing it
-        myCryptoIvVector = thisCryptoIvVector;
-    }
-    else
-    {
-        // Setting it for first time
-        myCryptoIvVector = thisCryptoIvVector;
-    }
-} // end setCryptoIvVector
-/******************************************************************************
-** getPort                                                                    *
-*******************************************************************************/
-quint16 WeBookServer::getPort()
-{
-    return myPort;
-} // end getPort
-/******************************************************************************
-** setPort(int thisPort)                                                      *
-*******************************************************************************/
-void WeBookServer::setPort(quint16 thisPort)
-{
-    if (myPort != 0 && myPort != thisPort)
-    {
-        // Update
-        myPort = thisPort;
-    }
-    else
-    {
-        // Set first time
-        myPort = thisPort;
-    }
-} // end setPort
-/******************************************************************************
-** getAppFolderName                                                           *
-*******************************************************************************/
-QString WeBookServer::getAppFolderName()
-{
-    return myAppFolderName;
-} // end getAppFolderName
-/******************************************************************************
-** setAppFolderName                                                           *
-*******************************************************************************/
-void WeBookServer::setAppFolderName(const QString &thisAppFolderName)
-{
-    if (!myAppFolderName.isNull() && !myAppFolderName.isEmpty() && myAppFolderName != thisAppFolderName)
-    {
-        // changing it
-        myAppFolderName = thisAppFolderName;
-    }
-    else
-    {
-        // Setting it for first time
-        myAppFolderName = thisAppFolderName;
-    }
-} // end setAppFolderName
 /******************************************************************************
 ** findFilePath(String thisFileName, QString thisDataFolderName)              *
 ** All files must be in folder myAppFolderName                                 *
@@ -346,14 +158,6 @@ void WeBookServer::setAppFolderName(const QString &thisAppFolderName)
 *******************************************************************************/
 QString WeBookServer::findFilePath(QString thisFileName, QString thisDataFolderName)
 {
-    // Make sure Build Folder does not contain the App Name, this is default, change Projects Build Path
-    if (constAppDataLocation.contains(myAppFolderName))
-    {
-        if (QDir(constAppDataLocation).exists())
-        {
-            // I have no idea where this is at till I deploy it
-        }
-    }
     // If running from within Qt Creator, this path is outside of the root application folder
     QDir dataFileDir(QCoreApplication::applicationDirPath());
     QString dataFullPath;
@@ -364,15 +168,15 @@ QString WeBookServer::findFilePath(QString thisFileName, QString thisDataFolderN
         if (!QDir(dataFullPath).exists())
         {
             // APP_FOLDER/databaseFolderName/databaseFileName
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4%5").arg(QDir::separator()).arg(myAppFolderName).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
+            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4%5").arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
         }
         if (!QDir(dataFullPath).exists())
         {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5%6").arg(QDir::separator()).arg(QDir::separator()).arg(myAppFolderName).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
+            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5%6").arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
         }
         if (!QDir(dataFullPath).exists())
         {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2..%3%4%5%6%7").arg(QDir::separator()).arg(QDir::separator()).arg(QDir::separator()).arg(myAppFolderName).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
+            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2..%3%4%5%6%7").arg(QDir::separator()).arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
         }
         // look back before the myAppFolderName
         if (!QDir(dataFullPath).exists())
@@ -400,15 +204,15 @@ QString WeBookServer::findFilePath(QString thisFileName, QString thisDataFolderN
         if (!QFile(dataFullPath).exists())
         {
             // APP_FOLDER/databaseFolderName/databaseFileName
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4%5%6").arg(QDir::separator()).arg(myAppFolderName).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
+            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4%5%6").arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
         }
         if (!QFile(dataFullPath).exists())
         {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5%6%7").arg(QDir::separator()).arg(QDir::separator()).arg(myAppFolderName).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
+            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5%6%7").arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
         }
         if (!QFile(dataFullPath).exists())
         {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2..%3%4%5%6%7%8").arg(QDir::separator()).arg(QDir::separator()).arg(QDir::separator()).arg(myAppFolderName).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
+            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2..%3%4%5%6%7%8").arg(QDir::separator()).arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
         }
         // look back before the myAppFolderName
         if (!QFile(dataFullPath).exists())
