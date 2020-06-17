@@ -1,0 +1,121 @@
+\hypertarget{classWeBookServer}{}\doxysection{We\+Book\+Server Class Reference}
+\label{classWeBookServer}\index{WeBookServer@{WeBookServer}}
+
+
+{\ttfamily \#include $<$We\+Book\+Server.\+h$>$}
+
+Inheritance diagram for We\+Book\+Server\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classWeBookServer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWeBookServer_aa9fba70f0410597c227b76138f070653}{We\+Book\+Server}} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\hyperlink{classWeBookServer_a9454e9ceb1f5667c607d763f8e440c7b}{$\sim$\+We\+Book\+Server}} ()
+\item 
+Q\+Core\+Application $\ast$ \mbox{\hyperlink{classWeBookServer_a22df20beb5aedd621a89480767030c56}{get\+App}} ()
+\item 
+Q\+String \mbox{\hyperlink{classWeBookServer_a90b55302b5c5118fe3eee16acbe378d5}{get\+Cat\+File\+Name}} ()
+\item 
+void \mbox{\hyperlink{classWeBookServer_adae0a00097f0fa58834a2015e8c37502}{set\+Cat\+File\+Name}} (const Q\+String \&this\+Cat\+File\+Name)
+\item 
+Q\+String \mbox{\hyperlink{classWeBookServer_abbbb4e553f81d3902a31e25201671fdb}{find\+File\+Path}} (Q\+String this\+File\+Name, Q\+String this\+Data\+Folder\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classWeBookServer_a9a95ff6115a6ea75277590ca1133021a}{start}} () override
+\item 
+void \mbox{\hyperlink{classWeBookServer_aa28a4dac5bdba08f2ff1aedf9351cc8b}{stop}} () override
+\item 
+void \mbox{\hyperlink{classWeBookServer_a51610991a0e6a5d3fd48d9f6a62048ab}{pause}} () override
+\item 
+void \mbox{\hyperlink{classWeBookServer_a2743b694ca270c6cf6d285331c3f20b9}{resume}} () override
+\item 
+void \mbox{\hyperlink{classWeBookServer_a80d53c455e91c2ce3ca41f7eb461119c}{start\+Http\+Server}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} \+: public Qt\+Service$<$\+Q\+Core\+Application$>$ $\ast$ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWeBookServer_aa9fba70f0410597c227b76138f070653}\label{classWeBookServer_aa9fba70f0410597c227b76138f070653}} 
+\index{WeBookServer@{WeBookServer}!WeBookServer@{WeBookServer}}
+\index{WeBookServer@{WeBookServer}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{WeBookServer()}{WeBookServer()}}
+{\footnotesize\ttfamily We\+Book\+Server\+::\+We\+Book\+Server (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} Constructor $\ast$ \mbox{\Hypertarget{classWeBookServer_a9454e9ceb1f5667c607d763f8e440c7b}\label{classWeBookServer_a9454e9ceb1f5667c607d763f8e440c7b}} 
+\index{WeBookServer@{WeBookServer}!````~WeBookServer@{$\sim$WeBookServer}}
+\index{````~WeBookServer@{$\sim$WeBookServer}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{$\sim$WeBookServer()}{~WeBookServer()}}
+{\footnotesize\ttfamily We\+Book\+Server\+::$\sim$\+We\+Book\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} Deconstructor $\ast$ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWeBookServer_abbbb4e553f81d3902a31e25201671fdb}\label{classWeBookServer_abbbb4e553f81d3902a31e25201671fdb}} 
+\index{WeBookServer@{WeBookServer}!findFilePath@{findFilePath}}
+\index{findFilePath@{findFilePath}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{findFilePath()}{findFilePath()}}
+{\footnotesize\ttfamily Q\+String We\+Book\+Server\+::find\+File\+Path (\begin{DoxyParamCaption}\item[{Q\+String}]{this\+File\+Name,  }\item[{Q\+String}]{this\+Data\+Folder\+Name }\end{DoxyParamCaption})}
+
+find\+File\+Path(\+String this\+File\+Name, Q\+String this\+Data\+Folder\+Name) $\ast$ All files must be in folder my\+App\+Folder\+Name $\ast$ This folder is different for debug vs release as well as deployed $\ast$ \mbox{\Hypertarget{classWeBookServer_a22df20beb5aedd621a89480767030c56}\label{classWeBookServer_a22df20beb5aedd621a89480767030c56}} 
+\index{WeBookServer@{WeBookServer}!getApp@{getApp}}
+\index{getApp@{getApp}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{getApp()}{getApp()}}
+{\footnotesize\ttfamily Q\+Core\+Application $\ast$ We\+Book\+Server\+::get\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+get\+App $\ast$ \mbox{\Hypertarget{classWeBookServer_a90b55302b5c5118fe3eee16acbe378d5}\label{classWeBookServer_a90b55302b5c5118fe3eee16acbe378d5}} 
+\index{WeBookServer@{WeBookServer}!getCatFileName@{getCatFileName}}
+\index{getCatFileName@{getCatFileName}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{getCatFileName()}{getCatFileName()}}
+{\footnotesize\ttfamily Q\+String We\+Book\+Server\+::get\+Cat\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+get\+Cat\+File\+Name $\ast$ \mbox{\Hypertarget{classWeBookServer_a51610991a0e6a5d3fd48d9f6a62048ab}\label{classWeBookServer_a51610991a0e6a5d3fd48d9f6a62048ab}} 
+\index{WeBookServer@{WeBookServer}!pause@{pause}}
+\index{pause@{pause}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily void We\+Book\+Server\+::pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+pause $\ast$ \mbox{\Hypertarget{classWeBookServer_a2743b694ca270c6cf6d285331c3f20b9}\label{classWeBookServer_a2743b694ca270c6cf6d285331c3f20b9}} 
+\index{WeBookServer@{WeBookServer}!resume@{resume}}
+\index{resume@{resume}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{resume()}{resume()}}
+{\footnotesize\ttfamily void We\+Book\+Server\+::resume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+resume $\ast$ \mbox{\Hypertarget{classWeBookServer_adae0a00097f0fa58834a2015e8c37502}\label{classWeBookServer_adae0a00097f0fa58834a2015e8c37502}} 
+\index{WeBookServer@{WeBookServer}!setCatFileName@{setCatFileName}}
+\index{setCatFileName@{setCatFileName}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{setCatFileName()}{setCatFileName()}}
+{\footnotesize\ttfamily void We\+Book\+Server\+::set\+Cat\+File\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{this\+Cat\+File\+Name }\end{DoxyParamCaption})}
+
+set\+Ini\+File\+Name $\ast$ \mbox{\Hypertarget{classWeBookServer_a9a95ff6115a6ea75277590ca1133021a}\label{classWeBookServer_a9a95ff6115a6ea75277590ca1133021a}} 
+\index{WeBookServer@{WeBookServer}!start@{start}}
+\index{start@{start}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void We\+Book\+Server\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+start $\ast$ \mbox{\Hypertarget{classWeBookServer_a80d53c455e91c2ce3ca41f7eb461119c}\label{classWeBookServer_a80d53c455e91c2ce3ca41f7eb461119c}} 
+\index{WeBookServer@{WeBookServer}!startHttpServer@{startHttpServer}}
+\index{startHttpServer@{startHttpServer}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{startHttpServer()}{startHttpServer()}}
+{\footnotesize\ttfamily void We\+Book\+Server\+::start\+Http\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+start\+Http\+Server $\ast$ \mbox{\Hypertarget{classWeBookServer_aa28a4dac5bdba08f2ff1aedf9351cc8b}\label{classWeBookServer_aa28a4dac5bdba08f2ff1aedf9351cc8b}} 
+\index{WeBookServer@{WeBookServer}!stop@{stop}}
+\index{stop@{stop}!WeBookServer@{WeBookServer}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void We\+Book\+Server\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+stop $\ast$ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/We\+Book\+Server.\+h\item 
+src/We\+Book\+Server.\+cpp\end{DoxyCompactItemize}

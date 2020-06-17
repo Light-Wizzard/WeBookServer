@@ -1,0 +1,313 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ This project is written in Qt C++, it has a Client called We\+Book\+Client, that is also written in Qt C++, the We\+Book Project itself is an example of how to use the two projects together.
+
+This project is currently in Alpha, the reason I have posted it, is to test the installation script, its job is to check Git\+Hub for updates before continuing, so I needed to post even a skeleton of the code in order to even develop it.
+
+Currently there is not much to look at, it creates an H\+T\+TP Server using Q\+Http\+Server, and looks for the We\+Book\+Client Data Folders, where it will load and display its content.\hypertarget{index_autotoc_md8}{}\doxysection{Table of contents}\label{index_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \href{\#table-of-contents}{\texttt{ Table of contents}}
+\item \href{\#Status}{\texttt{ Status}}
+\item \href{\#Downloads}{\texttt{ Downloads}}
+\item \href{\#Work-Flow}{\texttt{ Work Flow}}
+\item \href{\#Installer}{\texttt{ Installer}}
+\item \href{\#Version}{\texttt{ Version}}
+\item \href{\#Server-Installed}{\texttt{ Server Installed}}
+\item \href{\#WeBookServer-Configuration}{\texttt{ We\+Book\+Server Configuration}}
+\item \href{\#WeBookServer}{\texttt{ We\+Book\+Server}}
+\item \href{\#Install}{\texttt{ Install}}
+\item \href{\#Update}{\texttt{ Update}}
+\item \href{\#Build}{\texttt{ Build}}
+\item \href{\#Security-System}{\texttt{ Security System}}
+\item \href{\#Fork-It}{\texttt{ Fork It}}
+\item \href{\#3rd-Party-Apps}{\texttt{ 3rd Party Apps}}
+\item \href{\#Notes}{\texttt{ Notes}}
+\item \href{\#List-of-3rd-Party-Projects}{\texttt{ List of 3rd Party Projects}}
+\item \href{\#Progress}{\texttt{ Progress}}
+\item \href{\#Remarks}{\texttt{ Remarks}}
+\begin{DoxyItemize}
+\item \href{\#End-of-File}{\texttt{ End of File}}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysection{Status}\label{index_autotoc_md9}
+Linux\+: \href{https://travis-ci.org/Light-Wizzard/WeBookServer}{\texttt{ }}
+
+I am working on Mac and Windows.\hypertarget{index_autotoc_md10}{}\doxysection{Downloads}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item \+:penguin\+: \href{https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage}{\texttt{ Linux}}
+\item \+:penguin\+: \+:inbox\+\_\+tray\+: \href{https://github.com/Light-Wizzard/WeBookServer/releases/download/continuous/WeBookServer-travis-x86_64.AppImage.zsync}{\texttt{ Linux Z\+Sync}}
+\end{DoxyItemize}
+
+Just because it compiles, and runs, does not mean it does anything, and without the Client, there is not much it can do, but wait for one.
+
+Note\+: Port is hard coded to 9696, it has a configuration ini file, and you can pass in arguments from the command line.
+
+I will make a tutorial for this, once its working, right now its just in development.
+
+These App\+Images will run on most Linux Versions, you can compile it on any Linux Distribution that it does not run on, and you will have to compile it for any OS I do not have a way to make a version for, so as time goes on, I will try to add more support.
+
+The concept is that you setup H\+A\+Proxy to send all port 80 and 443 to the port you specify, there are many reasons not to handle the calls by \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} directly, and you can access the port from a Web Browser, this port should be set for Authentication, so only Authenticated Clients can open this port directly.
+
+I only deal with Authentication in a very specific way, the easiest way is to use H\+A\+P\+Rroxy and manage the Configuration File to manage users.
+
+See Security section below\hypertarget{index_autotoc_md11}{}\doxysection{Work Flow}\label{index_autotoc_md11}
+Currently I am using Git\+Hub projects to do the heavy work like Web Server, and to make it run as a Daemon in Unix and a Windows Service in Windows, I am using Qt\+Http\+Server, and Qt\+Service by Qt\+Labs for those jobs.
+
+
+\begin{DoxyItemize}
+\item Qt\+Http\+Server\+: \href{https://github.com/qt-labs/qthttpserver}{\texttt{ https\+://github.\+com/qt-\/labs/qthttpserver}}
+\item Qt\+Service\+: \href{https://github.com/qtproject/qt-solutions/tree/master/qtservice}{\texttt{ https\+://github.\+com/qtproject/qt-\/solutions/tree/master/qtservice}}
+\end{DoxyItemize}
+
+I decided to compile it, rather then joining it as a subdir project for one reason, they are in development, and can break my code any day, so I must first test all there updates before pushing them in my project, and I will keep it this way, all code is compiled in. The main reason for this is simple, this app is small, so no real need for a Library.
+
+I wrote the program to take switches, and to make up defaults if those switches are blank, so it has a way of reading in configuration files, but with so many Operating Systems to deal with, I decided a Database was out, too many to have to deal with, and why add that complexity to a much simpler problem, and then I had Qt Settings, nice, but I have to deal with a few issues, and one drove me crazy just thinking about, let me explain, to use Qt Setting, which is nice, you can use the Default settings, it store it with that applications data, and support is great, but then I got to wondering, what if I want to set the Organization, I have no idea what it is ahead of time, unless you pass it in as a command line switch, and you can, and it is set up to use Qt Settings by default this way, now here is my issue, one first run, Qt Settings will always, and that word A\+L\+W\+A\+YS is like the word O\+N\+LY, as in O\+N\+LY Congress can Print Money, so to Americans I have to explain this in Detail, in all cases, O\+N\+LY and A\+L\+W\+A\+YS, can never be changed or Amended, meaning Minor Change, you void the contract with them when you alter their meaning, so I cannot rely on them, not at start up, so I need to write a function that reads in a file that exists or the app dies, and I got to thinking if I write a function that has to read and write this information anyway, why use Qt Settings, but still, its there, and still useful after the second run.
+
+This app will try to minimize the amount of switches, it takes 1 arguments\+: Install, Update, Build, or Run.
+
+Install will try to figure out which OS you are running, and what Distribution of Linux or Unix, I get this information from Q\+Sys\+Info Class \href{https://doc.qt.io/qt-5/qsysinfo.html}{\texttt{ https\+://doc.\+qt.\+io/qt-\/5/qsysinfo.\+html}}, \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} should run on a Windows Server, but not sure about setting it up as a Service, but eventually I will work on that, and get it to work, not sure Qt\+Http\+Server supports I\+IS, so this may not be a Windows thing, but I do try to support as many distribution of Unix, so to name a few, Linux, Arch Linux or Manjaro, Free\+B\+SD, M\+AC, Sun J\+DS, Solaris/\+Sparc, Sunbsd, H\+P-\/\+UX, I\+R\+IX, O\+S\+F1, U\+L\+T\+R\+IX, A\+IX, Cent\+OS, Debian, Redhat, Slackware, Suse, Unitedlinux, Mandrake, Yellow Dog, Gentoo, and actually this list is just stuff I know it works on, this is Qt and C++, so it should run on anything, making this list meaningless, other than to make you understand what I have to deal with.
+
+I was going to write this as a bash script, but decided not to for many reasons, in fact, I decided to write it as a Service, and that takes a bit more work, and I also want it to work with Description \href{https://github.com/haproxy/haproxy}{\texttt{ H\+A\+Proxy}} and \href{https://github.com/arnaudsj/monit}{\texttt{ Monit}}, more on that later, but I realized that the bash scripts were limiting me to the above, and not Qt, so why do that to myself or others.
+
+I have only tested this on Arch Linux as my Server and Manjaro as my Desktop, so if you have any issues file them, and be specific, and I will try to resolve them.
+
+This app is meant to be run on a V\+PS or Server, and it should work on Windows, as well as being written for Unix, meaning Linux or Mac, but really any Machine that Qt Supports, this is a Web Server, much like Apache or N\+G\+I\+NX, and I think you can run those on Windows, so no reason you cannot run \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} on it, but I\+IS is another issue, but there are always ways to deal with it.
+
+You need to down the installer from \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} Git\+Hub, \href{https://github.com/Light-Wizzard/WeBookServer}{\texttt{ https\+://github.\+com/\+Light-\/\+Wizzard/\+We\+Book\+Server}}, now that said, this is Alpha, so, do not judge it by what is there now, but what it will become, and I have most of the code already written from 6 years ago, and I have updated most of, but now its a matter of integrating it all into one app, and I decided not to make this with Plugins for many reasons, security being the show stopper.
+
+Having decided not to write bash scripts, no easy for me, but I decided to write an installer instead, then decided, instead I will just write the We\+Book\+Client, to install the \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}, and so it will. Now once you click on \char`\"{}\+Install Server\char`\"{}, a Wizard will have you fill out a form, with the required fields required for Authentication, User Name, and Password, and I got to thinking about how to save this information, and decided not to, in fact, I decided not to use any type of Authentication currently in use, and most people will think that is crazy, but I say what works, works.\hypertarget{index_autotoc_md12}{}\doxysection{Installer}\label{index_autotoc_md12}
+Now the Installer will download Qt\+Http\+Server from Git\+Hub, directly from the Server you log into, and it must have the ability to create a new user, or have an existing one setup for it, you log in as root, otherwise you do not have that option, and wanting this to run on any type of account, I have a Wizard to deal with all types of Accounts, so it will ask you what type of account it is, and if Admin is an Option, then you have more options to deal with, I wrote \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} to be a Server Controller, so it will only run to its fullest potential as root, as a user, it has limited ability, but still, we make the best of what we have available to us, and we also have Local Mode, this does not require any Server, just a folder, so you need two folders, and you may wonder why two, and the answer is simple, We\+Book\+Client has a Rich Text Editor, that translates to H\+T\+ML code, so you have a document you are working on, and its like a draft, so this is a draft folder, and when I hit Publish, I want it to go to another folder, now this can be a Local folder, a Mount, an N\+AS, the Internet is not Local, but still an option, this can be a V\+PS, or even another Machine you own, and its on a Network connection, and it can be any OS, the concept is simple, you find a place to install \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}, and We\+Book\+Client, the Server only sees what is published, now think about this, the way I develop this in Linux, is I pull up a Terminal, and change directory to the folder where the Qt Compiler put the executable, and I run it, but I am on Linux, and any Unix machine works the same way, even Mac, and even on Windows, I can run the Server, and Client, but keep in mind, on Windows, this will only run under Description \href{https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7}{\texttt{ Power\+Shell}} with Unix for Windows installed, and \href{https://www.cygwin.com/}{\texttt{ Cygwin}}, more on this later,\hypertarget{index_autotoc_md13}{}\doxysection{Version}\label{index_autotoc_md13}
+Version Control and Alphabet Soup Decoded
+
+The Thing about Alpha is this, what the software does now is called a Starting point, and what it will do when finished is called beyond Able, Affirmative, Afirm, Alfa, just to get to Alpha, then you have Bravo, Boy, Baker just to get to Beta, and Charlie we can Cast, and Delta is always a Dog and Echo is Easy, but boring after a while, and Foxtrot is a Fox, but what can I say George loves to Golf, and How the Hotel Hypo Have got you as far as India, where an India of Interrogatory became an Int, then Juliett did the Jig for Kilo King, that Lima Love, as does Mike in November, but it was a Negative, or Negat, or even Nan, on the Oscar, Oboe was not an Option, ask Papa about the Preparatory Pup Prep from Quebec, made by some Queen of Quack in a Rush to meet Roger just to be Romeo, and Sierra was made of Sugar Sail, and Tango got Tare, by the Uncle Uniform Unit, who had the Victor Vice while drinking Whiskey, while he Watch William X-\/ray take by some Yoke Yankee, named Zed, at Zulu with a Zebra, all of these Alphabet Soup Letter Call Signs, just to get to version 1, so call this 0.\+0.\+1, Major.\+Minor.\+Patch, so I hope that is clear, if not, the difference between Alpha, and Beta are two different stories, and it all depends on your level of commitment, as to if you want to try this now, because this is not near Beta yet, just Alpha, and a long way from Zulu, but if you are a Programming, and want to learn about Qt\+Http\+Server Server-\/\+Client programming, then this is the place to be, and the time to be there.\hypertarget{index_autotoc_md14}{}\doxysection{Server Installed}\label{index_autotoc_md14}
+Once you have the Server installed, it will look for a We\+Book.\+cat file, that is created by We\+Book\+Client, by default if has one entry, We\+Book, and that represents a Book, so if it does not find one, it makes it.
+
+You can have unlimited amount of We\+Books you can add, each represent data differently, for example, you can have one We\+Book per U\+RL, or have each We\+Book be a Tree, for example, say I have We\+Book as my first We\+Book, and Videos as my Second, and I might add Music down the line, so I need to decide what layout I want, by U\+RL or by Tree.
+
+A Tree is a Hierarchal view, each We\+Book has a Table of Content A\+KA T\+OC, it is also a Tree View, the Top element is the Title Page, it has an H1 Tag in the H\+T\+ML Document, and you can only have on H1 Tag per Document, all Chapters will have H2 Tags, all Sub Chapters will have H3 Tags, and it only goes 6 levels deep, because H6 is the last H Tag.
+
+We\+Book knows your Layout because of the Files it generates, these are text files that are indention based, We\+Book does not use any Databases, the reason is Simple, it does not need them for Speed, it does not use a look-\/ups to find data, the data is routed one for one in the code, and this is due to the Tree view, so let me explain how it works.
+
+If you look at any We\+Book.\+cat file, you will notice they have this pattern\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RootID  Root Title}
+\DoxyCodeLine{  ChildID Child Title}
+\DoxyCodeLine{    ChildrenID Children Title}
+\end{DoxyCode}
+
+
+Root\+ID is a Column in the Treeview, it has a Tab (4 spaces \textbackslash{}t character) as a delimiter, and each row is a child of what is above it, each indent, not Tab, is 2 spaces, you must save this document with Tabs on, a Tab is actually the character \textbackslash{}t, ~\newline
+ is a New line, and they are at the end of all lines, and \textbackslash{}r, which is a Windows thing, most be stripped, this is done automatically, because I have a Windows Machine also, and I want this to be Cross-\/\+Platform, so its not Unix Specifics, and I will make every effort to ensure it works on Windows, Mac not an issue, its Unix, and so far, I\+IS is the only issue I am facing, and its a none player, but this is the issue.\hypertarget{index_autotoc_md15}{}\doxysection{We\+Book\+Server Configuration}\label{index_autotoc_md15}
+\mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} can be configured to listen on specific ports, so as long as your Firewall does not block them, it should work, but I\+IS likes to be top dog when it comes to being the file or web server, and does not always play nice, so I have a lot of testing to do, and a little hacking, but I know it will work. \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} is the Web Server, and not Apache, N\+G\+I\+NX, or I\+IS, and the Install option will uninstall them, it will ask before uninstalling, so do not worry, but if you do not want the warning, when you run it, set the switch -\/s or --safe, this is called Safe Mode, and it will not uninstall Apache, N\+G\+I\+NX, or I\+IS, but is not the Default, so be warned, as if the warning dialog will not be enough.
+
+Do not try to mix your current Web Site with We\+Book, and why it uninstalls other Servers by default, I will explain how to migrate, but there is no plans for any migration scripts, and once you understand why, you will say to yourself, I do not need them.\hypertarget{index_autotoc_md16}{}\doxysection{We\+Book\+Server}\label{index_autotoc_md16}
+\mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} is a Server
+
+\mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} is the Server, and has nothing to do with Apache, N\+G\+I\+NX, or I\+IS, nor does it want any interaction with them, they are a Security risk to is, and it has enough to deal with, each has its own issues when it comes to dealing with \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}, Apache will sometimes add headers to all incoming messages, even if they are not for it, an easy fix, and nothing to actually deal with, safe mode deals with it, but without it enabled, things can get strange, and I have not even implemented it yet, but this is an app I actually wrote 6 years ago, and I am only updating it to be a Client-\/\+Server, now N\+G\+I\+NX is easy to deal with, but it still uses up a lot of threads, just like the others, and I\+IS, do not make me explain this issue to you, I will be like the General on South-\/\+Park, \href{https://youtu.be/EPfsr8BBdA8}{\texttt{ Get Bill Gates in here...}}.
+
+Why run two Web Servers is a question you must ask yourself.
+
+The Concept of \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} by default is to uninstall Apache, N\+G\+I\+NX, or I\+IS, because of one reason only, \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} is the Top Dog. It can only be fast if it has nothing to compete with, meaning Listening time, it does not need to share that with another Server, and if you cannot afford another V\+PS account, just run it in safe mode, I do, I am running N\+G\+I\+NX, but Apache is no problem, just a few issues to deal with, and they both have issues I can deal with, but they all pose a Security risk to the way \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} works, more on that later.\hypertarget{index_autotoc_md17}{}\doxysection{Install}\label{index_autotoc_md17}
+Install will run the installer commands, and it can detect the OS it is running on, and it is all done in Qt in C++, this has switches to control its behaviour. This will install software on the server, and Update will update it, it will download \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} from Git\+Hub, and keep it up to date, so you download the Installer from We\+Book, or any Fork, and it uses that account to authenticate from, so you cannot run a Client from one Fork on a Server from another project, nor another build from this project, or any fork, its designed to not run from any executable but the one complied from Travis or App\+Veyor, so they will not communicate by design, this is to prevent hacking, malware, or viruses, but beware, a Fork can put code into it that is not in this project, so do not file issues with Forks here, you have to trust the Fork.\hypertarget{index_autotoc_md18}{}\doxysection{Update}\label{index_autotoc_md18}
+Update with do an OS update, nothing to do with the app itself, this is a feature you can automate, keep in mind this is a Server, and normally you are not standing in front of it, so it is written to take full control over the server, so if you want to install, or uninstall software, you can go through the We\+Book\+Client, to manage the Server, it can talk directly to the server, and give it commands to run.\hypertarget{index_autotoc_md19}{}\doxysection{Build}\label{index_autotoc_md19}
+Build is used to update the app, it will run Update before it runs build, to ensure the system is up to date, the Server is normally only interacted with through We\+Book\+Client, it has a built in z\+Sync2 Auto Update built into the installer from Git\+Hub, and it has a way to track of compiler checksum, so you can only talk to the server, with the same version you compiled for the Server, they are tied together at compile time, each knows the checksum of the other at all times, so neither can be overwritten by a virus, or anyone wanting to use the App to hack into a We\+Book site.\hypertarget{index_autotoc_md20}{}\doxysection{Security System}\label{index_autotoc_md20}
+The Project uses other Git\+Hub Projects, all list here, and I have to trust their code, and Qt\+Labs is trustworthy in my own opinion, I use their code, so I have trust it, and its easy to say I should read all the code, but its in development and changes all the time, as is Qt itself, so I can only speak about my Code, and I do not have any hidden code or back-\/doors, malware, viruses, or any type of code other than just the code it needs to do its job, so I will over comment the code, so you know what all the code does by reading the comments.
+
+I will have Tracking Capabilities built into this code, but its job is to track where the code was compiled, and is Fork Friendly, you Fork it, it now uses your credentials, your Travis and App\+Veyor accounts.
+
+The Security System has nothing to do with the Code, the reason is simple, if the Code was in charge of Security, someone could Hack it to break the Security, so instead, I have my own Home Grown Security System, I call We\+Book\+Security.
+
+We\+Book\+Security is a System, it starts by installed \href{https://github.com/fail2ban/fail2ban}{\texttt{ fail2ban}} on the server, and monitoring it, tweaking it, and Ha\+Proxy, so it serves as the Man In The Middle, and helps prevent others from trying, the concept is simple, fail2ban will lock out any attempt to hack in, it has nothing to do with We\+Book, so its external Security, and We\+Book just makes sure its doing its job, and Ha\+Proxy means I do not have to deal with any H\+T\+TP request directly, I only listen for Ha\+Proxy to send me traffic, so it vets all traffic before it gets to me, this helps prevent a DoS attack, so by using external apps, and monitoring them, I can ensure security, and I use Monit, to ensure all these apps are always running on the server.
+
+I use \href{https://github.com/waja/maldetect}{\texttt{ maldet}} and \href{https://github.com/Cisco-Talos/clamav-devel}{\texttt{ clamav}} for scanning all incoming files.
+
+I can use Ha\+Proxy to Authenticate all Clients, and even filter by specific IP addresses.
+
+By Removing the Security from this App, it prevents it from being used to hack sites with, even with the code, the rules it uses even when Forked, as long as they do not change the code, and Git\+Hub makes it easy to find out what they changed, but even if they wrote their own client server, that was designed only to hack, all they could hack is their own accounts, since a legitimate site, would have better security.
+
+I use a 3 Key System, the Admin of the V\+PS, will download and install We\+Book\+Client, it will install \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}, and this is the only way this works, because the two are matched at the point of installation, and you cannot break this bound once you start using the system, if your machine crashes, you much download the installer from the Git\+Hub Server, it will then reestablish this Trust, but you will have to re-\/authenticate.
+
+A lot of code goes into establishing a Trust between Client and Server, so it will be hard to break, even knowing how I did it, and why I am telling you, so you will think twice about it, and knowing how it works, makes it clear why it works, and why it will be hard to hack.
+
+I use Travis or App\+Veyor to create all the apps, so I can track the public checksum to ensure it was downloaded from that account, and it goes by account, its not tied to my We\+Book Accounts, that is only if you want to use my Version of it, you can Fork it, create your own accounts, and not even need to change any code, it is designed to be Forked, I will give more details about this later, but the App handles most of this.
+
+The Admin creates an S\+SH key, and they are the only one that has access to it, anyone that uses your Account, as a Domain Controller, you the Admin, are that Domain Controller, you add all your Clients, so this is how it works, you get a new Employee, or a new Step member or in-\/law in your Family, and you send them a link, it has an Embedded Code in it, only the Admin knows this Code, so the Admin, and just to be clear, this is a screen in We\+Book\+Client, its a Wizard called Add new user, you can add a new S\+SH key for each user, and control the keys, and you have the option to make it a 1 to 3 Step Process, first Step is Email, We\+Book sends the new user a code, they reply, and that code is deleted, and void, a one ticket ride, now a 2 Step can be any order, Phone Voice via Key Pad entry, Voice Commands, S\+MS, or Snail Mail, as well as a few I will add later, and you can pick a 3 Step process, this may require in person check, or may require more then one step, maybe all of them up to in person, the options are limitless.
+
+The Admin uses We\+Book\+Client to manage a We\+Book, and they can have multiple We\+Books to manage, and everyone of those We\+Books has its on Users Account, and it also has Linked Accounts, so you can have users in multiple We\+Books, and keep in mind that \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}, does not have to publish pages to the Public, and why Fork it is an Option, without having to maintain the code, they can ensure its safe to use before using the latest version, they are not forced to do updates, and can update only what they want, even line by line, character by character, full git control is built into We\+Book, its actually a Git\+Hub App when you think about, and its geared mainly for Paid Accounts, meaning Private Accounts, and its where the majority of Forks will take place.
+
+I do not work for Git\+Hub, nor do I get any kick backs, what I do understand is how it works, and Money is the Key factor, but its more than that when it comes to Security, and this is why.
+
+If you have a Private Git\+Hub Account, you can control who can download your App, not that it matters, the Apps can be hacked, but only Apps you have compiled at Travis and App\+Veyor, where you will also want Paid Accounts, again, only for Security, I use the keys they publish in a Public Free Account, so if you want real Security, you have to Pay for it, not to me, or this Project, it is Open Source, but you have to Pay Git\+Hub for a Private Account, and I do recommend this, you now have full control over your Repository, I have to keep this site Public, so no reason to have it Private, but once I start using it, I will get a Private Account, its Money worth paying Git\+Hub for, as well as Travis \href{https://travis-ci.org/}{\texttt{ https\+://travis-\/ci.\+org/}} or App\+Veyor \href{https://www.AppVeyor.com/}{\texttt{ https\+://www.\+App\+Veyor.\+com/}}, keeping those checksum values private is worth the money.
+
+Privacy is the Key to Security, so you get what you pay for, and keep in mind I make no money by recommending this, in fact, it will cost me the same amount it cost you, if I did get a kickback, you would know it, I would put a link to it, the above have no Tracking information embedded into them, and if they did, I would let you know, privacy cost all of us the same amount of money, no kick backs.
+
+So how does this Security System works, well its Simple, and you know that K\+I\+SS thing, not the I want to Rock and Roll All Knight, and you know what all day, but the Keep It Simple Stupidly, and that means, if Stupid People set it up, you want to make sure their covered, so now it comes down to how this Security System Works.\hypertarget{index_autotoc_md21}{}\doxysubsection{Security System Work Flow}\label{index_autotoc_md21}
+
+\begin{DoxyEnumerate}
+\item Data Security\+: Private Git\+Hub, Travis, and App\+Veyor Accounts
+\item X Step Key Authentication, you pick the X Value
+\item The Actual Personal Access Key
+\end{DoxyEnumerate}
+
+I have covered steps 1 and 2, but 3 is the real deal, and this all depends on your need for Trust.
+
+Let me give you a few scenarios, first is a friend or family, they want to be part of your We\+Book, so they ask you, or maybe you asked them,but trust goes both ways, so you tell them no problem, go here and download We\+Book, or download my We\+Book Fork, its sounds better does it, I will have to sell T-\/\+Shirts, bumper stickers, magnets and such with \char`\"{}\+Forked We\+Book\char`\"{} on it, now once they installed it, and have it up and running, you have them do this, shut it down, and edit the Menu item you used to launch it, now there are a few options, and this is only one, so if you do not like it, I will give you at least 3, the first is the Edit the Menu Item, and pass in the Arguments on the Command Line, this is as secure the device, because anyone that logs in can open it without a user name or password, and putting one in, which you have that option, is bypassed by this option, so this option, by the way, is the one I use, not the best, but if you can log into my Linux machine, or its already logged in, and you have access to it, there is little in the way of Security that will help you at this point, so let us think about other options.
+
+
+\begin{DoxyEnumerate}
+\item Bluetooth Security Device
+\item Smart Card/\+U\+SB.
+\item Encrypted Menu/\+Launcher and Key File
+\end{DoxyEnumerate}
+
+First for Bluetooth Security Devices, my Phonak Hearing Aids will work, any device you have that Qt can detect its Proximity can be used, this means you must be paired with with the device, so it makes no difference what device it is, as long as you paired to it, the Wizard dose not auto Pair anything, you have to manually pick Add Bluetooth Device. Do not use any device you do not keep on you, proximity is your only Security in this case. I suggest buying a very reliable small device that you can use for some person use, like a smart device you cannot live without, some people can use their Smart Injectors, or Smart Glasses, there are a lot of Bluetooth devices out there.
+
+Smart Card/\+U\+SB, now there are other devices than this, so expand on them here, personally I would go with R\+F\+ID Tags that have a reliable proximity range. I keep this at number 2 only because most users cannot afford this method, method 3 we will get into but its free, so this is in terms of how much it cost. U\+SB is only good if you have it on a strap that has no way of leaving your body, normally it is on a security key belt, this is a belt you wear, it has a metal case with a key ring on it, and when you pull it, out comes a cable, how long depends on the model you bought, these are easy to get, just shop around, you just need a U\+SB that attaches to a key chain. The Card can be anything, personally I would go with R\+F\+ID technology, they even have tags you can buy online to tag your pets, children, or yourself, in fact, you can go to a doctor and have on put into you, and no, this is not the Mark of the Beast, its real Security.
+
+Encrypted Menu/\+Launcher and Key File, this is the cheapest, and how you implement it is up to you, I do not hard code it for reason, if no one knows, its more secure. One way is to make an ini file, I will make this part of the App, so you do not actually need to make, just pick Wizard make Security Key, its built in, and it uses the Checksum as trust, to mate the Client to the Server, so you click the button, it gives you all the options on how to get the key to the user, now the User takes the key, and they run the Wizard I have a Key to a Domain Controller, and it knows what to do with it, end of point, next time they are logged in, you have a way from the Controller side or \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}, to control how your access is Granted, now this can lead into some heated conversations, and I will not go there, this is not my concept, but simple protocols for security, say I am the Government, and I have a lot of Employees, I can personally fit a profile that is the least evasive for all my employees, by allowing them to chose the active method, for example, they want to use a R\+F\+ID you ware, or U\+SB you have to use a Key chain to operate, which is good for cars, getting into your house, but if they come to work, and cannot get in, they need a way to run a Smart App, and that is where We\+Book\+Mobile comes in, it allows you to change your active mode of Authentication, to another approved method, or the company can include more than one way to Authenticate.
+
+Since there is no way anyone can ever guess at the credentials used, since they come externally, and if encrypted, cannot be decrypted without the keys, and one of the is Compiled into the We\+Book app, and its only part of the 3 key system.
+
+There is no web login or web interface to this app, it does have the option to publish to a V\+PS, Server, or Local Folder, and anyone that has Access to it, can have access to read only, there is no web app to alter the site.
+
+Even if you have the code to the App, and its Open Source, and the whole reason is so people will, once you start to use it, you figure out that its just enforcing good security. The App itself only passes the Authentication codes through it, and it can do A\+ES encryption and decryption on that data, using the checksum the App and Server where compiled at, along with some metadata that can be used to verify that these two apps are mated, and why its important to have Private Accounts, and why you should Fork it.
+
+The Apps cannot be used to hack a site, but understand this, who ever you given keys to, can alter what parts of the book you allow them too, if none, then you are safe, the Domain Controllers Admin controls permissions, and can revoke keys, and backups can restore data that they may have corrupted, but a diff can tell them what they did change in real-\/time.\hypertarget{index_autotoc_md22}{}\doxysection{Fork It}\label{index_autotoc_md22}
+Why Fork it is a question that is easy to answer, if I am an individual, I want the maximum security I can get, if I am a Corporation or Government, and they are my Targeted users, they will demand a higher standard of Security, and Code Quality, so I will have to write Test Code for every function, I will talk about Code Systems, but the reason to Fork is for Control, you do not have to modify the Code, but you do want full control over how its compiled, and you want people to go to your site, and use your Fork, if you are a Company, its employees can only use your Fork, and ideally everyone will either improve it, or just use it, I do not care personally, and why I encourage you to Fork it.
+
+We\+Book\+Client gives you an upstream update Button Option, and it will merge changes you made, with the upstream, by selecting keep my changes, you do not overwrite yours, if you made changes you do not like, and want to go with the current master, you can select overwrite all, its all an Wizard that helps you make this decision, and I am big on using Wizards.
+
+You can use the We\+Book Version, and it will just work.\hypertarget{index_autotoc_md23}{}\doxysection{3rd Party Apps}\label{index_autotoc_md23}
+I compile these in, instead of using them as a Library, to make the app more compact.
+
+I will try to keep third party apps to a minium, Qt is a given, and Qt\+Labs projects that could become Qt are a given, one that I am going to use is called Qt\+Service, it will give me the ability to write \mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}} as a Daemon in Unix, and as a Windows Service in Windows, which allow you to control it with service calls to start, stop, enable, disable, status, and more.
+
+
+\begin{DoxyItemize}
+\item Qt\+Http\+Server\+: \href{https://github.com/qt-labs/qthttpserver}{\texttt{ https\+://github.\+com/qt-\/labs/qthttpserver}}
+\item Qt\+Service\+: \href{https://github.com/qtproject/qt-solutions/tree/master/qtservice}{\texttt{ https\+://github.\+com/qtproject/qt-\/solutions/tree/master/qtservice}}
+\item Qt-\/\+A\+ES\+: \href{https://github.com/bricke/Qt-AES}{\texttt{ https\+://github.\+com/bricke/\+Qt-\/\+A\+ES}}
+\end{DoxyItemize}
+
+The App will use git to sync these apps with We\+Book at build time, so all the apps should be up to date at build time, I do a pull for each repository, if it fails to build, I have known good version I can fall back to, this is all automated into the software, you make an entry for the usability or rating of your current build, you can log issues, and track them with We\+Book, for the Fork from which it came, and even push those back to the origin, which is this We\+Book Project, or any Fork that may become more popular, so I can do opt-\/in issue tracking for Forks.\hypertarget{index_autotoc_md24}{}\doxysection{Notes}\label{index_autotoc_md24}
+This is on Arch Linux or Manjaro
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{qmake -\/query}
+\DoxyCodeLine{QT\_SYSROOT:}
+\DoxyCodeLine{QT\_INSTALL\_PREFIX:/usr}
+\DoxyCodeLine{QT\_INSTALL\_ARCHDATA:/usr/lib/qt}
+\DoxyCodeLine{QT\_INSTALL\_DATA:/usr/share/qt}
+\DoxyCodeLine{QT\_INSTALL\_DOCS:/usr/share/doc/qt}
+\DoxyCodeLine{QT\_INSTALL\_HEADERS:/usr/include/qt}
+\DoxyCodeLine{QT\_INSTALL\_LIBS:/usr/lib}
+\DoxyCodeLine{QT\_INSTALL\_LIBEXECS:/usr/lib/qt/libexec}
+\DoxyCodeLine{QT\_INSTALL\_BINS:/usr/bin}
+\DoxyCodeLine{QT\_INSTALL\_TESTS:/usr/tests}
+\DoxyCodeLine{QT\_INSTALL\_PLUGINS:/usr/lib/qt/plugins}
+\DoxyCodeLine{QT\_INSTALL\_IMPORTS:/usr/lib/qt/imports}
+\DoxyCodeLine{QT\_INSTALL\_QML:/usr/lib/qt/qml}
+\DoxyCodeLine{QT\_INSTALL\_TRANSLATIONS:/usr/share/qt/translations}
+\DoxyCodeLine{QT\_INSTALL\_CONFIGURATION:/etc/xdg}
+\DoxyCodeLine{QT\_INSTALL\_EXAMPLES:/usr/share/doc/qt/examples}
+\DoxyCodeLine{QT\_INSTALL\_DEMOS:/usr/share/doc/qt/examples}
+\DoxyCodeLine{QT\_HOST\_PREFIX:/usr}
+\DoxyCodeLine{QT\_HOST\_DATA:/usr/lib/qt}
+\DoxyCodeLine{QT\_HOST\_BINS:/usr/bin}
+\DoxyCodeLine{QT\_HOST\_LIBS:/usr/lib}
+\DoxyCodeLine{QMAKE\_SPEC:linux-\/g++}
+\DoxyCodeLine{QMAKE\_XSPEC:linux-\/g++}
+\DoxyCodeLine{QMAKE\_VERSION:3.1}
+\DoxyCodeLine{QT\_VERSION:5.14.2}
+\end{DoxyCode}
+
+
+This is on Travis Ubuntu L\+TS Xenial 16.\+04.\+6 using ppa\+:beineri/opt-\/qt-\/5.\+14.\+1-\/xenial
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{QT\_SYSROOT:}
+\DoxyCodeLine{QT\_INSTALL\_PREFIX:/opt/qt514}
+\DoxyCodeLine{QT\_INSTALL\_ARCHDATA:/opt/qt514}
+\DoxyCodeLine{QT\_INSTALL\_DATA:/opt/qt514}
+\DoxyCodeLine{QT\_INSTALL\_DOCS:/opt/qt514/doc}
+\DoxyCodeLine{QT\_INSTALL\_HEADERS:/opt/qt514/include}
+\DoxyCodeLine{QT\_INSTALL\_LIBS:/opt/qt514/lib}
+\DoxyCodeLine{QT\_INSTALL\_LIBEXECS:/opt/qt514/libexec}
+\DoxyCodeLine{QT\_INSTALL\_BINS:/opt/qt514/bin}
+\DoxyCodeLine{QT\_INSTALL\_TESTS:/opt/qt514/tests}
+\DoxyCodeLine{QT\_INSTALL\_PLUGINS:/opt/qt514/plugins}
+\DoxyCodeLine{QT\_INSTALL\_IMPORTS:/opt/qt514/imports}
+\DoxyCodeLine{QT\_INSTALL\_QML:/opt/qt514/qml}
+\DoxyCodeLine{QT\_INSTALL\_TRANSLATIONS:/opt/qt514/translations}
+\DoxyCodeLine{QT\_INSTALL\_CONFIGURATION:/opt/qt514/etc/xdg}
+\DoxyCodeLine{QT\_INSTALL\_EXAMPLES:/opt/qt514/examples}
+\DoxyCodeLine{QT\_INSTALL\_DEMOS:/opt/qt514/examples}
+\DoxyCodeLine{QT\_HOST\_PREFIX:/opt/qt514}
+\DoxyCodeLine{QT\_HOST\_DATA:/opt/qt514}
+\DoxyCodeLine{QT\_HOST\_BINS:/opt/qt514/bin}
+\DoxyCodeLine{QT\_HOST\_LIBS:/opt/qt514/lib}
+\DoxyCodeLine{QMAKE\_SPEC:linux-\/g++}
+\DoxyCodeLine{QMAKE\_XSPEC:linux-\/g++}
+\DoxyCodeLine{QMAKE\_VERSION:3.1}
+\DoxyCodeLine{QT\_VERSION:5.14.1}
+\end{DoxyCode}
+
+
+In work notes\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone -\/-\/recursive -\/-\/recurse-\/submodules https://github.com/qt-\/labs/qthttpserver.git}
+\DoxyCodeLine{}
+\DoxyCodeLine{git submodule add https://github.com/qt-\/labs/qthttpserver.git 3rdparty/qhttpserver}
+\DoxyCodeLine{}
+\DoxyCodeLine{sudo systemctl start WeBookServer}
+\DoxyCodeLine{}
+\DoxyCodeLine{port 9696}
+\DoxyCodeLine{}
+\DoxyCodeLine{qDebug() << Q\_FUNC\_INFO;}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md25}{}\doxysection{List of 3rd Party Projects}\label{index_autotoc_md25}
+Internal\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/qt-labs/qthttpserver}{\texttt{ Qt\+Labs Qt\+Http\+Server}}
+\item \href{https://github.com/qtproject/qt-solutions/tree/master/qtservice}{\texttt{ Qt\+Labs Qt\+Service}}
+\item \href{https://github.com/bricke/Qt-AES}{\texttt{ Qt-\/\+A\+ES}}
+\end{DoxyItemize}
+
+External\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/fail2ban/fail2ban}{\texttt{ fail2ban}}
+\item \href{https://github.com/haproxy/haproxy}{\texttt{ H\+A\+Proxy}}
+\item \href{https://github.com/arnaudsj/monit}{\texttt{ Monit}}
+\item \href{https://github.com/waja/maldetect}{\texttt{ maldet}}
+\item \href{https://github.com/Cisco-Talos/clamav-devel}{\texttt{ clamav}}
+\end{DoxyItemize}
+
+Services\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://travis-ci.org/}{\texttt{ Travis}}
+\item \href{https://www.AppVeyor.com/}{\texttt{ App\+Veyor}}
+\end{DoxyItemize}
+
+Windows\+:
+
+\href{https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7}{\texttt{ Power\+Shell}} \href{https://www.cygwin.com/}{\texttt{ Cygwin}}\hypertarget{index_autotoc_md26}{}\doxysection{Progress}\label{index_autotoc_md26}
+\mbox{\hyperlink{classWeBookServer}{We\+Book\+Server}}\+: Linux\+: \href{https://travis-ci.org/Light-Wizzard/WeBookServer}{\texttt{ }}
+
+This is a Work in Progress...\hypertarget{index_autotoc_md27}{}\doxysection{Remarks}\label{index_autotoc_md27}
+Thanks, Medically Retired U.\+S. Air Force \href{https://LightWizzard.com/books/trinary.universe/references.html\#jeffrey_scott_flesher_ms_medal_1}{\texttt{ (E)F-\/111}}, \href{https://LightWizzard.com/books/trinary.universe/references.html\#jeffrey_scott_flesher_usaf_mh60}{\texttt{ M\+H-\/60}}, \href{https://LightWizzard.com/books/trinary.universe/references.html\#jeffrey_scott_flesher_ms_medal_2}{\texttt{ M\+H-\/53}} Crew Chief
+
+\href{https://LightWizzard.com/books/trinary.universe/references.html\#reference_jeffrey_scott_flesher}{\texttt{ Jeffrey Scott Flesher}}, \href{https://lightwizzard.com/books/trinary.universe/the.principles.of.the.trinary.universe.htm}{\texttt{ PhD}}, A\+KA \href{https://LightWizzard.com}{\texttt{ The Light Wizzard in the Flesh}}\hypertarget{index_autotoc_md28}{}\doxysubsection{End of File}\label{index_autotoc_md28}
+You can stop reading now, seriously, stop, over and out... 
