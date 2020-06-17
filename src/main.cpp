@@ -3,48 +3,6 @@
 ** WeBook is Pronounced Web-Book, it is a Web-Book Content Management System  *
 *******************************************************************************/
 #include "WeBookServer.h"
-static bool isLogToFile = true;
-/******************************************************************************
-** WeBookMessenger                                                            *
-** This uses Qt qInstallMessageHandler(WeBookMessenger);                      *
-** I have no idea if this gets called in a Thread, but Qt should handle it,   *
-** ensuring thread safe way to open and write to a log file.                  *
-*******************************************************************************/
-void WeBookMessenger(QtMsgType type, const QMessageLogContext &context, const QString &msg)
-{
-    if (isLogToFile)
-    {
-        QLogger::QLoggerCommon *qLoggerCommon = new QLogger::QLoggerCommon(true);
-        switch (type)
-        {
-            case QtDebugMsg:
-                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Debug,    qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
-                break;
-            case QtInfoMsg:
-                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Info,     qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
-                break;
-            case QtWarningMsg:
-                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Warning,  qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
-                break;
-            case QtCriticalMsg:
-                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Critical, qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
-                break;
-            case QtFatalMsg:
-                qLoggerCommon->sendMessage(QLoggerLevel::LogLevel::Fatal,    qLoggerCommon->getModuleName(), context.file, context.line, context.function, msg);
-                break;
-        }
-        //qDebug() << txt;
-    }
-    else
-    {
-        QHash<QtMsgType, QString> msgLevelHash({{QtDebugMsg, "Debug"}, {QtInfoMsg, "Info"}, {QtWarningMsg, "Warning"}, {QtCriticalMsg, "Critical"}, {QtFatalMsg, "Fatal"}});
-        QString txt = QString("%1 %2: %3 (%4:%5=>%6)").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(msgLevelHash[type]).arg(msg).arg(context.file).arg(context.line).arg(context.function);
-        QByteArray formattedMessage = txt.toLocal8Bit();
-        fprintf(stderr, "%s\n", formattedMessage.constData());
-        fflush(stderr);
-    }
-    if (type == QtFatalMsg) abort();
-} // end
 /******************************************************************************
 ** main                                                                       *
 *******************************************************************************/
@@ -163,7 +121,6 @@ int main(int argc, char *argv[])
     }
     service.setCatFileName(thatWeBookCatFilePathName);
 
-    qInstallMessageHandler(WeBookMessenger); // Install the Message handler
 
     service.exec();
 

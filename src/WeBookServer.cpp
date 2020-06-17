@@ -7,8 +7,6 @@ WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(
 {
     qLoggerCommon = new QLogger::QLoggerCommon(true);
 
-    qDebug() << "WeBookServer Constructor";
-
     QString thatWeBookList;
 
     if (QFile(getCatFileName()).exists())
@@ -35,11 +33,11 @@ WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(
     {
         setServiceDescription("WeBookServer");
         setServiceFlags(QtServiceBase::CanBeSuspended);
-        qDebug() << "WeBookServer Constructor";
+        QLog_Debug(qLoggerCommon->getModuleName(), "WeBookServer Constructor");
     }
     catch (...)
     {
-        qCritical() << "Error starting WeBookServer";
+        QLog_Error(qLoggerCommon->getModuleName(), "Error starting WeBookServer");
     }
 
 } // end WeBookServer
@@ -67,13 +65,13 @@ void WeBookServer::start()
         myApp = application();
         if (!httpServer->listen(QHostAddress::Any, qLoggerCommon->getPort()))
         {
-            qDebug() << QCoreApplication::translate("QHttpServerExample", QString("Server failed to listen on port %1").arg(qLoggerCommon->getPort()).toLocal8Bit());
+            QLog_Debug(qLoggerCommon->getModuleName(), QCoreApplication::translate("QHttpServerExample", QString("Server failed to listen on port %1").arg(qLoggerCommon->getPort()).toLocal8Bit()));
         }
-        qDebug() << "WeBookServer start";
+        QLog_Debug(qLoggerCommon->getModuleName(), "WeBookServer start");
     }
     catch (...)
     {
-        qCritical() << "Error starting WeBookServer";
+        QLog_Error(qLoggerCommon->getModuleName(), "Error starting WeBookServer");
     }
 } // end start
 /******************************************************************************
@@ -83,14 +81,12 @@ void WeBookServer::stop()
 {
     try
     {
-
-        qDebug() << "WeBookServer stop";
+        QLog_Debug(qLoggerCommon->getModuleName(), "WeBookServer stop");
     }
     catch (...)
     {
-        qCritical() << "Error stopping WeBookServer";
+        QLog_Error(qLoggerCommon->getModuleName(), "Error stopping WeBookServer");
     }
-
 } // end stop
 /******************************************************************************
 ** pause                                                                      *
@@ -99,13 +95,12 @@ void WeBookServer::pause()
 {
     try
     {
-        qDebug() << "WeBookServer pause";
+        QLog_Debug(qLoggerCommon->getModuleName(), "WeBookServer pause");
     }
     catch (...)
     {
-        qCritical() << "Error pauseing WeBookServer";
+        QLog_Error(qLoggerCommon->getModuleName(), "Error pauseing WeBookServer");
     }
-
 } // end pause
 /******************************************************************************
 ** resume                                                                     *
@@ -114,13 +109,12 @@ void WeBookServer::resume()
 {
     try
     {
-        qDebug() << "WeBookServer resume";
+        QLog_Debug(qLoggerCommon->getModuleName(), "WeBookServer resume");
     }
     catch (...)
     {
-        qCritical() << "Error resumeing WeBookServer";
+        QLog_Error(qLoggerCommon->getModuleName(), "Error resumeing WeBookServer");
     }
-
 } // end resume
 /******************************************************************************
 ** startHttpServer                                                            *
