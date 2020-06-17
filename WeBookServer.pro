@@ -35,6 +35,7 @@ SOURCES         += src/WeBookServer.cpp src/main.cpp
 
 unix:DISTFILES  += tools/haproxy.cfg tools/monit.conf tools/webookserver.ini tools/webookserver.sh tools/webooksetup.sh
 DISTFILES       += README.md
+DISTFILES       += WeBookServer.qdocconf
 DISTFILES       += data/WeBook.toc
 DISTFILES       += data/WeBook/ItemId1.1.html
 DISTFILES       += data/WeBook/TitlePageID.html

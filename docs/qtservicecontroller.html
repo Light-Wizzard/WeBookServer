@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- qtservice.cpp -->
+  <title>QtServiceController Class | WeBookServer.pro 5.15.0</title>
+</head>
+<body>
+<li>QtServiceController</li>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QtServiceController Class</h1>
+<!-- $$$QtServiceController-brief -->
+<p>The QtServiceController class allows you to control services from separate applications. <a href="#details">More...</a></p>
+<!-- @@@QtServiceController -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;QtServiceController&gt;</span>
+</td></tr></table></div><ul>
+</ul>
+<a name="details"></a>
+<!-- $$$QtServiceController-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>QtServiceController provides a collection of functions that lets you install and run a service controlling its execution, as well as query its status.</p>
+<p>In order to run a service, the service must be installed in the system's service database using the install() function. The system will start the service depending on the specified StartupType; it can either be started during system startup, or when a process starts it manually.</p>
+<p>Once a service is installed, the service can be run and controlled manually using the start(), stop(), pause(), resume() or sendCommand() functions. You can at any time query for the service's status using the isInstalled() and isRunning() functions, or you can query its properties using the serviceDescription(), serviceFilePath(), serviceName() and startupType() functions. For example:</p>
+<pre class="cpp">MyService service;       \\ which inherits <span class="type"><a href="qtservice.html">QtService</a></span>
+<span class="type">QString</span> serviceFilePath;
+
+<span class="type">QtServiceController</span> controller(service<span class="operator">.</span>serviceName());
+
+<span class="keyword">if</span> (controller<span class="operator">.</span>install(serviceFilePath))
+    controller<span class="operator">.</span>start()
+
+<span class="keyword">if</span> (controller<span class="operator">.</span>isRunning())
+    <span class="type">QMessageBox</span><span class="operator">::</span>information(<span class="keyword">this</span><span class="operator">,</span> tr(<span class="string">&quot;Service Status&quot;</span>)<span class="operator">,</span>
+                             tr(<span class="string">&quot;The %1 service is started&quot;</span>)<span class="operator">.</span>arg(controller<span class="operator">.</span>serviceName()));
+
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+controller<span class="operator">.</span>stop();
+controller<span class="operator">.</span>uninstall();
+}</pre>
+<p>An instance of the service controller can only control one single service. To control several services within one application, you must create en equal number of service controllers.</p>
+<p>The QtServiceController destructor neither stops nor uninstalls the associated service. To stop a service the stop() function must be called explicitly. To uninstall a service, you can use the uninstall() function.</p>
+</div>
+<p><b>See also </b><a href="qtservicebase.html">QtServiceBase</a> and <a href="qtservice.html">QtService</a>.</p>
+<!-- @@@QtServiceController -->
+</body>
+</html>

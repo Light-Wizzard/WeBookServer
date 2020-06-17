@@ -1,0 +1,244 @@
+qt.qdoc: Start qdoc for WeBookServer.pro in dual process mode: generate phase.
+qdoc: warning: Dependent modules specified, but no index directories were set. There will probably be errors for missing links.
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+(qdoc) Could not find the module header in include paths for module "WeBookServer.pro"   (include paths:  QVector() )
+       Artificial module header built from header dirs in qdocconf file
+qt.qdoc: clang not printing errors; include paths were guessed
+qt.qdoc: Parse source files for "WeBookServer.pro"
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:149: (qdoc) warning: Class QtServiceController has no \inmodule command; using project name by default: WeBookServer.pro
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:205: (qdoc) warning: Cannot find 'QtServiceController::StartupType' specified with '\enum' in any header file
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:220: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:309: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:563: (qdoc) warning: '\o' is deprecated. Use '\li'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:564: (qdoc) warning: '\o' is deprecated. Use '\li'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:565: (qdoc) warning: '\o' is deprecated. Use '\li'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:566: (qdoc) warning: '\o' is deprecated. Use '\li'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:567: (qdoc) warning: '\o' is deprecated. Use '\li'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:607: (qdoc) warning: Cannot use '\header' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:607: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:607: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:607: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:608: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:608: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:608: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:608: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:609: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:609: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:609: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:609: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:610: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:610: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:610: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:611: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:614: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:614: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:614: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:614: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:615: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:615: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:615: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:615: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:616: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:616: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:616: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:616: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:617: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:617: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:617: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:618: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:619: (qdoc) warning: Cannot use '\row' outside of '\table'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:619: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:619: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:619: (qdoc) warning: '\i' is deprecated. Use '\e' for italic or '\li' for list item
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:620: (qdoc) warning: Unexpected '\endtable'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:516: (qdoc) warning: Class QtServiceBase has no \inmodule command; using project name by default: WeBookServer.pro
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:631: (qdoc) warning: Cannot find 'QtServiceBase::MessageType' specified with '\enum' in any header file
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:660: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:748: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:951: (qdoc) warning: clang found diagnostics parsing \fn void QtServiceBase::logMessage(const QString &message, MessageType type, int id, uint category, const QByteArray &data)
+    error: unknown type name 'MessageType'
+    error: unknown type name 'QByteArray'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1122: (qdoc) warning: '\bold' is deprecated. Use '\b'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1099: (qdoc) warning: Class QtService has no \inmodule command; using project name by default: WeBookServer.pro
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1193: (qdoc) warning: clang found diagnostics parsing \fn QtService::QtService(int argc, char **argv, const QString &name)
+    error: 'QtService' is not a class, namespace, or enumeration
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1207: (qdoc) warning: clang found diagnostics parsing \fn QtService::~QtService()
+    error: 'QtService' is not a class, namespace, or enumeration
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1215: (qdoc) warning: clang found diagnostics parsing \fn Application *QtService::application() const
+    error: unknown type name 'Application'
+    error: 'QtService' is not a class, namespace, or enumeration
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1223: (qdoc) warning: clang found diagnostics parsing \fn void QtService::createApplication(int &argc, char **argv)
+    error: 'QtService' is not a class, namespace, or enumeration
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1235: (qdoc) warning: clang found diagnostics parsing \fn int QtService::executeApplication()
+    error: 'QtService' is not a class, namespace, or enumeration
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:139: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:166: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:185: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:225: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:236: (qdoc) warning: clang found diagnostics parsing \fn QAbstractHttpServer::newConnection
+    error: 'QAbstractHttpServer' is not a class, namespace, or enumeration
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:244: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qabstracthttpserver.cpp:256: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserver.cpp:47: (qdoc) warning: Cannot find 'QHttpServer' specified with '\class' in any header file
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserver.cpp:139: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserver.cpp:146: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:140: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:151: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:159: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:165: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:224: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:243: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:264: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:276: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:296: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:309: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:319: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:328: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:348: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:363: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:372: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:388: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:396: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponder.cpp:404: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:163: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:178: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:194: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:204: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:214: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:224: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:240: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:249: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:258: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:268: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:278: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:288: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:298: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:307: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:317: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:334: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverresponse.cpp:350: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:67: (qdoc) warning: Cannot find 'QHttpServerRouter' specified with '\class' in any header file
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:100: (qdoc) warning: clang found diagnostics parsing \fn template <typename Type> bool QHttpServerRouter::addConverter(const QLatin1String &regexp)
+    error: incomplete type 'QHttpServerRouter' named in nested name specifier
+    error: unknown type name 'QLatin1String'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:138: (qdoc) warning: clang found diagnostics parsing \fn template <typename ViewHandler, typename ViewTraits = QHttpServerRouterViewTraits<ViewHandler>> bool QHttpServerRouter::addRule(QHttpServerRouterRule *rule)
+    error: incomplete type 'QHttpServerRouter' named in nested name specifier
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:164: (qdoc) warning: clang found diagnostics parsing \fn template<typename ViewHandler, typename ViewTraits = QHttpServerRouterViewTraits<ViewHandler>> auto bindCaptured(ViewHandler &&handler, QRegularExpressionMatch &match) const -> typename ViewTraits::BindableType
+    error: non-member function cannot have 'const' qualifier
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:197: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:206: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:212: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:224: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:233: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:246: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:255: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouter.cpp:293: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:61: (qdoc) warning: Cannot find 'QHttpServerRouterRule' specified with '\class' in any header file
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:118: (qdoc) warning: Unknown command '\sq'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:113: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:128: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:146: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:172: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:179: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:188: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/httpserver/qhttpserverrouterrule.cpp:204: (qdoc) warning: Cannot tie this documentation to anything
+    [qdoc found a /*! ... */ comment, but there was no topic command (e.g., '\fn', '\page') in the comment and no function definition following the comment.]
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: No include paths passed to qdoc; guessing reasonable include paths
+qt.qdoc: Source files parsed for "WeBookServer.pro"
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1061: (qdoc) warning: Can't link to 'serviceSpecificArguments'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1061: (qdoc) warning: Can't link to 'exec()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1081: (qdoc) warning: Can't link to 'serviceSpecificArguments'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1081: (qdoc) warning: Can't link to 'exec()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1016: (qdoc) warning: Can't link to 'QtServiceController::pause()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1046: (qdoc) warning: Can't link to 'QtServiceController::sendCommand()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1031: (qdoc) warning: Can't link to 'QtServiceController::resume()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:981: (qdoc) warning: Can't link to 'exec()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:981: (qdoc) warning: Can't link to 'QtServiceController::start()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1000: (qdoc) warning: Can't link to 'QtServiceController::stop()'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1099: (qdoc) warning: Can't link to 'Qt Open Source Edition'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1099: (qdoc) warning: Can't link to 'Qt Commercial Editions'
+/mnt/qnap-light-wizzard/workspace/WeBook/projects/WeBookServer/src/QtService/qtservice.cpp:1099: (qdoc) warning: Can't link to 'serviceSpecificArguments'
+qt.qdoc: End qdoc for WeBookServer.pro in dual process mode: generate phase.
