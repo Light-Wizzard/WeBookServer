@@ -97,10 +97,11 @@ class QT_QTSERVICE_EXPORT QtServiceController
 
     private:
         QtServiceControllerPrivate *d_ptr;
+
 }; // end class QT_QTSERVICE_EXPORT QtServiceController
 
 class QtServiceBasePrivate;
-using ::operator|;
+
 /******************************************************************************
 *  class QT_QTSERVICE_EXPORT QtServiceBase                                    *
 *******************************************************************************/
@@ -111,17 +112,19 @@ class QT_QTSERVICE_EXPORT QtServiceBase
 
         enum MessageType
         {
-            Success = 0, Error, Warning, Information
+            Success = 0,
+            Error,
+            Warning,
+            Information
         };
 
         enum ServiceFlag
         {
-            Default = 0x00,
-            CanBeSuspended = 0x01,
-            CannotBeStopped = 0x02,
+            Default             = 0x00,
+            CanBeSuspended      = 0x01,
+            CannotBeStopped     = 0x02,
             NeedsStopOnShutdown = 0x04
         };
-
         Q_DECLARE_FLAGS(ServiceFlags, ServiceFlag)
 
         QtServiceBase(int argc, char **argv, const QString &name);

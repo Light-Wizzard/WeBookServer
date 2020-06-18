@@ -1,1 +1,1 @@
-#include "../../../../../src/httpserver/qhttpserverrequest_p.h"
+#include "../../../../../src/QHttpServer/httpserver/qhttpserverrequest_p.h"

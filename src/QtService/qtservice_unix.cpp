@@ -37,16 +37,14 @@
 *  $QT_END_LICENSE$
 **
 ****************************************************************************/
-
-#include "qtservice.h"
-#include "qtservice_p.h"
-#include "qtunixsocket.h"
-#include "qtunixserversocket.h"
 #include <QCoreApplication>
 #include <QStringList>
 #include <QFile>
 #include <QTimer>
 #include <QDir>
+#include <QMap>
+#include <QSettings>
+#include <QProcess>
 #include <pwd.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -55,9 +53,10 @@
 #include <syslog.h>
 #include <signal.h>
 #include <sys/stat.h>
-#include <QMap>
-#include <QSettings>
-#include <QProcess>
+#include "qtservice.h"
+#include "qtservice_p.h"
+#include "qtunixsocket.h"
+#include "qtunixserversocket.h"
 /******************************************************************************
 *  encodeName(const QString &name, bool allowUpper = false)                   *
 *******************************************************************************/
@@ -397,25 +396,23 @@ void QtServiceSysPrivate::slotReady()
             retValue = true;
         }
         QString retString;
-        if (retValue)
-            retString = QLatin1String("true");
-        else
-            retString = QLatin1String("false");
+        if (retValue) retString = QLatin1String("true");
+        else          retString = QLatin1String("false");
         s->write(retString.toLatin1().constData());
         s->flush();
         cmd = getCommand(s);
     }
 } // end slotReady
 /******************************************************************************
-*                                                                  *
+* slotClosed                                                                  *
 *******************************************************************************/
 void QtServiceSysPrivate::slotClosed()
 {
     QTcpSocket *s = (QTcpSocket *)sender();
     s->deleteLater();
-} // end
+} // end slotClosed
 /******************************************************************************
-*                                                                  *
+* getCommand                                                                  *
 *******************************************************************************/
 QString QtServiceSysPrivate::getCommand(const QTcpSocket *socket)
 {
@@ -427,13 +424,11 @@ QString QtServiceSysPrivate::getCommand(const QTcpSocket *socket)
         return ret;
     }
     return "";
-} // end
-/******************************************************************************
-*                                                                  *
-*******************************************************************************/
+} // end getCommand
+/*****************************************************************************/
 #include "qtservice_unix.moc"
 /******************************************************************************
-*                                                                  *
+* sysInit                                                                     *
 *******************************************************************************/
 bool QtServiceBasePrivate::sysInit()
 {
@@ -443,17 +438,17 @@ bool QtServiceBasePrivate::sysInit()
     ::umask(027);
 
     return true;
-} // end
+} // end sysInit
 /******************************************************************************
-*                                                                  *
+* sysSetPath                                                                  *
 *******************************************************************************/
 void QtServiceBasePrivate::sysSetPath()
 {
     if (sysd)
         sysd->setPath(socketPath(controller.serviceName()));
-} // end
+} // end sysSetPath
 /******************************************************************************
-*                                                                  *
+* sysCleanup                                                                  *
 *******************************************************************************/
 void QtServiceBasePrivate::sysCleanup()
 {
@@ -463,9 +458,9 @@ void QtServiceBasePrivate::sysCleanup()
         delete sysd;
         sysd = 0;
     }
-} // end
+} // end sysCleanup
 /******************************************************************************
-*                                                                  *
+* start                                                                       *
 *******************************************************************************/
 bool QtServiceBasePrivate::start()
 {
@@ -478,9 +473,9 @@ bool QtServiceBasePrivate::start()
     // we're not installed. We do not want to strictly require installation.
     ::setenv("QTSERVICE_RUN", "1", 1);  // Tell the detached process it's it
     return QProcess::startDetached(filePath(), args.mid(1), "/");
-} // end
+} // end start
 /******************************************************************************
-*                                                                  *
+* install                                                                     *
 *******************************************************************************/
 bool QtServiceBasePrivate::install(const QString &account, const QString &password)
 {
@@ -505,14 +500,13 @@ bool QtServiceBasePrivate::install(const QString &account, const QString &passwo
         fprintf(stderr, "Cannot install \"%s\". Cannot write to: %s. Check permissions.\n", controller.serviceName().toLatin1().constData(), settings.fileName().toLatin1().constData());
     }
     return (ret == QSettings::NoError);
-} // end
+} // end install
 /******************************************************************************
-*                                                                  *
+* logMessage                                                                  *
 *******************************************************************************/
 void QtServiceBase::logMessage(const QString &message, QtServiceBase::MessageType type, int, uint, const QByteArray &)
 {
-    if (!d_ptr->sysd)
-        return;
+    if (!d_ptr->sysd) return;
     int st;
     switch(type)
     {
@@ -534,19 +528,16 @@ void QtServiceBase::logMessage(const QString &message, QtServiceBase::MessageTyp
         ::memcpy(d_ptr->sysd->ident, tmp.toLocal8Bit().constData(), len);
     }
     openlog(d_ptr->sysd->ident, LOG_PID, LOG_DAEMON);
-    foreach(QString line, message.split('\n'))
-        syslog(st, "%s", line.toLocal8Bit().constData());
+    foreach(QString line, message.split('\n')) syslog(st, "%s", line.toLocal8Bit().constData());
     closelog();
-} // end
+} // end logMessage
 /******************************************************************************
-*                                                                  *
+* setServiceFlags                                                             *
 *******************************************************************************/
 void QtServiceBase::setServiceFlags(QtServiceBase::ServiceFlags flags)
 {
-    if (d_ptr->serviceFlags == flags)
-        return;
+    if (d_ptr->serviceFlags == flags) return;
     d_ptr->serviceFlags = flags;
-    if (d_ptr->sysd)
-        d_ptr->sysd->serviceFlags = flags;
-} // end
+    if (d_ptr->sysd) d_ptr->sysd->serviceFlags = flags;
+} // end setServiceFlags
 /******************************  End of File *********************************/
