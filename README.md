@@ -78,7 +78,7 @@ See Security section below
 
 Currently I am using GitHub projects to do the heavy work like Web Server,
 and to make it run as a Daemon in Unix and a Windows Service in Windows,
-I am using QtHttpServer, and QtService by QtLabs for those jobs.
+I am using QtHttpServer by QtLabs , and QtService by QtProject for those jobs.
 
 * QtHttpServer:
 https://github.com/qt-labs/qthttpserver
