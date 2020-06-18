@@ -100,7 +100,7 @@ class QT_QTSERVICE_EXPORT QtServiceController
 }; // end class QT_QTSERVICE_EXPORT QtServiceController
 
 class QtServiceBasePrivate;
-
+using ::operator|;
 /******************************************************************************
 *  class QT_QTSERVICE_EXPORT QtServiceBase                                    *
 *******************************************************************************/
