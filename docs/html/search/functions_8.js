@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pause_177',['pause',['../classWeBookServer.html#a51610991a0e6a5d3fd48d9f6a62048ab',1,'WeBookServer::pause()'],['../classQLogger_1_1QLoggerManager.html#aee16e573ce8be0603b3ad083985d33a7',1,'QLogger::QLoggerManager::pause()']]],
-  ['porttostring_178',['portToString',['../classQLogger_1_1QLoggerCommon.html#a594f297adf82e8a45695594de3267b6e',1,'QLogger::QLoggerCommon']]]
+  ['leveltotext_238',['levelToText',['../classQLoggerLevel.html#a999d2faba8b34bbc6e601a488de76432',1,'QLoggerLevel']]]
 ];

@@ -5,6 +5,7 @@
 *******************************************************************************/
 /*!
    \class WeBookServer
+   \fn WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(argc, argv, "WeBookServer"), myApp(nullptr)
    \brief Daemon/Service HTTP Server.
  */
 WeBookServer::WeBookServer(int argc, char **argv) : QtService<QCoreApplication>(argc, argv, "WeBookServer"), myApp(nullptr)

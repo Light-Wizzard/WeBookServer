@@ -1,24 +1,24 @@
 #pragma once
 
 /******************************************************************************
- *  QLogger is a library to register and print logs into a file.
+ * QLogger is a library to register and print logs into a file.
  **
- *  LinkedIn: www.linkedin.com/in/cescmm/
- *  Web: www.francescmm.com
+ * LinkedIn: www.linkedin.com/in/cescmm/
+ * Web: www.francescmm.com
  **
- *  This lbirary is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2 of the License, or (at your option) any later version.
+ * This lbirary is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  **
- *  This library is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  **
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *****************************************************************************/
 
 #include <QMutex>
@@ -73,13 +73,14 @@ namespace QLogger
             bool addDestination(const QString &fileDest, const QStringList &modules, QLoggerLevel::LogLevel level);
 
             /*!
+               \fn void enqueueMessage(const QString &module, QLoggerLevel::LogLevel level, const QString &message, QString file, int line, const QString &theFunction);
              * @brief enqueueMessage Enqueues a message in the corresponding QLoggerWritter.
              * @param module The module that writes the message.
              * @param level The level of the message.
              * @param message The message to log.
              * @param file The file that logs.
              * @param line The line in the file where the log comes from.
-             * @param Function The Function Name where the call in the file where the log comes from.
+             * @param theFunction The Function Name where the call in the file where the log comes from.
              */
             void enqueueMessage(const QString &module, QLoggerLevel::LogLevel level, const QString &message, QString file, int line, const QString &theFunction);
 
@@ -208,4 +209,5 @@ void QLog_(const QString &module, QLoggerLevel::LogLevel level, const QString &m
     QLogger::QLoggerManager::getInstance()->enqueueMessage(module, QLoggerLevel::LogLevel::Fatal, message, QLOGGER_MESSAGELOG_FILE, QLOGGER_MESSAGELOG_LINE, QLOGGER_MESSAGELOG_FUNC)
 #endif
 
-/* ****************************  End of File ******************************  */
+/******************************* End of File *********************************/
+

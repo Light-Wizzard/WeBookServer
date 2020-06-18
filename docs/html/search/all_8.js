@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['onsettinchanged_62',['onSettinChanged',['../classQLogger_1_1QLoggerCommon.html#a00971531abfd5b767cde728b37e1b9f7',1,'QLogger::QLoggerCommon']]],
-  ['overwriteloglevel_63',['overwriteLogLevel',['../classQLogger_1_1QLoggerManager.html#a6ccab1093b3a052604808895210a403d',1,'QLogger::QLoggerManager']]]
+  ['leveltotext_98',['levelToText',['../classQLoggerLevel.html#a999d2faba8b34bbc6e601a488de76432',1,'QLoggerLevel']]],
+  ['loglevel_99',['LogLevel',['../classQLoggerLevel.html#ae012ab7232f030027cb92b24f3928453',1,'QLoggerLevel']]]
 ];

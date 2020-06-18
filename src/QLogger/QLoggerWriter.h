@@ -4,24 +4,24 @@
 #pragma once
 
 /******************************************************************************
- *  QLogger is a library to register and print logs into a file.
+ * QLogger is a library to register and print logs into a file.
  **
- *  LinkedIn: www.linkedin.com/in/cescmm/
- *  Web: www.francescmm.com
+ * LinkedIn: www.linkedin.com/in/cescmm/
+ * Web: www.francescmm.com
  **
- *  This lbirary is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2 of the License, or (at your option) any later version.
+ * This lbirary is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  **
- *  This library is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  **
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc. 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc. 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *****************************************************************************/
 #include <QThread>
 #include <QWaitCondition>
@@ -61,6 +61,7 @@ namespace QLogger
             void setLogLevel(QLoggerLevel::LogLevel level) { mLevel = level; }
 
             /*!
+               \fn void enqueue(const QDateTime &date, const QString &threadId, const QString &module, QLoggerLevel::LogLevel level, const QString &fileName, int line, const QString &theFunction, const QString &message);
              * @brief enqueue Enqueues a message to be written in the destiantion.
              * @param date The date and time of the log message.
              * @param threadId The thread where the message comes from.
@@ -68,6 +69,7 @@ namespace QLogger
              * @param level The log level of the message.
              * @param fileName The file name that prints the log.
              * @param line The line of the file name that prints the log.
+             * @param theFunction The Function name of the file name that prints the log.
              * @param message The message to log.
              */
             void enqueue(const QDateTime &date, const QString &threadId, const QString &module, QLoggerLevel::LogLevel level, const QString &fileName, int line, const QString &theFunction, const QString &message);
@@ -99,8 +101,8 @@ namespace QLogger
             static const int                    MaxFileSize = 1024 * 1024;
 
             /*!
-             * @brief renameFileIfFull Truncates the log file in two. Keeps the filename for the new one and renames the old one
-             * with the timestamp.
+             * @brief renameFileIfFull Truncates the log file in two.
+             * Keeps the filename for the new one and renames the old one with the timestamp.
              *
              * @return Returns the file name for the old logs.
              */
@@ -116,4 +118,5 @@ namespace QLogger
     }; // end class QLoggerWriter
 } // end namespace QLogger
 //#endif // QLOGGERWRITER_H
-/* ****************************  End of File ******************************  */
+/******************************* End of File *********************************/
+
