@@ -27,10 +27,10 @@
 **
 ****************************************************************************/
 
-#include <QtHttpServer/qabstracthttpserver.h>
+#include <QHttpServer/httpserver/qabstracthttpserver.h>
 
-#include <QtHttpServer/qhttpserverrequest.h>
-#include <QtHttpServer/qhttpserverresponder.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverresponder.h>
 #include <private/qabstracthttpserver_p.h>
 #include <private/qhttpserverrequest_p.h>
 

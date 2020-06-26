@@ -30,8 +30,8 @@
 #ifndef QHTTPSERVERROUTER_H
 #define QHTTPSERVERROUTER_H
 
-#include <QtHttpServer/qthttpserverglobal.h>
-#include <QtHttpServer/qhttpserverrouterviewtraits.h>
+#include <QHttpServer/httpserver/qthttpserverglobal.h>
+#include <QHttpServer/httpserver/qhttpserverrouterviewtraits.h>
 
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qmetatype.h>

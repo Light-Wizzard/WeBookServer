@@ -30,8 +30,8 @@
 #ifndef QHTTPSERVERROUTER_P_H
 #define QHTTPSERVERROUTER_P_H
 
-#include <QtHttpServer/qhttpserverrouter.h>
-#include <QtHttpServer/qhttpserverrouterrule.h>
+#include <QHttpServer/httpserver/qhttpserverrouter.h>
+#include <QHttpServer/httpserver/qhttpserverrouterrule.h>
 
 #include <QtCore/qmap.h>
 #include <QtCore/qlist.h>

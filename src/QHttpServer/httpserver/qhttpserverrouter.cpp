@@ -29,9 +29,9 @@
 
 #include "qhttpserverrouter_p.h"
 
-#include <QtHttpServer/qhttpserverrouter.h>
-#include <QtHttpServer/qhttpserverrouterrule.h>
-#include <QtHttpServer/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverrouter.h>
+#include <QHttpServer/httpserver/qhttpserverrouterrule.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
 
 #include "private/qhttpserverrouterrule_p.h"
 

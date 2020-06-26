@@ -30,7 +30,7 @@
 #ifndef QSSLSERVER_H
 #define QSSLSERVER_H
 
-#include <QtSslServer/qtsslserverglobal.h>
+#include <QHttpServer/sslserver/qtsslserverglobal.h>
 
 #include <QtNetwork/qtcpserver.h>
 #include <QtNetwork/qsslconfiguration.h>

@@ -30,7 +30,7 @@
 #ifndef QHTTPSERVERRESPONSE_H
 #define QHTTPSERVERRESPONSE_H
 
-#include <QtHttpServer/qhttpserverresponder.h>
+#include <QHttpServer/httpserver/qhttpserverresponder.h>
 
 #include <QtCore/qscopedpointer.h>
 

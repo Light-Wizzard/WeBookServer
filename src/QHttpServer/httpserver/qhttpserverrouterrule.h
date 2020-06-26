@@ -30,7 +30,7 @@
 #ifndef QHTTPSERVERROUTERRULE_H
 #define QHTTPSERVERROUTERRULE_H
 
-#include <QtHttpServer/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
 
 #include <QtCore/qmap.h>
 

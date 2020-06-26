@@ -29,7 +29,7 @@
 
 #include "qhttpserverrequest_p.h"
 
-#include <QtHttpServer/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qloggingcategory.h>

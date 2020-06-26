@@ -30,7 +30,7 @@
 #ifndef QHTTPSERVERRESPONDER_H
 #define QHTTPSERVERRESPONDER_H
 
-#include <QtHttpServer/qthttpserverglobal.h>
+#include <QHttpServer/httpserver/qthttpserverglobal.h>
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qpair.h>

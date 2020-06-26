@@ -30,7 +30,7 @@
 #ifndef QHTTPSERVERROUTERRULE_P_H
 #define QHTTPSERVERROUTERRULE_P_H
 
-#include <QtHttpServer/qhttpserverrouterrule.h>
+#include <QHttpServer/httpserver/qhttpserverrouterrule.h>
 
 #include <QtCore/qregularexpression.h>
 #include <QtCore/qstring.h>

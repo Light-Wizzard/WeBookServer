@@ -32,12 +32,12 @@
 
 #include <QtCore/qobject.h>
 
-#include <QtHttpServer/qthttpserverglobal.h>
+#include <QHttpServer/httpserver/qthttpserverglobal.h>
 
 #include <QtNetwork/qhostaddress.h>
 
 #if QT_CONFIG(ssl)
-#include <QtSslServer/qsslserver.h>
+#include <QHttpServer/sslserver/qsslserver.h>
 #include <QSslCertificate>
 #include <QSslKey>
 #endif

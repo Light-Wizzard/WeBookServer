@@ -40,8 +40,8 @@
 //
 // We mean it.
 
-#include <QtHttpServer/qabstracthttpserver.h>
-#include <QtHttpServer/qthttpserverglobal.h>
+#include <QHttpServer/httpserver/qabstracthttpserver.h>
+#include <QHttpServer/httpserver/qthttpserverglobal.h>
 
 #include <private/qobject_p.h>
 

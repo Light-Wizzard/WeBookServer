@@ -30,7 +30,7 @@
 #ifndef QSSLSERVER_P_H
 #define QSSLSERVER_P_H
 
-#include <QtSslServer/qsslserver.h>
+#include <QHttpServer/sslserver/qsslserver.h>
 
 QT_BEGIN_NAMESPACE
 

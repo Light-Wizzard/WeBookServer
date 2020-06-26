@@ -31,12 +31,12 @@
 #ifndef QHTTPSERVER_H
 #define QHTTPSERVER_H
 
-#include <QtHttpServer/qabstracthttpserver.h>
-#include <QtHttpServer/qhttpserverrouter.h>
-#include <QtHttpServer/qhttpserverrouterrule.h>
-#include <QtHttpServer/qhttpserverresponse.h>
-#include <QtHttpServer/qhttpserverrouterviewtraits.h>
-#include <QtHttpServer/qhttpserverviewtraits.h>
+#include <QHttpServer/httpserver/qabstracthttpserver.h>
+#include <QHttpServer/httpserver/qhttpserverrouter.h>
+#include <QHttpServer/httpserver/qhttpserverrouterrule.h>
+#include <QHttpServer/httpserver/qhttpserverresponse.h>
+#include <QHttpServer/httpserver/qhttpserverrouterviewtraits.h>
+#include <QHttpServer/httpserver/qhttpserverviewtraits.h>
 
 #include <tuple>
 

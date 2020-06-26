@@ -30,9 +30,9 @@
 #ifndef QHTTPSERVERRESPONDER_P_H
 #define QHTTPSERVERRESPONDER_P_H
 
-#include <QtHttpServer/qthttpserverglobal.h>
-#include <QtHttpServer/qhttpserverrequest.h>
-#include <QtHttpServer/qhttpserverresponder.h>
+#include <QHttpServer/httpserver/qthttpserverglobal.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverresponder.h>
 
 #include <QtCore/qcoreapplication.h>
 #include <QtCore/qpair.h>

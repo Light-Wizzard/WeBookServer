@@ -31,7 +31,7 @@
 #ifndef QHTTPSERVERROUTERVIEWTRAITS_H
 #define QHTTPSERVERROUTERVIEWTRAITS_H
 
-#include <QtHttpServer/qhttpserverviewtraits_impl.h>
+#include <QHttpServer/httpserver/qhttpserverviewtraits_impl.h>
 
 QT_BEGIN_NAMESPACE
 

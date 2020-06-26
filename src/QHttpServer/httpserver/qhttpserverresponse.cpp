@@ -27,7 +27,7 @@
 **
 ****************************************************************************/
 
-#include <QtHttpServer/qhttpserverresponse.h>
+#include <QHttpServer/httpserver/qhttpserverresponse.h>
 
 #include <private/qhttpserverliterals_p.h>
 #include <private/qhttpserverresponse_p.h>

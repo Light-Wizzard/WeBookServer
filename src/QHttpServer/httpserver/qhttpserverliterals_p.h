@@ -40,7 +40,7 @@
 //
 // We mean it.
 
-#include <QtHttpServer/qthttpserverglobal.h>
+#include <QHttpServer/httpserver/qthttpserverglobal.h>
 
 #include <QtCore/qbytearray.h>
 

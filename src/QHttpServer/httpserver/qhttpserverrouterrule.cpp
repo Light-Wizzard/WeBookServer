@@ -27,7 +27,7 @@
 **
 ****************************************************************************/
 
-#include <QtHttpServer/qhttpserverrouterrule.h>
+#include <QHttpServer/httpserver/qhttpserverrouterrule.h>
 
 #include <private/qhttpserverrouterrule_p.h>
 #include <private/qhttpserverrequest_p.h>

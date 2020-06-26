@@ -42,10 +42,10 @@
 
 #include <private/qabstracthttpserver_p.h>
 
-#include <QtHttpServer/qhttpserver.h>
-#include <QtHttpServer/qhttpserverresponse.h>
-#include <QtHttpServer/qhttpserverrequest.h>
-#include <QtHttpServer/qhttpserverrouter.h>
+#include <QHttpServer/httpserver/qhttpserver.h>
+#include <QHttpServer/httpserver/qhttpserverresponse.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverrouter.h>
 
 #include <QtCore/qglobal.h>
 

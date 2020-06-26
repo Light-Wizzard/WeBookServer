@@ -42,7 +42,7 @@
 
 #include <private/qabstracthttpserver_p.h>
 
-#include <QtHttpServer/qhttpserverresponse.h>
+#include <QHttpServer/httpserver/qhttpserverresponse.h>
 
 #include <functional>
 #include <unordered_map>

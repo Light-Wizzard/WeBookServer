@@ -27,12 +27,12 @@
 **
 ****************************************************************************/
 
-#include <QtHttpServer/qhttpserver.h>
+#include <QHttpServer/httpserver/qhttpserver.h>
 
 
-#include <QtHttpServer/qhttpserverrequest.h>
-#include <QtHttpServer/qhttpserverresponder.h>
-#include <QtHttpServer/qhttpserverresponse.h>
+#include <QHttpServer/httpserver/qhttpserverrequest.h>
+#include <QHttpServer/httpserver/qhttpserverresponder.h>
+#include <QHttpServer/httpserver/qhttpserverresponse.h>
 
 #include "private/qhttpserver_p.h"
 

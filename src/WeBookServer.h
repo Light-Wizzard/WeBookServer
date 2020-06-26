@@ -21,7 +21,7 @@
 
 // Qt Service
 #include "QtService/QtService"
-#include "QtHttpServer/QHttpServer"
+#include "QHttpServer/httpserver/qhttpserver.h"
 // QLogger
 #include "QLogger/QLoggerCommon.h"
 #include "QLogger/QLoggerCrypto.h"
