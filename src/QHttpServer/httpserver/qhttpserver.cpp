@@ -34,7 +34,7 @@
 #include <QtHttpServer/qhttpserverresponder.h>
 #include <QtHttpServer/qhttpserverresponse.h>
 
-#include <private/qhttpserver_p.h>
+#include "private/qhttpserver_p.h"
 
 #include <QtCore/qloggingcategory.h>
 

@@ -27,7 +27,7 @@
 **
 ****************************************************************************/
 
-#include <private/qsslserver_p.h>
+#include "private/qsslserver_p.h"
 
 #include <QtCore/qloggingcategory.h>
 

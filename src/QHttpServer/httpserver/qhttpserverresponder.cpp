@@ -29,9 +29,9 @@
 
 #include <QtHttpServer/qhttpserverresponder.h>
 #include <QtHttpServer/qhttpserverrequest.h>
-#include <private/qhttpserverresponder_p.h>
-#include <private/qhttpserverliterals_p.h>
-#include <private/qhttpserverrequest_p.h>
+#include "private/qhttpserverresponder_p.h"
+#include "private/qhttpserverliterals_p.h"
+#include "private/qhttpserverrequest_p.h"
 #include <QtCore/qjsondocument.h>
 #include <QtCore/qloggingcategory.h>
 #include <QtCore/qtimer.h>

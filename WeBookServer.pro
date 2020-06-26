@@ -51,19 +51,29 @@ win32:LIBS      += -luser32
 # Forked: https://github.com/qt-labs/qthttpserver                             #
 # https://github.com/Light-Wizzard/qthttpserver                               #
 ###############################################################################
-INCLUDEPATH     += include/
-INCLUDEPATH     += include/QtHttpServer
-INCLUDEPATH     += include/QtSslServer
+#INCLUDEPATH     += include/
+#INCLUDEPATH     += include/QtHttpServer
+#INCLUDEPATH     += include/QtSslServer
+#INCLUDEPATH     *= include/QtHttpServer/5.12.0/QtHttpServer
+#INCLUDEPATH     *= include/QtHttpServer/5.12.0/QtHttpServer/private
+#INCLUDEPATH     *= include/QtSslServer/5.12.0/QtSslServer
+#INCLUDEPATH     *= include/QtSslServer/5.12.0/QtSslServer/private
+HEADERS         += src/QHttpServer/httpserver/private/qabstracthttpserver_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserver_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserverliterals_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserverrequest_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserverresponder_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserverresponse_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserverrouter_p.h
+HEADERS         += src/QHttpServer/httpserver/private/qhttpserverrouterrule_p.h
+HEADERS         += src/QHttpServer/sslserver/private/qsslserver_p.h
+
 INCLUDEPATH     *= src/QHttpServer src/QHttpServer/httpserver src/QHttpServer/sslserver
 DEPENDSPATH     *= src/QHttpServer src/QHttpServer/httpserver src/QHttpServer/sslserver
 # This is for Travis
 INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtHttpServer"
 INCLUDEPATH     += "${QT_INSTALL_LIBS}/qt/QtSslServer"
 #
-INCLUDEPATH     *= include/QtHttpServer/5.12.0/QtHttpServer
-INCLUDEPATH     *= include/QtHttpServer/5.12.0/QtHttpServer/private
-INCLUDEPATH     *= include/QtSslServer/5.12.0/QtSslServer
-INCLUDEPATH     *= include/QtSslServer/5.12.0/QtSslServer/private
 #
 HEADERS         += src/QHttpServer/httpserver/qabstracthttpserver.h
 HEADERS         += src/QHttpServer/httpserver/qabstracthttpserver_p.h
@@ -98,8 +108,8 @@ SOURCES         += src/QHttpServer/httpserver/qhttpserverrouter.cpp
 SOURCES         += src/QHttpServer/httpserver/qhttpserverrouterrule.cpp
 SOURCES         += src/QHttpServer/sslserver/qsslserver.cpp
 include(src/QHttpServer/3rdparty/http-parser.pri)
-include(include/QtHttpServer/headers.pri)
-include(include/QtSslServer/headers.pri)
+#include(include/QtHttpServer/headers.pri)
+#include(include/QtSslServer/headers.pri)
 #LIBS            += -L"3rdparty/qthttpserver/lib" -lQt5HttpServer
 #SUBDIRS         += 3rdparty/qthttpserver/qthttpserver.pro
 #SUBDIRS         += 3rdparty/qthttpserver/src/httpserver/httpserver.pro

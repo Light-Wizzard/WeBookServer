@@ -33,7 +33,7 @@
 #include <QtHttpServer/qhttpserverrouterrule.h>
 #include <QtHttpServer/qhttpserverrequest.h>
 
-#include <private/qhttpserverrouterrule_p.h>
+#include "private/qhttpserverrouterrule_p.h"
 
 #include <QtCore/qloggingcategory.h>
 #include <QtCore/qmetatype.h>
