@@ -17,16 +17,17 @@ DEPENDPATH      += src/
 QT              -= gui
 QT              *= core
 QT              *= core-private
-!win32:QT       *= network
+#!win32:QT       *= network
+QT              *= network
 
 CONFIG          *= qt
 CONFIG          *= console
 CONFIG          *= cmdline
 CONFIG          -= app_bundle
-#CONFIG          *= "c++11"
+CONFIG          *= "c++11"
 #CONFIG          *= "c++14"
 #CONFIG         *= "c++1z"
-CONFIG          *= "c++17"
+#CONFIG          *= "c++17"
 #CONFIG         *= "c++2a"
 #CONFIG         *= "c++latest"
 #
