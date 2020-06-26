@@ -48,8 +48,12 @@ else:VERSION     = 0.1.0   # major.minor.patch
 DEFINES          = APP_VERSION=\\\"$${VERSION}\\\"
 win32:LIBS      += -luser32
 ###############################################################################
-# https://github.com/qt-labs/qthttpserver
+# Forked: https://github.com/qt-labs/qthttpserver                             #
+# https://github.com/Light-Wizzard/qthttpserver                               #
 ###############################################################################
+INCLUDEPATH     += include/
+INCLUDEPATH     += include/QtHttpServer
+INCLUDEPATH     += include/QtSslServer
 INCLUDEPATH     *= src/QHttpServer src/QHttpServer/httpserver src/QHttpServer/sslserver
 DEPENDSPATH     *= src/QHttpServer src/QHttpServer/httpserver src/QHttpServer/sslserver
 # This is for Travis
@@ -163,9 +167,6 @@ include(include/QtSslServer/headers.pri)
 #INCLUDEPATH     += 3rdparty/qthttpserver/include
 #INCLUDEPATH     += 3rdparty/qthttpserver/include/QtHttpServer
 #INCLUDEPATH     += 3rdparty/qthttpserver/include/QtSslServer
-#INCLUDEPATH     += include/
-#INCLUDEPATH     += include/QtHttpServer
-#INCLUDEPATH     += include/QtSslServer
 #DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty
 #DEPENDPATH      += 3rdparty/qthttpserver/src/3rdparty/http-parser
 #DEPENDPATH      += 3rdparty/qthttpserver/src/httpserver
