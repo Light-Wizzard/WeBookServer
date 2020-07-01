@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=WeBookServer
+GenericName=WeBookServer
+Comment=WeBook is Pronounced Web Book, this is its Server and its by the Light Wizzard in the Flesh
+Icon=WeBookServer
+Exec=usr/bin/WeBookServer
+Terminal=false
+Categories=Office;
+Keywords=office;
+Name[en_US]=WeBookServer.desktop

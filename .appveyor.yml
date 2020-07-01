@@ -1,0 +1,97 @@
+# WeBookServer AppVeyor configuration files
+image: Visual Studio 2019
+
+environment:
+  global:
+    BIN: WeBookServer
+    MY_ENV: AppVeyor
+    QIF_PACKAGE_URI: 'packages\com.lightwizzard.WeBookServer\data'
+    QT_IF_VERSION: '3.2'
+    PRJLIBS: VCRUNTIME140.dll MSVCP140.dll
+    RUNTIME_LINKAGE: static
+  matrix:  
+    - ARCH: x64
+      COMPILER: MinGW
+      QTDIR: C:\Qt\5.14.2\mingw73_64  
+      QTVER: 5.14.2
+  
+install:
+  - choco install -y InnoSetup
+  - set PATH=%QTDIR%\bin;%PATH%;"C:\Program Files (x86)\Inno Setup 6"
+  - cinst mingw
+  - cinst -y OpenSSL.Light
+  - refreshenv
+  - echo Copy rc files
+  - '%QTDIR%\bin\qtenv2.bat'
+  - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
+  - set PATH=%QTDIR%\bin;C:\Qt\%QTVER%\bin;%PATH%
+
+configuration:
+  - release
+  #- debug
+platform:
+  - x64
+  #- Win32
+
+build_script:
+  - cd "%APPVEYOR_BUILD_FOLDER%\qthttpserver"
+  - mkdir -p "%APPVEYOR_BUILD_FOLDER%\qthttpserver\include"
+  - xcopy /s /e /f "%APPVEYOR_BUILD_FOLDER%\WeBookServer\include" "%APPVEYOR_BUILD_FOLDER%\qthttpserver\include"  
+  - xcopy /s /e /f "%APPVEYOR_BUILD_FOLDER%\WeBookServer\include" "%QTDIR%\include"
+  - qmake qthttpserver.pro CONFIG+=static
+  #- mingw32-make
+  - mingw32-make install
+  - cd %APPVEYOR_BUILD_FOLDER%
+  #- dir "%QTDIR%\include"
+  - dir "%APPVEYOR_BUILD_FOLDER%\qthttpserver"
+  - qmake %BIN%.pro CONFIG+=static
+  - mingw32-make
+
+after_build:
+  - dir /b /s *.exe
+  - mkdir deploy
+  - copy "%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\%BIN%.exe" "deploy\%BIN%.exe"
+  - windeployqt "deploy/%BIN%.exe" --verbose=2
+  - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
+  - 7z a -r -tzip "%BIN%-%CONFIGURATION%.zip" deploy\*
+  - echo APPVEYOR_BUILD_FOLDER=%APPVEYOR_BUILD_FOLDER%
+  #- if exist C:\projects\ (echo C:\projects exists)
+  - xcopy /s /e /f "%APPVEYOR_BUILD_FOLDER%\deploy" "%APPVEYOR_BUILD_FOLDER%\%QIF_PACKAGE_URI%"
+  - C:\Qt\Tools\QtInstallerFramework\3.2\bin\binarycreator.exe --offline-only -c "%APPVEYOR_BUILD_FOLDER%\config\config.xml" -p "%APPVEYOR_BUILD_FOLDER%\packages" "%BIN%-Installer.exe"
+  - 7z a -tzip "%BIN%-Installer.zip" "%BIN%-Installer.exe"
+  - dir /b /s *.zip
+  - dir /b /s *.exe
+  - dir
+  - echo Completed
+  
+artifacts:
+  - path: '%BIN%-%CONFIGURATION%.zip'
+    name: 'Zip-%CONFIGURATION%'
+  - path: '%BIN%-Installer.zip'  
+    name: 'ZipInstaller'
+  - path: '%BIN%-Installer.exe'
+    name: 'ExecutableFile'
+
+deploy:
+  - provider: GitHub
+    release: continuous
+    artifact: 'Zip-%CONFIGURATION%'
+    draft: false
+    prerelease: true
+    auth_token:
+      secure: zhMbBtnPhVjygBTfOpQniE0jUPWOLewzUCFmEQIqZ/VSfFGpdzh+ZPeDU03rP1yD
+  - provider: GitHub
+    release: continuous
+    artifact: 'ZipInstaller'
+    draft: false
+    prerelease: true
+    auth_token:
+      secure: zhMbBtnPhVjygBTfOpQniE0jUPWOLewzUCFmEQIqZ/VSfFGpdzh+ZPeDU03rP1yD
+  - provider: GitHub
+    release: continuous
+    artifact: 'ExecutableFile'
+    draft: false
+    prerelease: true
+    auth_token:
+      secure: zhMbBtnPhVjygBTfOpQniE0jUPWOLewzUCFmEQIqZ/VSfFGpdzh+ZPeDU03rP1yD
+############################################## End of File ####################

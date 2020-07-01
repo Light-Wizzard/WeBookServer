@@ -1,0 +1,260 @@
+# WeBookServer
+sudo: true
+language: cpp
+branches:
+  only:
+    - master
+
+jobs:
+  include:
+    - os: linux
+      dist: xenial
+      sudo: require
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - sourceline: ppa:ubuntu-toolchain-r/test
+            - sourceline: ppa:beineri/opt-qt-5.14.1-xenial
+          update: true  
+          packages:
+            - binutils
+            - cimg-dev
+            - g++-7
+            - git
+            - libgl1-mesa-dev
+            - libjpeg-dev
+            - libmagic-dev
+            - libpng-dev
+            - libxkbcommon-x11-0
+            - libzstd-dev
+            - p7zip-full  
+            - zlib1g-dev
+            - bison 
+            - build-essential
+            - flex
+            - gperf
+            - ibgstreamer-plugins-base0.10-dev
+            - libasound2-dev
+            - libatkmm-1.6-dev
+            - libbz2-dev
+            - libcap-dev
+            - libcups2-dev
+            - libdrm-dev
+            - libegl1-mesa-dev
+            - libfontconfig1-dev
+            - libfreetype6-dev
+            - libgcrypt11-dev
+            - libglu1-mesa-dev
+            - libgstreamer0.10-dev
+            - libicu-dev
+            - libnss3-dev
+            - libpci-dev
+            - libpulse-dev
+            - libssl-dev
+            - libudev-dev
+            - libx11-dev
+            - libx11-xcb-dev
+            - libxcb-composite0
+            - libxcb-composite0-dev
+            - libxcb-cursor-dev
+            - libxcb-cursor0
+            - libxcb-damage0
+            - libxcb-damage0-dev
+            - libxcb-dpms0
+            - libxcb-dpms0-dev
+            - libxcb-dri2-0
+            - libxcb-dri2-0-dev
+            - libxcb-dri3-0
+            - libxcb-dri3-dev
+            - libxcb-ewmh-dev
+            - libxcb-ewmh2
+            - libxcb-glx0
+            - libxcb-glx0-dev
+            - libxcb-icccm4
+            - libxcb-icccm4-dev
+            - libxcb-image0
+            - libxcb-image0-dev
+            - libxcb-keysyms1
+            - libxcb-keysyms1-dev
+            - libxcb-present-dev
+            - libxcb-present0
+            - libxcb-randr0
+            - libxcb-randr0-dev
+            - libxcb-record0
+            - libxcb-record0-dev
+            - libxcb-render-util0
+            - libxcb-render-util0-dev
+            - libxcb-render0
+            - libxcb-render0-dev
+            - libxcb-res0
+            - libxcb-res0-dev
+            - libxcb-screensaver0
+            - libxcb-screensaver0-dev
+            - libxcb-shape0
+            - libxcb-shape0-dev
+            - libxcb-shm0
+            - libxcb-shm0-dev
+            - libxcb-sync-dev
+            - libxcb-sync0-dev
+            - libxcb-sync1
+            - libxcb-util-dev
+            - libxcb-util0-dev
+            - libxcb-util1
+            - libxcb-xevie0
+            - libxcb-xevie0-dev
+            - libxcb-xf86dri0
+            - libxcb-xf86dri0-dev
+            - libxcb-xfixes0
+            - libxcb-xfixes0-dev
+            - libxcb-xinerama0
+            - libxcb-xinerama0-dev
+            - libxcb-xkb-dev
+            - libxcb-xkb1
+            - libxcb-xprint0
+            - libxcb-xprint0-dev
+            - libxcb-xtest0
+            - libxcb-xtest0-dev
+            - libxcb-xv0
+            - libxcb-xv0-dev
+            - libxcb-xvmc0
+            - libxcb-xvmc0-dev
+            - libxcb1
+            - libxcb1-dev
+            - libxcomposite-dev
+            - libxcursor-dev
+            - libxdamage-dev
+            - libxext-dev
+            - libxfixes-dev
+            - libxi-dev
+            - libxrandr-dev
+            - libxrender-dev
+            - libxslt-dev
+            - libxss-dev
+            - libxtst-dev
+            - perl
+            - python
+            - ruby
+      env:
+        - APPIMAGE="true"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - QTV="qt514"
+    - os: osx
+      osx_image: xcode11.0
+      compiler: clang
+      env:
+        - DMG="true"
+        - MATRIX_EVAL="COMPILER=clang++"
+
+deploy:
+  provider: releases
+  api_key: "${GITHUB_TOKEN}"
+  on:
+    tags: true
+    rvm: continuous
+      
+before_install:
+    - if [ -z "${BIN_PRO_RES_NAME+x}" ]; then echo -e "Add BIN_PRO_RES_NAME to your Travis Settings Environment Variable with a value from Github value for Binary, pro, and resource Name"; exit 1; fi
+    - if [ -z "${GITHUB_TOKEN+x}" ]; then echo -e "Add GITHUB_TOKEN to your Travis Settings Environment Variable with a value from Github Settings Developer Personal access tolkens"; exit 1; fi
+    - if [ -z "${GITHUB_EMAIL+x}" ]; then echo -e "Add GITHUB_EMAIL to your Travis Settings Environment Variable with your Github email address"; exit 1; fi    
+    - if [ -z "${GITHUB_USERNAME+x}" ] || [ -z "${GITHUB_PROJECT}" ]; then  
+            OLD_IFS="$IFS"; IFS='/'; read -ra repo_parts <<< "$TRAVIS_REPO_SLUG"; IFS="$OLD_IFS";
+            GITHUB_USERNAME="${repo_parts[0]}";  GITHUB_PROJECT="${repo_parts[1]}";
+      fi
+    - export ARTIFACT_APPIMAGE="${BIN_PRO_RES_NAME}-x86_64.AppImage"; 
+    - export ARTIFACT_ZSYNC="${BIN_PRO_RES_NAME}-x86_64.AppImage.zsync"; 
+    - export ARTIFACT_APPIMAGE_LDQT="${BIN_PRO_RES_NAME}-travis-x86_64.AppImage"; 
+    - export ARTIFACT_ZSYNC_LDQT="${BIN_PRO_RES_NAME}-travis-x86_64.AppImage.zsync"; 
+    - export ARTIFACT_QIF="${BIN_PRO_RES_NAME}-Installer";
+    - export ARTIFACT_ZIP="${BIN_PRO_RES_NAME}-Linux-Installer.zip";
+
+install:
+    - if [ -n "${APPIMAGE}" ]; then 
+        echo "Install qt libraries for Linux";
+        sudo apt-get update --yes -q; 
+        sudo apt-get autoremove; sudo apt-get -f install; sudo apt-get autoclean;
+        sudo apt-get install --yes -q "${QTV}-meta-full";
+        QT_BASE_DIR="/opt/${QTV}";
+        QTDIR="$QT_BASE_DIR";
+        export QTDIR="$QT_BASE_DIR";
+        export PATH="${QT_BASE_DIR}/bin:$PATH";
+        export PKG_CONFIG_PATH="${QT_BASE_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH";        
+      fi
+    - if [ -n "${APPIMAGE}" ]; then 
+        if [[ $(uname -m) == "x86_64" ]]; then
+          export LD_LIBRARY_PATH="${QT_BASE_DIR}/lib/x86_64-linux-gnu:${QT_BASE_DIR}/lib:$LD_LIBRARY_PATH";
+        else
+          export LD_LIBRARY_PATH="${QT_BASE_DIR}/lib/i386-linux-gnu:${QT_BASE_DIR}/lib:$LD_LIBRARY_PATH";
+        fi
+      fi
+    - if [ -n "${APPIMAGE}" ]; then 
+        if [ -d "${TRAVIS_BUILD_DIR}/WeBookServer/include" ]; then
+            echo "FINDME copy includes to Qt Includes=${QTDIR}/include";
+            sudo rsync -arv "${TRAVIS_BUILD_DIR}/WeBookServer/include/" "${QTDIR}/include"; 
+        else
+            echo "FINDME WeBookServer Includes not found";
+        fi
+      fi
+    - if [ -n "${APPIMAGE}" ]; then 
+        if [ -f "${QTDIR}/include/QtHttpServer/QHttpServer" ]; then
+            echo "FINDME Found QtHttpServer/QHttpServer copy confirmed";
+        else
+            echo "FINDME Error did not Find QtHttpServer/QHttpServer";
+            ls "${QTDIR}/include";
+        fi        
+      fi
+    - if [ -n "${DMG}" ]; then 
+        echo "Download last version of Qt with brew for Mac";
+        brew update > /dev/null; 
+        brew install qt5 p7zip; 
+        chmod -R 755 /usr/local/opt/qt5/*; 
+        export QTDIR="/usr/local/opt/qt5"; 
+        export PATH="${QTDIR}/bin:$PATH"; 
+        if [ -d "${QTDIR}/include" ]; then
+            echo "FINDME copy includes to Qt Includes=${QTDIR}/include";
+            sudo rsync -arv "${TRAVIS_BUILD_DIR}/WeBookServer/include/" "${QTDIR}/include"; 
+        else
+            echo "FINDME Qt Includes not found";
+        fi
+      fi
+            
+script:
+    - eval "${MATRIX_EVAL}"
+#    - if [ -n "${APPIMAGE}" ]; then 
+#        cd "${TRAVIS_BUILD_DIR}/qthttpserver";
+#        qmake;
+#        make -j"$(nproc)";
+#        sudo make install;
+#      fi
+    - if [ -n "${APPIMAGE}" ]; then 
+        bash tools/build-with-qmake.sh; 
+      fi
+    - if [ -n "${DMG}" ]; then
+        echo "Build project for Mac in /home/travis/build/[secure]/${BIN_PRO_RES_NAME}";
+        mkdir build && cd build;
+        qmake ..;
+        make;
+        echo "Run macdeployqt";
+        macdeployqt "${BIN_PRO_RES_NAME}.app/" -dmg;
+        find . | grep dmg;
+        export ARTIFACT_MAC="${BIN_PRO_RES_NAME}.dmg"; 
+        export ARTIFACT_MAC_QIF="${BIN_PRO_RES_NAME}-Mac-Installer";
+        export QTIFWVER="3.2.2";
+        export QTIFW_MAC="QtInstallerFramework-mac-x64.dmg";
+      fi
+      
+after_success:
+    - if [ "${TRAVIS_PULL_REQUEST}" != false ] || [ "${TRAVIS_BRANCH}" != "master" ]; then
+        echo "This is not the master branch, no deploy will be done"; travis_terminate 0;
+      fi
+    - wget -c https://raw.githubusercontent.com/${GITHUB_USERNAME}/${BIN_PRO_RES_NAME}/master/tools/upload.sh;
+    - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_APPIMAGE}" ];      then bash ./upload.sh "${ARTIFACT_APPIMAGE}"; fi
+    - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_ZSYNC}" ];         then bash ./upload.sh "${ARTIFACT_ZSYNC}"; fi
+    - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_APPIMAGE_LDQT}" ]; then bash ./upload.sh "${ARTIFACT_APPIMAGE_LDQT}"; fi
+    - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_ZSYNC_LDQT}" ];    then bash ./upload.sh "${ARTIFACT_ZSYNC_LDQT}"; fi
+    - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_QIF}" ];           then bash ./upload.sh "${ARTIFACT_QIF}"; fi
+    - if [ -n "${APPIMAGE}" ] && [ -f "${ARTIFACT_ZIP}" ];           then bash ./upload.sh "${ARTIFACT_ZIP}"; fi
+    - if [ -n "${DMG}" ]      && [ -f "${ARTIFACT_MAC_QIF}" ];       then bash ./upload.sh "${ARTIFACT_MAC_QIF}"; fi
+    - if [ -n "${DMG}" ]      && [ -f "${ARTIFACT_MAC}" ];           then bash ./upload.sh "${ARTIFACT_MAC}"; fi
+
+    

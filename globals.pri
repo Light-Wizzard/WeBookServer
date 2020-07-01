@@ -1,0 +1,1 @@
+catchTests=false
