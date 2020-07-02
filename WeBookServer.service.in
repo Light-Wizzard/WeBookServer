@@ -1,7 +1,7 @@
 [Unit]
-Description=QtService Example Echo Service
-Documentation=https://github.com/Skycoder42/QtService
-After=network-online.target echoservice.socket
+Description=WeBookServer
+Documentation=https://github.com/Light-Wizzard/QtService
+After=network-online.target WeBookServer.socket
 
 [Service]
 Type=notify

@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QCommandLineParser>
 // Qt Http Server
 #define QHTTPSERVER
 #ifdef QHTTPSERVER
@@ -13,10 +14,8 @@
     // thus it has to be installed
     #include <QtHttpServer/QHttpServer>
 #endif
-// QLogger
-//#include "QLogger/QLoggerConstants.h"
-//#include "QLogger/QLoggerCommon.h"
-//#include "QLogger/QLoggerCrypto.h"
+#include "WeBookSettings.h"
+#include "WeBookCrypto.h"
 /******************************************************************************
 *  class WeBookServer : public QtService<QCoreApplication>                    *
 *******************************************************************************/
@@ -47,11 +46,11 @@ class WeBookServer : public QtService::Service
         QTcpServer *_server = nullptr;
         static QByteArray host(QTcpSocket *socket);
 #ifdef QHTTPSERVER
-        QHttpServer         *httpServer         = nullptr;  //
+        QHttpServer         *httpServer       = nullptr;  //
 #endif
-        QString             myCatFileName;                  // Ini File Name
-        //QLogger::QLoggerCommon *qLoggerCommon   = nullptr;  //
-        //QLogger::QLoggerCrypto *qLoggerCrypto   = nullptr;  //
+        QString             myCatFileName;                // Cat File Name
+        WeBookSettings     *weBookSettings    = nullptr;  //
+        WeBookCrypto       *weBookCrypto      = nullptr;  //
 }; // end class WeBookServer
 #endif // WEBOOKSERVER_H
 /******************************  End of File *********************************/

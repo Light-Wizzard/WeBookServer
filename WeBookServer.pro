@@ -10,8 +10,12 @@ CONFIG -= app_bundle
 TARGET = WeBookServer
 
 HEADERS += src/WeBookServer.h
+HEADERS += src/WeBookSettings.h
+HEADERS += src/WeBookCrypto.h
 
 SOURCES += src/WeBookServer.cpp src/main.cpp
+SOURCES += src/WeBookSettings.cpp
+SOURCES += src/WeBookCrypto.cpp
 
 QMAKE_SUBSTITUTES += WeBookServer.service.in scinstall.bat.in WeBookServer.plist.in
 
@@ -75,9 +79,6 @@ HEADERS     *= src/QtAES/QAESEncryption.h
 # QLoggerCommon
 #HEADERS     *= src/QLogger/QLoggerCommon.h
 #SOURCES     *= src/QLogger/QLoggerCommon.cpp
-# QLoggerCrypto
-#HEADERS     *= src/QLogger/QLoggerCrypto.h
-#SOURCES     *= src/QLogger/QLoggerCrypto.cpp
 ###############################################################################
 
 

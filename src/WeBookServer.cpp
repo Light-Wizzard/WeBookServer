@@ -1,4 +1,5 @@
 #include "WeBookServer.h"
+#include "WeBookServer.h"
 /******************************************************************************
 *  WeBookServer Constructor                                                   *
 *******************************************************************************/
@@ -9,6 +10,116 @@
  */
 WeBookServer::WeBookServer(int &argc, char **argv) : Service(argc, argv)
 {
+
+    // WeBook Common has QtSettings and Crypto Functions Common between Client/Server
+    weBookSettings = new WeBookSettings(this);
+    weBookCrypto   = new WeBookCrypto(this);
+
+    QString applicationName;
+    // From *.pro file TARGET   = WeBook, maybe getTarget?
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addOption({{"a", "appname"},     "Application Name if you want it different then executable name.", "appname"});
+    parser.addOption({{"i", "inifile"},     "The Ini File Name: settings.ini", "inifile"});
+    parser.addOption({{"n", "orgname"},     "The Organization Name going to be the Window Title", "orgname"});
+    parser.addOption({{"d", "orgdomain"},   "The Organization Domain URL: https://github.com/USERNAME/PROJECT", "orgdomain"});
+    parser.addOption({{"k", "key"},         "The Crypto Key String", "key"});
+    parser.addOption({{"c", "cryptoiv"},    "The Crypto IV Vector String", "cryptoiv"});
+    parser.addOption({{"w", "webook"},      "The WeBook.cat file name and full path: /path/WeBooks.cat", "webook"});
+    parser.addOption({{"f", "filepath"},    "The Folder to the Data", "filepath"});
+    parser.addOption({{"p", "port"},        "The Port Number of Server", "port"});
+    parser.addOption({{"l", "logpath"},     "The Full Path to Log Fils: /path", "logpath"});
+    parser.addOption({{"b", "blogfolder"},  "The Log Folder Name: logs", "blogfolder"});
+
+
+    const QStringList positionalArguments = parser.positionalArguments();
+    if (!positionalArguments.isEmpty())
+    {
+        parser.process(positionalArguments);
+    }
+
+
+    // QStringList
+    applicationName = argv[0];
+    if (applicationName.isEmpty()) applicationName    = weBookSettings->getAppName();
+    QString thatAppName                 = parser.value("appname");
+    QString thatInitFile                = parser.value("inifile");
+    QString thatOrgName                 = parser.value("orgname");
+    QString thatOrgDomain               = parser.value("orgdomain");
+    QString thatCrypoKey                = parser.value("key");
+    QString thatCryptoIv                = parser.value("cryptoiv");
+    QString thatFolderData              = parser.value("filepath");
+    QString thatWeBookCatFilePathName   = parser.value("webook");
+    QString thatPort                    = parser.value("port");
+    QString thatLogPath                 = parser.value("logpath");
+    QString thatLogFolder               = parser.value("blogfolder");
+    //
+    bool isArgEmpty = false;
+    if (thatFolderData.isEmpty())                isArgEmpty = true;
+    if (thatWeBookCatFilePathName.isEmpty())     isArgEmpty = true;
+
+    if (thatAppName.isEmpty())      thatAppName      = applicationName;
+    if (thatInitFile.isEmpty())     thatInitFile     = weBookSettings->getIniFileName();
+    if (thatOrgName.isEmpty())      thatOrgName      = weBookSettings->getOrgName();
+    if (thatOrgDomain.isEmpty())    thatOrgDomain    = weBookSettings->getOrgDomain();
+    if (thatPort.isEmpty())         thatPort         = weBookSettings->portToString();
+    if (thatLogPath.isEmpty())      thatLogPath      = weBookSettings->getLogPath();
+    if (thatFolderData.isEmpty())   thatFolderData   = weBookSettings->getFilelPath();
+    if (thatLogFolder.isEmpty())    thatLogFolder    = weBookSettings->getLogFolderName();
+    //
+    if (thatCrypoKey.isEmpty())     thatCrypoKey     = weBookCrypto->getCryptoKey();
+    if (thatCryptoIv.isEmpty())     thatCryptoIv     = weBookCrypto->getCryptoIvVector();
+    // organizationName, organizationDomain, applicationName and applicationName
+    // are set in main.cpp, and passed into Constuctor, so they are set
+    QCoreApplication::setOrganizationName(thatOrgName);
+    QCoreApplication::setOrganizationDomain(thatOrgDomain);
+    QCoreApplication::setApplicationName(applicationName);
+
+    weBookSettings->setAppName(thatAppName);
+    weBookSettings->setIniFileName(thatInitFile);
+    weBookSettings->setOrgName(thatOrgName);
+    weBookSettings->setOrgDomain(thatOrgDomain);
+    weBookSettings->setPort(thatPort.toInt());
+    weBookSettings->setLogPath(thatLogPath);
+    weBookSettings->setFilePath(thatFolderData);
+    weBookSettings->setLogFolderName(thatLogFolder);
+    weBookCrypto->setCryptoKey(thatCrypoKey);
+    weBookCrypto->setCryptoIvVector(thatCryptoIv);
+    //
+    if (isArgEmpty)
+    {
+        QString myDataPath;
+        if (thatWeBookCatFilePathName.isEmpty())
+        {
+            QString thatDataPath;
+            if (!thatFolderData.isEmpty())
+            {
+                thatDataPath = thatFolderData;
+            }
+
+            if (thatDataPath.isNull() || thatDataPath.isEmpty())
+            {
+                // constAppFolder constDataFolderName
+                thatDataPath = weBookSettings->ConstDefaultFileFolderName;
+            }
+            weBookSettings->findJoinFilePath(weBookSettings->ConstDefaultWeBookCatName, thatDataPath);
+            QString thatCatPath = weBookSettings->getFilelPath();
+            if (!thatCatPath.isNull() && !thatCatPath.isEmpty())
+            {
+                thatWeBookCatFilePathName = thatCatPath;
+            }
+            else
+            {
+                // error FIXME
+                thatWeBookCatFilePathName = thatFolderData;
+            }
+        }
+    }
+    QCoreApplication::setApplicationName(thatAppName);
+    // FIXME
+    QCoreApplication::setApplicationVersion(QStringLiteral("0.1.0"));
+
     QString thatWeBookList;
 
     if (QFile(getCatFileName()).exists())
@@ -47,7 +158,7 @@ void WeBookServer::setCatFileName(const QString &thisCatFileName)
     if (thisCatFileName.isEmpty())
     {
         // FIXME
-        // myCatFileName = findFilePath(qLoggerCommon->getFilelPath(), QLogger::ConstDefaultWeBookCatName);
+        weBookSettings->findJoinFilePath(weBookSettings->getFilelPath(), weBookSettings->ConstDefaultWeBookCatName);
     }
     if (myCatFileName.isEmpty() || myCatFileName != thisCatFileName)
     {
@@ -198,89 +309,4 @@ QByteArray WeBookServer::host(QTcpSocket *socket)
 {
     return (QLatin1Char('<') + socket->peerAddress().toString() + QLatin1Char(':') + QString::number(socket->peerPort()) + QLatin1Char('>')).toUtf8();
 } // end host
-#ifdef THIS
-/******************************************************************************
-*  findFilePath(String thisFileName, QString thisDataFolderName)              *
-*  All files must be in folder myAppFolderName                                *
-*  This folder is different for debug vs release as well as deployed          *
-*******************************************************************************/
-QString WeBookServer::findFilePath(QString thisFileName, QString thisDataFolderName)
-{
-    // If running from within Qt Creator, this path is outside of the root application folder
-    QDir dataFileDir(QCoreApplication::applicationDirPath());
-    QString dataFullPath;
-    if (thisFileName.isEmpty())
-    {
-        dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("%1%2").arg(thisDataFolderName).arg(QDir::separator())));
-        // If ran from within Qt Creator
-        if (!QDir(dataFullPath).exists())
-        {
-            // APP_FOLDER/databaseFolderName/databaseFileName
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4%5").arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
-        }
-        if (!QDir(dataFullPath).exists())
-        {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5%6").arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
-        }
-        if (!QDir(dataFullPath).exists())
-        {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2..%3%4%5%6%7").arg(QDir::separator()).arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
-        }
-        // look back before the myAppFolderName
-        if (!QDir(dataFullPath).exists())
-        {
-            dataFileDir = QDir(QCoreApplication::applicationDirPath());
-            // ../thisDataFolderName/
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3").arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
-        }
-        // look back before the myAppFolderName
-        if (!QDir(dataFullPath).exists())
-        {
-            // ../../thisDataFolderName/
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4").arg(QDir::separator()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator())));
-        }
-        if (!QDir(dataFullPath).exists())
-        {
-            dataFullPath = ""; // FIXME
-        }
-    }
-    else
-    {
-        // full_path/databaseFolderName/databaseFileName
-        dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("%1%2%3").arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
-        // If ran from within Qt Creator
-        if (!QFile(dataFullPath).exists())
-        {
-            // APP_FOLDER/databaseFolderName/databaseFileName
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4%5%6").arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
-        }
-        if (!QFile(dataFullPath).exists())
-        {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5%6%7").arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
-        }
-        if (!QFile(dataFullPath).exists())
-        {
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2..%3%4%5%6%7%8").arg(QDir::separator()).arg(QDir::separator()).arg(QDir::separator()).arg(qLoggerCommon->getFileFolderName()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
-        }
-        // look back before the myAppFolderName
-        if (!QFile(dataFullPath).exists())
-        {
-            dataFileDir = QDir(QCoreApplication::applicationDirPath());
-            // ../thisDataFolderName/thisFileName
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1%2%3%4").arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
-        }
-        // look back before the myAppFolderName
-        if (!QFile(dataFullPath).exists())
-        {
-            // ../../thisDataFolderName/thisFileName
-            dataFullPath = dataFileDir.cleanPath(dataFileDir.absoluteFilePath(QString("..%1..%2%3%4%5").arg(QDir::separator()).arg(QDir::separator()).arg(thisDataFolderName).arg(QDir::separator()).arg(thisFileName)));
-        }
-        if (!QFile(dataFullPath).exists())
-        {
-            dataFullPath = ""; // FIXME
-        }
-    }
-    return dataFullPath;
-} // end findFilePath
-#endif
 /******************************  End of File *********************************/

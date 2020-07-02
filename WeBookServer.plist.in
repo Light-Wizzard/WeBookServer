@@ -3,7 +3,7 @@
 <plist version=\\"1.0\\">
 <dict>
         <key>Label</key>
-        <string>de.skycoder42.QtService.echoservice</string>
+        <string>us.Light-Wizzard.WeBookServer</string>
         <key>ProgramArguments</key>
         <array>
                 <string>$${target.path}/$$TARGET</string>
