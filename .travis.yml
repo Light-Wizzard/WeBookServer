@@ -196,8 +196,9 @@ install:
             cd ..;
         fi
       fi
-   - pip3 install qdep;
-   - if [ -f "QtService/qtservice.pro" ]; then
+    - echo "pip install"
+    - pip3 install qdep;
+    - if [ -f "QtService/qtservice.pro" ]; then
         if cd QtService ; then
             qdep prfgen --qmake "/opt/${QTV}/bin/qmake";
             qmake -makefile qtservice.pro;
@@ -205,7 +206,7 @@ install:
             sudo make install;
             cd ..;
         fi
-    fi
+      fi
     - if [ -n "${APPIMAGE}" ]; then 
         if [[ $(uname -m) == "x86_64" ]]; then
           export LD_LIBRARY_PATH="${QT_BASE_DIR}/lib/x86_64-linux-gnu:${QT_BASE_DIR}/lib:$LD_LIBRARY_PATH";
