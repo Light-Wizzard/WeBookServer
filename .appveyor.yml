@@ -12,8 +12,8 @@ environment:
   matrix:  
     - ARCH: x64
       COMPILER: MinGW
-      QTDIR: C:\Qt\5.14.1\mingw73_64  
-      QTVER: 5.14.1
+      QTDIR: C:\Qt\5.14.2\mingw73_64  
+      QTVER: 5.14.2
   
 install:
   - choco install -y InnoSetup
@@ -25,7 +25,7 @@ install:
   - '%QTDIR%\bin\qtenv2.bat'
   - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
   - set PATH=%QTDIR%\bin;C:\Qt\%QTVER%\bin;%PATH%
-  - pip install qdep
+  - pip3 install qdep
 
 configuration:
   - release

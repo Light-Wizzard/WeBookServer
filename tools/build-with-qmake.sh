@@ -112,37 +112,6 @@ echo "FINDME run qmake -makefile ${REPO_ROOT}";
 #ls "${REPO_ROOT}"; # show root of GitHub folder
 #export QMAKE_DEFAULT_INCDIRS="${REPO_ROOT}/qthttpserver/include/ ${REPO_ROOT}/qthttpserver/include/QtHttpServer ${REPO_ROOT}/qthttpserver/include/QtHttpServer/5.12.0/QtHttpServer/private ${REPO_ROOT}/qthttpserver/include/QtSslServer ${REPO_ROOT}/qthttpserver/include/QtSslServer/5.12.0/QtSslServer/private";
 
-declare -i USE_LOCAL_FORK; USE_LOCAL_FORK=0;
-if [ "${USE_LOCAL_FORK}" -eq 1 ]; then
-    git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/qthttpserver.git;
-    git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/QtService.git;
-else
-    git clone --recursive --recurse-submodules https://github.com/qt-labs/qthttpserver.git;
-    git clone --recursive --recurse-submodules https://github.com/Skycoder42/QtService.git;
-fi
-
-if [ -f "qthttpserver/qthttpserver.pro" ]; then
-    if cd qthttpserver ; then
-        qmake -makefile qthttpserver.pro;
-        make -j"$(nproc)";
-        sudo make install;
-        cd ..;
-    fi
-fi
-
-pip install qdep;
-
-if [ -f "QtService/qtservice.pro" ]; then
-    if cd QtService ; then
-        qdep prfgen --qmake "/opt/${QTV}/bin/qmake";
-        qmake -makefile qtservice.pro;
-        
-        make -j"$(nproc)";
-        sudo make install;
-        cd ..;
-    fi
-fi
-
 qmake -makefile "${REPO_ROOT}";
 # 
 #echo "FINDME ******************************";

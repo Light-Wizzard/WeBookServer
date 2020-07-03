@@ -139,6 +139,7 @@ jobs:
         - APPIMAGE="true"
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - QTV="qt514"
+        - USE_LOCAL_FORK=0
     - os: osx
       osx_image: xcode11.0
       compiler: clang
@@ -180,6 +181,31 @@ install:
         export PATH="${QT_BASE_DIR}/bin:$PATH";
         export PKG_CONFIG_PATH="${QT_BASE_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH";        
       fi
+    - if [ "${USE_LOCAL_FORK}" -eq 1 ]; then
+        git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/qthttpserver.git;
+        git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/QtService.git;
+      else
+        git clone --recursive --recurse-submodules https://github.com/qt-labs/qthttpserver.git;
+        git clone --recursive --recurse-submodules https://github.com/Skycoder42/QtService.git;
+      fi
+    - if [ -f "qthttpserver/qthttpserver.pro" ]; then
+        if cd qthttpserver ; then
+            qmake -makefile qthttpserver.pro;
+            make -j"$(nproc)";
+            sudo make install;
+            cd ..;
+        fi
+      fi
+   - pip3 install qdep;
+   - if [ -f "QtService/qtservice.pro" ]; then
+        if cd QtService ; then
+            qdep prfgen --qmake "/opt/${QTV}/bin/qmake";
+            qmake -makefile qtservice.pro;
+            make -j"$(nproc)";
+            sudo make install;
+            cd ..;
+        fi
+    fi
     - if [ -n "${APPIMAGE}" ]; then 
         if [[ $(uname -m) == "x86_64" ]]; then
           export LD_LIBRARY_PATH="${QT_BASE_DIR}/lib/x86_64-linux-gnu:${QT_BASE_DIR}/lib:$LD_LIBRARY_PATH";
