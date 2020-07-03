@@ -110,7 +110,35 @@ export PKG_CONFIG_PATH="${QT_BASE_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH";
 #
 echo "FINDME run qmake -makefile ${REPO_ROOT}";
 #ls "${REPO_ROOT}"; # show root of GitHub folder
-export QMAKE_DEFAULT_INCDIRS="${REPO_ROOT}/qthttpserver/include/ ${REPO_ROOT}/qthttpserver/include/QtHttpServer ${REPO_ROOT}/qthttpserver/include/QtHttpServer/5.12.0/QtHttpServer/private ${REPO_ROOT}/qthttpserver/include/QtSslServer ${REPO_ROOT}/qthttpserver/include/QtSslServer/5.12.0/QtSslServer/private";
+#export QMAKE_DEFAULT_INCDIRS="${REPO_ROOT}/qthttpserver/include/ ${REPO_ROOT}/qthttpserver/include/QtHttpServer ${REPO_ROOT}/qthttpserver/include/QtHttpServer/5.12.0/QtHttpServer/private ${REPO_ROOT}/qthttpserver/include/QtSslServer ${REPO_ROOT}/qthttpserver/include/QtSslServer/5.12.0/QtSslServer/private";
+
+declare -i USE_LOCAL_FORK; USE_LOCAL_FORK=0;
+if [ "${USE_LOCAL_FORK}" -eq 1 ]; then
+    git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/qthttpserver.git;
+    git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/QtService.git;
+else
+    git clone --recursive --recurse-submodules https://github.com/qt-labs/qthttpserver.git;
+    git clone --recursive --recurse-submodules https://github.com/Skycoder42/QtService.git;
+fi
+
+if [ -f "qthttpserver/qthttpserver.pro" ]; then
+    if cd qthttpserver ; then
+        qmake -makefile qthttpserver.pro;
+        make -j"$(nproc)";
+        sudo make install;
+        cd ..;
+    fi
+fi
+
+if [ -f "QtService/qtservice.pro" ]; then
+    if cd QtService ; then
+        qmake -makefile qtservice.pro;
+        make -j"$(nproc)";
+        sudo make install;
+        cd ..;
+    fi
+fi
+
 qmake -makefile "${REPO_ROOT}";
 # 
 #echo "FINDME ******************************";
@@ -125,45 +153,9 @@ echo "FINDME make install";
 # make install to this folder 
 make install INSTALL_ROOT="${PWD}/AppDir";
 
-# ../../lib/ ln
-# AppDir/opt/qt514/lib/libQt5SslServer.so
-# /tmp/[secure]-build-aCJVF3/3rdparty/qthttpserver/lib/libQt5SslServer.so
-# /opt/qt514/lib/libQt5WebSockets.so /opt/qt514/lib/libQt5Network.so
-
-
 ls; # ls = 3rdparty AppDir Makefile
 echo "FINDME end make install";
 # AppDir/usr/share/applications AppDir/usr/share/pixmaps
-
-if [ -d "${PWD}/AppDir" ]; then
-    echo "FINDME ./AppDir";
-    ls "${PWD}/AppDir"; # usr share pixmaps
-fi
-if [ -d "${PWD}/AppDir/home" ]; then
-    echo "FINDME ./AppDir/home";
-    ls "${PWD}/AppDir/home"; # 
-fi
-if [ -d "${PWD}/AppDir/home/travis" ]; then
-    echo "FINDME ./AppDir/home/travis";
-    ls "${PWD}/AppDir/home/travis"; # 
-fi
-if [ -d "${PWD}/AppDir/home/travis/build" ]; then
-    echo "FINDME ./AppDir/home/travis/build";
-    ls "${PWD}/AppDir/home/travis/build"; # 
-fi
-#
-if [ -d "${PWD}/AppDir/usr" ]; then
-    echo "FINDME ./AppDir/usr";
-    ls "${PWD}/AppDir/usr"; # AppDir/usr
-fi
-if [ -d "${PWD}/AppDir/usr/share" ]; then
-    echo "FINDME ./AppDir/usr/share";
-    ls "${PWD}/AppDir/usr/share"; # AppDir/usr/share
-fi
-if [ -d "${PWD}/AppDir/usr/share/applications" ]; then
-    echo "FINDME ./AppDir/usr/share/applications";
-    ls "${PWD}/AppDir/usr/share/applications"; # AppDir/usr/share/applications
-fi
 
 
 echo "FINDME find exe start";
@@ -184,12 +176,6 @@ find "${TRAVIS_BUILD_DIR}" -type f -name "${BIN_PRO_RES_NAME}";
 # AppDir/usr/share
 # AppDir/usr/share/applications
 # AppDir/usr/share/pixmaps
-#
-#
-#
-#
-#
-
 
 #echo "FINDME BUILD_DIR";
 #ls "${BUILD_DIR}"; # 3rdparty AppDir Makefile
