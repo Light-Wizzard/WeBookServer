@@ -130,9 +130,13 @@ if [ -f "qthttpserver/qthttpserver.pro" ]; then
     fi
 fi
 
+pip install qdep;
+
 if [ -f "QtService/qtservice.pro" ]; then
     if cd QtService ; then
+        qdep prfgen --qmake "/opt/${QTV}/bin/qmake";
         qmake -makefile qtservice.pro;
+        
         make -j"$(nproc)";
         sudo make install;
         cd ..;

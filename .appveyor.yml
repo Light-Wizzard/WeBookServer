@@ -12,8 +12,8 @@ environment:
   matrix:  
     - ARCH: x64
       COMPILER: MinGW
-      QTDIR: C:\Qt\5.14.2\mingw73_64  
-      QTVER: 5.14.2
+      QTDIR: C:\Qt\5.14.1\mingw73_64  
+      QTVER: 5.14.1
   
 install:
   - choco install -y InnoSetup
@@ -25,6 +25,7 @@ install:
   - '%QTDIR%\bin\qtenv2.bat'
   - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
   - set PATH=%QTDIR%\bin;C:\Qt\%QTVER%\bin;%PATH%
+  - pip install qdep
 
 configuration:
   - release
@@ -34,16 +35,14 @@ platform:
   #- Win32
 
 build_script:
-  - cd "%APPVEYOR_BUILD_FOLDER%\qthttpserver"
-  - mkdir -p "%APPVEYOR_BUILD_FOLDER%\qthttpserver\include"
-  - xcopy /s /e /f "%APPVEYOR_BUILD_FOLDER%\WeBookServer\include" "%APPVEYOR_BUILD_FOLDER%\qthttpserver\include"  
-  - xcopy /s /e /f "%APPVEYOR_BUILD_FOLDER%\WeBookServer\include" "%QTDIR%\include"
-  - qmake qthttpserver.pro CONFIG+=static
-  #- mingw32-make
-  - mingw32-make install
+  #- git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/qthttpserver.git;
+  #- git clone --recursive --recurse-submodules https://github.com/Light-Wizzard/QtService.git;
+  - git clone --recursive --recurse-submodules https://github.com/qt-labs/qthttpserver.git;
+  - git clone --recursive --recurse-submodules https://github.com/Skycoder42/QtService.git;
+
+  - if exist C:\%APPVEYOR_BUILD_FOLDER%\qthttpserver\ (cd qthttpserver && qmake -makefile qthttpserver.pro CONFIG+=static && mingw32-make && mingw32-make install; cd ..;)
+  - if exist C:\%APPVEYOR_BUILD_FOLDER%\QtService\ (cd QtService && qdep prfgen --qmake "C:\Qt\%QTVER%\bin\qmake.exe"; qmake -makefile qtservice.pro CONFIG+=static && mingw32-make && mingw32-make install; cd ..;)
   - cd %APPVEYOR_BUILD_FOLDER%
-  #- dir "%QTDIR%\include"
-  - dir "%APPVEYOR_BUILD_FOLDER%\qthttpserver"
   - qmake %BIN%.pro CONFIG+=static
   - mingw32-make
 
