@@ -9,12 +9,17 @@ environment:
     QT_IF_VERSION: '3.2'
     PRJLIBS: VCRUNTIME140.dll MSVCP140.dll
     RUNTIME_LINKAGE: static
+    CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\appveyor\\run_with_env.cmd"
+    
   matrix:  
     - ARCH: x64
       COMPILER: MinGW
-      QTDIR: C:\Qt\5.14.2\mingw73_64  
+      QTDIR: C:\\Qt\\5.14.2\\mingw73_64  
       QTVER: 5.14.2
-  
+      PYTHON: "C:\\Python37-x64"
+      PYTHON_VERSION: "3.7.x"
+      PYTHON_ARCH: "64"  
+      
 install:
   - choco install -y InnoSetup
   - set PATH=%QTDIR%\bin;%PATH%;"C:\Program Files (x86)\Inno Setup 6"

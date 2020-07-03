@@ -133,7 +133,8 @@ jobs:
             - libxss-dev
             - libxtst-dev
             - perl
-            - python
+            - python3
+            - python3-pip
             - ruby
       env:
         - APPIMAGE="true"
