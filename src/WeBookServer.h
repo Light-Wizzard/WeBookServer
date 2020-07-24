@@ -30,6 +30,13 @@ class WeBookServer : public QtService::Service
         void setCatFileName(const QString &thisCatFileName);        // myCatFileName
         //
         //QString findFilePath(QString thisFileName, QString thisDataFolderName);
+        qint64 sendToClient(QTcpSocket *tcpSocket, const QString &str);
+        QList<QTcpSocket *> getClients();
+
+        QTcpServer *tcpServer = nullptr;
+        QTcpSocket *tcpSocket = nullptr;
+        QTcpServer *fileServer = nullptr;
+        QTcpSocket *fileSocket = nullptr;
 
     protected:
         bool preStart() override;
@@ -41,9 +48,15 @@ class WeBookServer : public QtService::Service
 
     private Q_SLOTS:
         void newConnection();
+        void onReceiveData();
+        void onAcceptFileConnection();
+        void onUpdateFileProgress();
+        void onUpdateFileProgressBytes(qint64);
+        void onDisplayError(QAbstractSocket::SocketError socketError);
+        void onSendFile();
+        void onGotDisconnection();
 
     private:
-        QTcpServer *_server = nullptr;
         static QByteArray host(QTcpSocket *socket);
 #ifdef QHTTPSERVER
         QHttpServer         *httpServer       = nullptr;  //
@@ -51,6 +64,19 @@ class WeBookServer : public QtService::Service
         QString             myCatFileName;                // Cat File Name
         WeBookSettings     *weBookSettings    = nullptr;  //
         WeBookCrypto       *weBookCrypto      = nullptr;  //
+
+        QString fileName;
+        QFile *localFile        = nullptr;
+        QByteArray inBlock;
+        QByteArray outBlock;
+        qint64 totalBytes       = 0;
+        qint64 bytesReceived    = 0;
+        qint64 bytesToWrite     = 0;
+        qint64 bytesWritten     = 0;
+        qint64 fileNameSize     = 0;
+        qint64 perDataSize      = 64 * 1024;
+        qint64 nextBlockSize    = 0;
+        QList<QTcpSocket*> clients;
 }; // end class WeBookServer
 #endif // WEBOOKSERVER_H
 /******************************  End of File *********************************/
