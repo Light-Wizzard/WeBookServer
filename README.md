@@ -54,69 +54,14 @@ Currently the WeBookServer will compile and run on Windows 10 Pro and Linux.
 
 Unix: Linux and Mac: [![Travis Build Status](https://travis-ci.org/Light-Wizzard/WeBookServer.svg?branch=master)](https://travis-ci.org/Light-Wizzard/WeBookServer)
 
-I created a subdirs project, to incorporate QtHttpServer,
-but I did not use the github add submodule feature due to these issues below.
-
-I have an issue with Travis finding the Private includes:
-
-```
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/sslserver
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/sslserver
-
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/WeBookServer/include/QtHttpServer
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/WeBookServer/include/QtSslServer
-
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/include/QtHttpServer
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/include/QtSslServer
-
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/include/QtHttpServer/5.12.0/QtHttpServer/private
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/include/QtSslServer/5.12.0/QtSslServer/private
-
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/include
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/include/QtSslServer
-
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/include/QtSslServer/5.12.0
--I/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/include/QtSslServer/5.12.0/QtSslServer
-
--I/tmp/WeBookServer-build-7piDIU/qthttpserver/include
--I/tmp/WeBookServer-build-7piDIU/qthttpserver/include/QtSslServer
-
--I/opt/qt514/mkspecs/linux-g++
-
--I/opt/qt514/include/QtHttpServer
--I/opt/qt514/include/QtSslServer
--I/opt/qt514/include/QtHttpServer/5.12.0/QtHttpServer/private
--I/opt/qt514/include/QtSslServer/5.12.0/QtSslServer/private
-
--I/opt/qt514/include
--I/opt/qt514/include/QtNetwork
--I/opt/qt514/include/QtCore/5.14.1
--I/opt/qt514/include/QtCore/5.14.1/QtCore
--I/opt/qt514/include/QtCore
-
--I.
--I/usr/include/c++/5
--I/usr/include/x86_64-linux-gnu/c++/5
--I/usr/include/c++/5/backward
--I/usr/local/include
--I/usr/include/x86_64-linux-gnu
--I/usr/include
--I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed
--I/usr/lib/gcc/x86_64-linux-gnu/5/include
-
-/home/travis/build/Light-Wizzard/WeBookServer/qthttpserver/src/sslserver/qsslserver.h
-```
-
-I cannot see the problem, the paths seem to be all inclusive.
-
-I am going to try to just git clone both the QtHttpServer and QtService,
+I am using git clone for both the QtHttpServer and QtService,
 and install them on the system, and just link to the Library.
+
+Chat works.
 
 ### Windows Status
 
 Windows: [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/awd7sv94293st7ff?svg=true)](https://ci.appveyor.com/project/Light-Wizzard/WeBookServer)
-
-Fails due to a Windows Error in QtService, I need to boot up Windows to find out why, that code was abandon pretty much, but it should be easy to fix, my guess is obsolete calls.
 
 I decided to go back to using the Forked version of QtService, and ran into the same issues I was having the first time I tried it, 
 the Python script would not install, it was giving me an error that python 2.x is at its end of lifespan, 
